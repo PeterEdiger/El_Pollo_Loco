@@ -3,16 +3,14 @@
 
 
 ```pseudocode
-Why only one chicken gets displayed with the loop. 
-
-Maybe because it is the same img without an unique id?
-
-
-
-
+Die Schleife ist nicht das richtige Mittel der Wahl.
 ```
 
-```javascript
+
+
+```pseudocode
+Jede Instanz eines Chickens bekommt eine andere animate() Math.random() W
+
 
 ```
 

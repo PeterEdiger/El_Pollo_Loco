@@ -7,3 +7,8 @@ body{
 canvas{
   background-color: black;
 }
+
+#clouds{
+  border: solid red;
+  z-index: 10;
+}
