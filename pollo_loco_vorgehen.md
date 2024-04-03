@@ -3,13 +3,17 @@
 
 
 ```pseudocode
-Die Schleife ist nicht das richtige Mittel der Wahl.
+Was ist das Problem mit dem keyboard.class?
 ```
 
 
 
 ```pseudocode
-Jede Instanz eines Chickens bekommt eine andere animate() Math.random() W
+Was baust du dort gerade oder was probiertst du aus?
+
+Wird die animation von Pepe angehalten wenn 
+
+
 
 
 ```

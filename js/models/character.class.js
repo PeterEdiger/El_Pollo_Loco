@@ -6,6 +6,8 @@ class Character extends MovableObject {
   y = 230;
   width = 100;
   height = 200;
+  world;
+  
 
   IMAGES_WALKING = [
     "img_pollo_locco/img/2_character_pepe/2_walk/W-21.png",
@@ -28,9 +30,8 @@ class Character extends MovableObject {
 
   animate(){
     setInterval(() => {
-      if(this.pepeWalkIndex % this.IMAGES_WALKING.length === 0){
-        this.pepeWalkIndex = 0
-      }
+      let i = this.pepeWalkIndex % this.IMAGES_WALKING.length 
+      this.pepeWalkIndex = i
       this.img = this.imgCache[this.IMAGES_WALKING[this.pepeWalkIndex]]
       this.pepeWalkIndex += 1
     }, 250);
