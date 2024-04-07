@@ -9,6 +9,7 @@ class MovableObject {
   imgCache = {};
   speed;
   otherDirection = false;
+  currentIndex = 0
  
   loadImage(path) {
     // Creates an HTML <img ...> element without src. 
@@ -35,6 +36,10 @@ class MovableObject {
   }
 
   playAnimation(images){
-    
+    let i = this.currentIndex % images.length 
+    this.currentIndex = i
+    this.img = this.imgCache[images[this.currentIndex]]
+    this.pepeWalkIndex += 1
+
   }
 }

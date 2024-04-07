@@ -3,9 +3,6 @@
 
 
 ```pseudocode
-Problem:
-Es gibt eine Funktion bei mehreren movableObjects die in einen einzelnen Charcter wiederholend definiert wird.
-
 
 
 ```
@@ -13,7 +10,9 @@ Es gibt eine Funktion bei mehreren movableObjects die in einen einzelnen Charcte
 
 
 ```pseudocode
+Kann ich den counter vom index bei movable object definieren?
 
+Ja, weil jede Instanz sich daraus ihren eigenen counter holt der natürlich unabhängig von den jeweils anderen ist.
 
 
 ```
