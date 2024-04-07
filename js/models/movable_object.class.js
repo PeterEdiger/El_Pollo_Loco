@@ -7,7 +7,9 @@ class MovableObject {
   width;
   img;
   imgCache = {};
-
+  speed;
+  otherDirection = false;
+ 
   loadImage(path) {
     // Creates an HTML <img ...> element without src. 
     this.img = new Image();
@@ -19,7 +21,7 @@ class MovableObject {
     array.forEach(path => {
       let image = new Image();
       image.src = path;
-      this.imgCache[path] = image
+      this.imgCache[path] = image;
     });
   }
 
@@ -28,8 +30,11 @@ class MovableObject {
 
   moveLeft(speed) {
     setInterval(() => {
-      this.x -= speed
+      this.x -= speed;
     }, 1000 / 60);
+  }
 
+  playAnimation(images){
+    
   }
 }

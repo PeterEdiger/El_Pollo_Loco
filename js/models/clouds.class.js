@@ -1,15 +1,15 @@
-class Clouds extends MovableObject{
-  x = 0;
+class Clouds extends MovableObject {
   y = 15;
-  width = 550; 
+  width = 550;
   height = 200;
 
-  constructor(){
-   super().loadImage("img_pollo_locco/img/5_background/layers/4_clouds/1.png")
-   this.animate()
+  constructor(path, x) {
+    super().loadImage(path);
+    this.animate();
+    this.x = x;
   }
 
-  animate(){
-    this.moveLeft(0.2)
+  animate() {
+    this.moveLeft(0.5);
   }
 }

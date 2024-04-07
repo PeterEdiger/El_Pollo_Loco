@@ -3,16 +3,16 @@
 
 
 ```pseudocode
-Was ist das Problem mit dem keyboard.class?
+Problem:
+Es gibt eine Funktion bei mehreren movableObjects die in einen einzelnen Charcter wiederholend definiert wird.
+
+
+
 ```
 
 
 
 ```pseudocode
-Was baust du dort gerade oder was probiertst du aus?
-
-Wird die animation von Pepe angehalten wenn 
-
 
 
 

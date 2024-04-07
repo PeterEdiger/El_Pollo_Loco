@@ -2,11 +2,12 @@
 
 
 class Character extends MovableObject {
-  x = 60;
+  x = 0;
   y = 230;
   width = 100;
   height = 200;
   world;
+  speed = 10;
   
 
   IMAGES_WALKING = [
@@ -18,6 +19,8 @@ class Character extends MovableObject {
     "img_pollo_locco/img/2_character_pepe/2_walk/W-26.png",
   ]
 
+walkingSound = new Audio("audio/pepe_running.wav")
+
   pepeWalkIndex = 0;
 
   constructor() {
@@ -27,14 +30,33 @@ class Character extends MovableObject {
   }
 
 
-
   animate(){
+    // Checks for Pepes running direction 
     setInterval(() => {
-      let i = this.pepeWalkIndex % this.IMAGES_WALKING.length 
-      this.pepeWalkIndex = i
-      this.img = this.imgCache[this.IMAGES_WALKING[this.pepeWalkIndex]]
-      this.pepeWalkIndex += 1
-    }, 250);
+      this.walkingSound.pause()
+      if(this.world.keyboard.right && this.x < this.world.level.levelEndX){
+        this.x += this.speed
+        this.otherDirection = false
+        this.walkingSound.play()
+      }
+      
+      if(this.world.keyboard.left && this.x > -200){
+        this.x -= this.speed
+        this.otherDirection = true
+        this.walkingSound.play()
+      }
+      this.world.camera_x = -this.x +150
+    }, 1000 / 60);
+
+    // Interval for moving Pepes arms and feet.
+    setInterval(() => {
+      if(this.world.keyboard.right || this.world.keyboard.left){
+        let i = this.pepeWalkIndex % this.IMAGES_WALKING.length 
+        this.pepeWalkIndex = i
+        this.img = this.imgCache[this.IMAGES_WALKING[this.pepeWalkIndex]]
+        this.pepeWalkIndex += 1
+      }
+    }, 40);
   }
 
 
