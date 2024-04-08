@@ -20,16 +20,12 @@ class Chicken extends MovableObject {
     "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
 
-  chickenWalkIndex = 0;
-
 
 
   animate() {
     // Interval for moving chicken feet
     setInterval(() => {
-      this.chickenWalkIndex = this.chickenWalkIndex % 3
-      this.img = this.imgCache[this.IMAGES_WALKING[this.chickenWalkIndex]];
-      this.chickenWalkIndex  += 1;
+      this.playAnimation(this.IMAGES_WALKING)
     }, 250);
 
     this.speed = Math.random() * 0.7
