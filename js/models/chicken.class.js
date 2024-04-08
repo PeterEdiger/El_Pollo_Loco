@@ -25,6 +25,7 @@ class Chicken extends MovableObject {
 
 
   animate() {
+    // Interval for moving chicken feet
     setInterval(() => {
       this.chickenWalkIndex = this.chickenWalkIndex % 3
       this.img = this.imgCache[this.IMAGES_WALKING[this.chickenWalkIndex]];

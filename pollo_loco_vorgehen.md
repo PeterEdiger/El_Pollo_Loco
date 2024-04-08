@@ -3,6 +3,11 @@
 
 
 ```pseudocode
+Codiere die playAnimation Funktion bei jedem movable object das sich bewegt. 
+
+chicken haben animation
+
+endboss auch. 
 
 
 ```
@@ -10,10 +15,7 @@
 
 
 ```pseudocode
-Kann ich den counter vom index bei movable object definieren?
-
-Ja, weil jede Instanz sich daraus ihren eigenen counter holt der natürlich unabhängig von den jeweils anderen ist.
-
+Problem: i bleibt bei 0
 
 ```
 
