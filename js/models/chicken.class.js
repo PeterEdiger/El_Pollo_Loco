@@ -21,7 +21,6 @@ class Chicken extends MovableObject {
   ];
 
 
-
   animate() {
     // Interval for moving chicken feet
     setInterval(() => {

@@ -1,14 +1,18 @@
 
+// Es gibt eine Geschwindigkeit und eine Beschleunigung. 
+// Die Beschleunigung erhöht die Geschwindigkeit. 
+speedY = 0;
+acceleration = 1;
 
-animate(){
-  
-  // Interval for moving Pepes arms and feet.
-  setInterval(() => {
-    if(this.world.keyboard.right || this.world.keyboard.left){
-      let i = this.pepeWalkIndex % this.IMAGES_WALKING.length 
-      this.pepeWalkIndex = i
-      this.img = this.imgCache[this.IMAGES_WALKING[this.pepeWalkIndex]]
-      this.pepeWalkIndex += 1
-    }
-  }, 40);
-}
+
+applyGravity() {
+    setInterval(() => {
+      // Wenn Pepes über dem Boden ist 
+      // Oder wenn die Y geschwindigkeit größer 0 ist
+      if(this.isAboveGround() || this.speedY > 0){
+        // veringere  Pepes y-Achse um speed. 
+        this.speedY -= this.acceleration;
+        this.y -= this.speedY;
+      }
+    }, 1000 / 25)
+  }

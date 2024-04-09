@@ -10,8 +10,9 @@ class World {
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
+  staticObjects = level1.staticObjects
   backgrounds = level1.backgrounds;
-  // endboss = new Endboss();
+  endboss = new Endboss();
 
 
   constructor(canvas, keyboard) {
@@ -30,12 +31,15 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.translate(this.camera_x, 0);
+    
+    this.ctx.translate(-this.camera_x, 0);
     this.level.backgrounds.forEach(background => {
       this.addToCanvas(background);
     });
-    // this.addToCanvas(this.endboss);
-
+    this.addToCanvas(this.endboss);
+    this.level.staticObjects.forEach(statObj => {
+      this.addToCanvas(statObj)
+    });
     this.addToCanvas(this.character);
     this.level.enemies.forEach(enemy => {
       this.addToCanvas(enemy);
@@ -43,7 +47,9 @@ class World {
     this.level.clouds.forEach(cloud => {
       this.addToCanvas(cloud);
     });
-    this.ctx.translate(-this.camera_x, 0);
+
+    this.ctx.translate(this.camera_x, 0);
+
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
     // draw() gets called multiple times with requestAnimationFrame()
     let self = this;

@@ -3,11 +3,9 @@
 
 
 ```pseudocode
-Codiere die playAnimation Funktion bei jedem movable object das sich bewegt. 
+Wieso fliegt Pepe hoch wenn man auf up drückt?
 
-chicken haben animation
-
-endboss auch. 
+speedY wird auf --> 20 gese
 
 
 ```
