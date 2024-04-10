@@ -46,6 +46,7 @@ walkingSound = new Audio("audio/pepe_running.wav")
 
 
   animate(){
+
     // Checks for Pepes running direction 
     setInterval(() => {
       this.walkingSound.pause()
@@ -61,8 +62,8 @@ walkingSound = new Audio("audio/pepe_running.wav")
         this.walkingSound.play()
       }
 
-      if(this.world.keyboard.up){
-        this.speedY = 20
+      if(!this.isAboveGround() && this.world.keyboard.up){
+        this.speedY = 30
       }
 
       this.world.camera_x = this.x -150
@@ -78,43 +79,6 @@ walkingSound = new Audio("audio/pepe_running.wav")
         }
       }
     }, 50);
-
-  }
-
-
-  jump() {
-
   }
 }
 
-//! Movable Object reference
-// class MovableObject {
-//   x;
-//   y;
-//   height;
-//   width;
-//   img;
-//   imgCache = {};
-  
-//   loadImage(path) {
-//     // Creates an HTML <img ...> element without src. 
-//     this.img = new Image();
-//     // Adding image src. 
-//     this.img.src = path;
-//   }
-
-//   fillImgCache(array) {
-//     array.forEach(path => {
-//       let image = new Image();
-//       image.src = path;
-//       this.imgCache[path] = path
-//     });
-//   }
-  
-//   moveRight() {
-//   }
-  
-//   moveLeft() {
-//   }
-// }
-//! Movable Object reference
