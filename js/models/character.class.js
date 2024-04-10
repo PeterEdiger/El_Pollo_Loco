@@ -63,8 +63,9 @@ walkingSound = new Audio("audio/pepe_running.wav")
       }
 
       if(!this.isAboveGround() && this.world.keyboard.up){
-        this.speedY = 30
+        this.jump()
       }
+  
 
       this.world.camera_x = this.x -150
     }, 1000 / 60);

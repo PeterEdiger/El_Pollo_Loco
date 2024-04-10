@@ -3,9 +3,9 @@
 
 
 ```pseudocode
-Lager
+Lager den Code von Jump in movable objet aus und benutze ihn einfach in der Character Klasse.
 
-
+	
 ```
 
 

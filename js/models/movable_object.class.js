@@ -34,6 +34,7 @@ class MovableObject {
     this.img.src = path;
   }
 
+
   // Takes an array, fills the <imgCache dict>
   //  {imgPath: HTMLimgElement}
   fillImgCache(array) {
@@ -44,13 +45,20 @@ class MovableObject {
     });
   }
 
+
   moveRight() {
   }
+
 
   moveLeft(speed) {
     setInterval(() => {
       this.x -= speed;
     }, 1000 / 60);
+  }
+
+  
+  jump(){
+    this.speedY = 30
   }
 
   playAnimation(images) {
