@@ -10,7 +10,7 @@ class World {
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
-  staticObjects = level1.staticObjects
+  staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
   endboss = new Endboss();
 
@@ -31,14 +31,14 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     this.ctx.translate(-this.camera_x, 0);
     this.level.backgrounds.forEach(background => {
       this.addToCanvas(background);
     });
     this.addToCanvas(this.endboss);
     this.level.staticObjects.forEach(statObj => {
-      this.addToCanvas(statObj)
+      this.addToCanvas(statObj);
     });
     this.addToCanvas(this.character);
     this.level.enemies.forEach(enemy => {
@@ -66,6 +66,13 @@ class World {
     }
     // drawImage waits for positional arguments including (img, y, x-coordinates, width and height of img)
     this.ctx.drawImage(mapObject.img, mapObject.x, mapObject.y, mapObject.width, mapObject.height);
+
+    this.ctx.beginPath();
+    this.ctx.lineWidth = "2";
+    this.ctx.strokeStyle = "blue";
+    this.ctx.rect(mapObject.x, mapObject.y, mapObject.width, mapObject.height);
+    this.ctx.stroke()
+
     if (mapObject.otherDirection) {
       mapObject.x = mapObject.x * -1;
       this.ctx.restore();
