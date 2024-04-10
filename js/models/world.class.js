@@ -57,24 +57,25 @@ class World {
   }
 
 
-  addToCanvas(mapObject) {
-    if (mapObject.otherDirection) {
+  addToCanvas(mo) {
+    if (mo.otherDirection) {
       this.ctx.save();
-      this.ctx.translate(mapObject.width, 0);
+      this.ctx.translate(mo.width, 0);
       this.ctx.scale(-1, 1);
-      mapObject.x = mapObject.x * -1;
+      mo.x = mo.x * -1;
     }
     // drawImage waits for positional arguments including (img, y, x-coordinates, width and height of img)
-    this.ctx.drawImage(mapObject.img, mapObject.x, mapObject.y, mapObject.width, mapObject.height);
+
+    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
 
     this.ctx.beginPath();
     this.ctx.lineWidth = "2";
     this.ctx.strokeStyle = "blue";
-    this.ctx.rect(mapObject.x, mapObject.y, mapObject.width, mapObject.height);
+    this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
     this.ctx.stroke()
 
-    if (mapObject.otherDirection) {
-      mapObject.x = mapObject.x * -1;
+    if (mo.otherDirection) {
+      mo.x = mo.x * -1;
       this.ctx.restore();
     }
 
