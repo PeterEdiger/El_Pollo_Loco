@@ -11,35 +11,9 @@ class Background extends MovableObject {
     super().loadImage(path);
     this.x = x;
   }
-
-//   animate(){
-//     this.moveLeft(0.2)
-//   }
 }
 
 
 
 
 
-//! movable Object reference
-// class MovableObject {
-//   x;
-//   y;  
-//   height;
-//   width;
-//   img;
-
-//   loadImage(path) {
-//     // Creates an HTML <img ...> element without src. 
-//     this.img = new Image();
-//     // Adding image src. 
-//     this.img.src = path;
-//   }
-
-//   moveRight() {
-//   }
-
-//   moveLeft() {
-//   }
-// }
-//! movable Object reference

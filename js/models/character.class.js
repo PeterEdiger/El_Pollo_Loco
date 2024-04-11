@@ -7,8 +7,9 @@ class Character extends MovableObject {
   width = 100;
   height = 200;
   world;
-  speed = 10;
-
+  speed = 10;  
+  walkingSound = new Audio("audio/pepe_running.wav");
+  pepeWalkIndex = 0;
 
   IMAGES_WALKING = [
     "img_pollo_locco/img/2_character_pepe/2_walk/W-21.png",
@@ -18,7 +19,6 @@ class Character extends MovableObject {
     "img_pollo_locco/img/2_character_pepe/2_walk/W-25.png",
     "img_pollo_locco/img/2_character_pepe/2_walk/W-26.png",
   ];
-
 
   IMAGES_JUMPING = [
     "img_pollo_locco/img/2_character_pepe/3_jump/J-31.png",
@@ -32,9 +32,6 @@ class Character extends MovableObject {
     "img_pollo_locco/img/2_character_pepe/3_jump/J-39.png",
   ];
 
-  walkingSound = new Audio("audio/pepe_running.wav");
-
-  pepeWalkIndex = 0;
 
   constructor() {
     super().loadImage("./img_pollo_locco/img/2_character_pepe/2_walk/W-21.png");
@@ -45,8 +42,11 @@ class Character extends MovableObject {
   }
 
 
+/**
+ * Starts the animation of the character.
+ *
+ */
   animate() {
-
     // Checks for Pepes running direction 
     setInterval(() => {
       this.walkingSound.pause();
@@ -61,12 +61,13 @@ class Character extends MovableObject {
         this.otherDirection = true
         this.walkingSound.play();
       }
-
+    
+      // Jumping logic. 
       if (!this.isAboveGround() && this.world.keyboard.up) {
         this.jump();
       }
 
-
+      // moves the camera according to the change of Pepes x-axis.
       this.world.camera_x = this.x - 150;
     }, 1000 / 60);
 

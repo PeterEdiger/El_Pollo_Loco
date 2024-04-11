@@ -5,6 +5,11 @@ class Chicken extends MovableObject {
   width = 50;
   height = 50;
   y = 380;
+  IMAGES_WALKING = [
+    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
+    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
+    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
+  ];
 
 
   constructor() {
@@ -14,15 +19,13 @@ class Chicken extends MovableObject {
     this.animate();
   }
 
-  IMAGES_WALKING = [
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
-  ];
 
-
+  /**
+   * Rotates chicken Images simulating moving feet. 
+   * Gives every instance a different {Math.random} speed.
+   * Calls the {moveLeft} method.
+   */
   animate() {
-    // Interval for moving chicken feet
     setInterval(() => {
       this.playAnimation(this.IMAGES_WALKING)
     }, 250);
@@ -35,27 +38,4 @@ class Chicken extends MovableObject {
 }
 
 
-
-//! Movable Object reference
-// class MovableObject {
-//   x = 120;
-//   y = 200;  
-//   img;
-//   height = 150;
-//   width = 100;
-
-//   loadImage(path) {
-//     // Creates an HTML <img ...> element without src. 
-//     this.img = new Image();
-//     // Adding image src. 
-//     this.img.src = path;
-//   }
-
-//   moveRight() {
-//   }
-
-//   moveLeft() {
-//   }
-// }
-//! Movable Object reference
 

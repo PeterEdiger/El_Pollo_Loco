@@ -5,7 +5,7 @@ class World {
   canvas;
   keyboard;
   camera_x = 0;
-
+  ctx;
   level = level1;
   character = new Character();
   enemies = level1.enemies;
@@ -13,7 +13,6 @@ class World {
   staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
   endboss = new Endboss();
-
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -23,15 +22,23 @@ class World {
     this.setWorld();
   }
 
-
+  /**
+   * Gives the instance character all methods and properties of world.
+   *
+   */
   setWorld() {
     this.character.world = this;
   }
 
 
+  /**
+   * Clears the Canvas. 
+   * Draws Objects onto the canvas.
+   * Uses {requestAnimationFrame} to render the next frame.
+   *
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     this.ctx.translate(-this.camera_x, 0);
     this.level.backgrounds.forEach(background => {
       this.addToCanvas(background);
@@ -51,12 +58,17 @@ class World {
     this.ctx.translate(this.camera_x, 0);
 
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
-    // draw() gets called multiple times with requestAnimationFrame()
     let self = this;
+
     requestAnimationFrame(() => { self.draw(); });
   }
 
 
+  /**
+   * @param {object} mo - represents a <movable object>
+   * Adds movable objects to the Canvas
+   * Draws a Frame around movable Objects 
+  */
   addToCanvas(mo) {
     if (mo.otherDirection) {
       this.ctx.save();
@@ -64,22 +76,17 @@ class World {
       this.ctx.scale(-1, 1);
       mo.x = mo.x * -1;
     }
-    // drawImage waits for positional arguments including (img, y, x-coordinates, width and height of img)
 
+    // Takes positional arguments.
+    // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-
-    this.ctx.beginPath();
-    this.ctx.lineWidth = "2";
-    this.ctx.strokeStyle = "blue";
-    this.ctx.rect(mo.x, mo.y, mo.width, mo.height);
-    this.ctx.stroke()
-
+    
+    mo.drawFrame(this.ctx);
+    
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
     }
-
-
   }
 }
 
