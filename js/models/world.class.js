@@ -20,6 +20,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions()
   }
 
   /**
@@ -30,6 +31,18 @@ class World {
     this.character.world = this;
   }
 
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach(enemy => {
+        if(this.character.isColliding(enemy)){
+          console.log("collision with character", enemy)
+        }
+        
+      });
+      
+    }, 1000);
+  }
 
   /**
    * Clears the Canvas. 
@@ -77,7 +90,6 @@ class World {
       mo.x = mo.x * -1;
     }
 
-    // Takes positional arguments.
     // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     
