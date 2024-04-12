@@ -11,8 +11,9 @@ class MovableObject {
   otherDirection = false;
   currentIndex = 0;
   speedY = 0;
-  offsetY = 0
+  offsetY = 0;
   acceleration = 4;
+  energy = 100;
 
 
   /**
@@ -35,6 +36,7 @@ class MovableObject {
   isAboveGround() {
     return this.y < 230;
   }
+
 
   /**
    * @param {string} path needed path to create {src for} {img element}
@@ -74,24 +76,18 @@ class MovableObject {
     this.speedY = 30;
   }
 
+  deadAnimation(images){
+    if(this.currentIndex < images.length){
+      this.img = this.imgCache[images[this.currentIndex]]
+      this.currentIndex +=1
+    }
+  }
 
-/**
- * @param {object} obj 
- *
- */
-isColliding (obj) {
-  return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) && 
-          (this.y + this.offsetY + this.height) >= obj.y &&
-          (this.y + this.offsetY) <= (obj.y + obj.height) && 
-          obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
-}
-
-  
-/**
- * 
- * @param {array} images that will animate moves of an object.
- * Repeats changing images of an object.
- */
+  /**
+   * 
+   * @param {array} images that will animate moves of an object.
+   * Repeats changing images of an object.
+   */
   playAnimation(images) {
     let i = this.currentIndex % images.length;
     this.currentIndex = i;
@@ -114,4 +110,30 @@ isColliding (obj) {
     }
   }
 
+
+  /**
+   * @param {object} obj Objects that could possibly collide with a current instance.
+   * Checks if objects are colliding by comparing their axis.
+   */
+  isColliding(obj) {
+    return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
+      (this.y + this.offsetY + this.height) >= obj.y &&
+      (this.y + this.offsetY) <= (obj.y + obj.height);
+    //  && 
+    // obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+  }
+
+
+  hit(){
+    this.energy -=5;
+    if (this.energy <0){
+      this.energy = 0;
+    }
+  }
+
+
+
+  isDead(){
+    return this.energy == 0;
+  }
 }

@@ -3,17 +3,15 @@
 
 
 ```pseudocode
-Wie bekommt man heraus ob Pepe mit Objekten Kollidiert, in diesem Moment geht es um. Hünchen die großen.
+Baue diese is hurt Grafiken ein. 
 
-1. Alle Movable Objects haben x -Achse y-Achse. 
-	Breite, Höhe.
+Wenn pepe auf einen Enemie trifft. Soll die isHurt()
+Funktion einmal durchlaufen. 
 
-Was ist eine Kollision zwischen Pepe und einem Hünchen?
+So ähnlich wie ist dead. 
 
-Wenn Pepes x-Punkt + Seine Breite --> mit x-Punkt Hünchen übereinstimmen, === Collision. 
-
-
-	
+1. Füge die Bilder is hurt in ein array. 
+2. Wo trifft pepe auf enemies. ?
 ```
 
 

@@ -1,11 +1,11 @@
-if(
-  character.x +character.width > chicken.x &&
-  character.y +character.height > chicken.y && 
-  character.x < chicken.x && 
-  character.y < chicken.y + chicken.height
-)
+  playAnimation(images) {
+  let i = this.currentIndex % images.length;
+  this.currentIndex = i;
+  this.img = this.imgCache[images[this.currentIndex]];
+  this.currentIndex += 1;
+}
 
-/**
- * Wenn Pepes x-Achse + Breite > als chicken.x 
- *
- */
+function deadAnimation(images){
+  this.img = this.imgCache[images[this.currentIndex]]
+  this.currentIndex +=1
+}
