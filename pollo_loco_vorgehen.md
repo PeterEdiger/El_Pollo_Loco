@@ -3,15 +3,16 @@
 
 
 ```pseudocode
-Baue diese is hurt Grafiken ein. 
+Was wir gesucht. Wo wird current Index benutzt?
 
-Wenn pepe auf einen Enemie trifft. Soll die isHurt()
-Funktion einmal durchlaufen. 
+Bei play animation und bei dead animation. 
 
-So ähnlich wie ist dead. 
+Was ist das problem dadran?
+Der Index kann von mehreren Funktionen beinflusst werden. 
 
-1. Füge die Bilder is hurt in ein array. 
-2. Wo trifft pepe auf enemies. ?
+Wo wird playAnimation benutzt?
+Bei character 
+für die Fuß animation und für d
 ```
 
 

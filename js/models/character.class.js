@@ -96,7 +96,6 @@ class Character extends MovableObject {
     }, 250);
 
 
-
     // Interval for Pepes movements {walk, jump}
     setInterval(() => {
       if (this.isAboveGround()) {
