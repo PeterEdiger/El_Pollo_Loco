@@ -10,7 +10,6 @@ class MovableObject {
   speed;
   otherDirection = false;
   currentIndex = 0;
-  dyingIndex = 0
   speedY = 0;
   offsetY = 0;
   acceleration = 4;

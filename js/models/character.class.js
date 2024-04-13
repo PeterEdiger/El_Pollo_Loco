@@ -10,6 +10,7 @@ class Character extends MovableObject {
   speed = 10;  
   walkingSound = new Audio("audio/pepe_running.wav");
   pepeWalkIndex = 0;
+  dyingIndex = 0
   
   IMAGES_WALKING = [
     "img_pollo_locco/img/2_character_pepe/2_walk/W-21.png",
