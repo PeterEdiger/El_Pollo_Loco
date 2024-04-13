@@ -10,6 +10,7 @@ class MovableObject {
   speed;
   otherDirection = false;
   currentIndex = 0;
+  dyingIndex = 0
   speedY = 0;
   offsetY = 0;
   acceleration = 4;
@@ -77,9 +78,9 @@ class MovableObject {
   }
 
   deadAnimation(images){
-    if(this.currentIndex < images.length){
-      this.img = this.imgCache[images[this.currentIndex]]
-      this.currentIndex +=1
+    if(this.dyingIndex < images.length){
+      this.img = this.imgCache[images[this.dyingIndex]]
+      this.dyingIndex +=1
     }
   }
 
