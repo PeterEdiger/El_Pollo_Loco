@@ -77,10 +77,10 @@ class MovableObject {
     this.speedY = 30;
   }
 
-  deadAnimation(images){
-    if(this.dyingIndex < images.length){
-      this.img = this.imgCache[images[this.dyingIndex]]
-      this.dyingIndex +=1
+  deadAnimation(images) {
+    if (this.dyingIndex < images.length) {
+      this.img = this.imgCache[images[this.dyingIndex]];
+      this.dyingIndex += 1;
     }
   }
 
@@ -125,20 +125,22 @@ class MovableObject {
   }
 
 
-  hit(){
-    this.energy -=5;
-    if (this.energy <0){
+  hit() {
+    this.energy -= 5;
+    if (this.energy < 0) {
       this.energy = 0;
-    }else {
-    } this.lastHit = new Date().getTime()
+    } else {
+    } this.lastHit = new Date().getTime();
   }
 
 
-  istHurt(){
-    let timepassed = new Date().getTime() - this.lastHit
+  istHurt() {
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 5;
   }
 
-  isDead(){
+  isDead() {
     return this.energy == 0;
   }
 }
