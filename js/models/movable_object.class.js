@@ -132,7 +132,6 @@ class MovableObject {
   }
 
 
-
   isDead(){
     return this.energy == 0;
   }
