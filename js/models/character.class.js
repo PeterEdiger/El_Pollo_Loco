@@ -97,6 +97,13 @@ class Character extends MovableObject {
       }
     }, 250);
 
+//!
+// setInterval(() => {
+//   if(this.isHurt()){
+    
+//   }
+// }, 250);
+//!
 
     // Interval for Pepes movements {walk, jump}
     setInterval(() => {

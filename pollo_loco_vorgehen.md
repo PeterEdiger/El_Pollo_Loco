@@ -3,7 +3,7 @@
 
 
 ```pseudocode
-Wenn ich statusbar Instanziere u
+Last change chara
 
 
 
