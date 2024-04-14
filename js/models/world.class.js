@@ -12,6 +12,9 @@ class World {
   clouds = level1.clouds;
   staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
+  //!
+  statusBar = new StatusBar()
+  //!
   endboss = new Endboss();
 
   constructor(canvas, keyboard) {
