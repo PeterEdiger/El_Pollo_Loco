@@ -127,18 +127,24 @@ class MovableObject {
 
   hit() {
     this.energy -= 5;
-    if (this.energy < 0) {
+    if (this.energy < 0)
+     {
       this.energy = 0;
-    } else {
-    } this.lastHit = new Date().getTime();
+    } 
+    else {
+     this.lastHit = new Date().getTime();
+    }
   }
 
-
-  istHurt() {
-    let timepassed = new Date().getTime() - this.lastHit;
-    timepassed = timepassed / 1000;
-    return timepassed < 5;
-  }
+  
+//!
+isHurt() {
+  let timepassed = new Date().getTime() - this.lastHit;
+  timepassed = timepassed / 1000;
+  console.log(timepassed);
+  return timepassed < 3;
+}
+//!
 
   isDead() {
     return this.energy == 0;

@@ -3,7 +3,10 @@
 
 
 ```pseudocode
-Last change chara
+Warum wird diese animation nur einmal ausgeführt?
+
+
+
 
 
 
@@ -12,7 +15,7 @@ Last change chara
 
 
 ```pseudocode
-
+Bei hit wird der aktuelle Zeitstempel gecheckt, 
 
 ```
 

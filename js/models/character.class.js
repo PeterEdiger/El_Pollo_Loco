@@ -7,11 +7,11 @@ class Character extends MovableObject {
   width = 100;
   height = 200;
   world;
-  speed = 10;  
+  speed = 10;
   walkingSound = new Audio("audio/pepe_running.wav");
   pepeWalkIndex = 0;
-  dyingIndex = 0
-  
+  dyingIndex = 0;
+
   IMAGES_WALKING = [
     "img_pollo_locco/img/2_character_pepe/2_walk/W-21.png",
     "img_pollo_locco/img/2_character_pepe/2_walk/W-22.png",
@@ -41,13 +41,13 @@ class Character extends MovableObject {
     "img_pollo_locco/img/2_character_pepe/5_dead/D-55.png",
     "img_pollo_locco/img/2_character_pepe/5_dead/D-56.png",
     "img_pollo_locco/img/2_character_pepe/5_dead/D-57.png",
-  ]
+  ];
 
   IMAGES_HURT = [
     "img_pollo_locco/img/2_character_pepe/4_hurt/H-41.png",
     "img_pollo_locco/img/2_character_pepe/4_hurt/H-42.png",
     "img_pollo_locco/img/2_character_pepe/4_hurt/H-43.png",
-  ]
+  ];
 
 
   constructor() {
@@ -61,10 +61,10 @@ class Character extends MovableObject {
   }
 
 
-/**
- * Starts the animation of the character.
- *
- */
+  /**
+   * Starts the animation of the character.
+   *
+   */
   animate() {
     // Checks for Pepes running direction 
     setInterval(() => {
@@ -77,10 +77,10 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.left && this.x > -200) {
         this.moveLeft();
-        this.otherDirection = true
+        this.otherDirection = true;
         this.walkingSound.play();
       }
-    
+
       // Jumping logic. 
       if (!this.isAboveGround() && this.world.keyboard.up) {
         this.jump();
@@ -92,18 +92,18 @@ class Character extends MovableObject {
 
     // starts dead animation
     setInterval(() => {
-      if(this.isDead()){
-        this.deadAnimation(this.IMAGES_DEAD)
+      if (this.isDead()) {
+        this.deadAnimation(this.IMAGES_DEAD);
       }
     }, 250);
 
-//!
-// setInterval(() => {
-//   if(this.isHurt()){
-    
-//   }
-// }, 250);
-//!
+    //!
+    setInterval(() => {
+      if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT)
+      }
+    }, 250);
+    //!
 
     // Interval for Pepes movements {walk, jump}
     setInterval(() => {
