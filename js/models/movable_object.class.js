@@ -141,7 +141,6 @@ class MovableObject {
 isHurt() {
   let timepassed = new Date().getTime() - this.lastHit;
   timepassed = timepassed / 1000;
-  console.log(timepassed);
   return timepassed < 3;
 }
 //!
