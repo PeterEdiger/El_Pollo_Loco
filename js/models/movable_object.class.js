@@ -1,6 +1,6 @@
 // canvas width="720" height="480"
 
-class MovableObject {
+class MovableObject extends DrawableObject {
   x;
   y;
   height;
@@ -36,17 +36,6 @@ class MovableObject {
    */
   isAboveGround() {
     return this.y < 230;
-  }
-
-
-  /**
-   * @param {string} path needed path to create {src for} {img element}
-   * Creates an HTML {img element}.
-   * Adds a {.src property}  to that {img element} 
-   */
-  loadImage(path) {
-    this.img = new Image();
-    this.img.src = path;
   }
 
 
