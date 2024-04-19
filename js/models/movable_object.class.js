@@ -16,7 +16,11 @@ class MovableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
 
+  constructor(){
+   super()
+  }
 
+  
   /**
    * Simulates gravity for objects. 
    *

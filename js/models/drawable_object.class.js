@@ -9,7 +9,7 @@ class DrawableObject{
 
 
     /**
-   * @param {string} path needed path to create {src for} {img element}
+   * @param {string} path needed path to create {src} for {img element}
    * Creates an HTML {img element}.
    * Adds a {.src property}  to that {img element} 
    */

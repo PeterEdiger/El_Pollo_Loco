@@ -5,15 +5,16 @@ class World {
   canvas;
   keyboard;
   camera_x;
-  ctx;y
+  ctx; y;
   level = level1;
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
   staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
-  statusBar = new StatusBar()
+  statusBar = new StatusBar();
   endboss = new Endboss();
+  throwableObject = new ThrowableObject();
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -21,7 +22,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions()
+    this.checkCollisions();
   }
 
   /**
@@ -36,10 +37,10 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach(enemy => {
-        if(this.character.isColliding(enemy)){
-          console.log("collision with character", enemy)
-          this.character.hit()
-          this.statusBar.setPercentage(this.character.energy)
+        if (this.character.isColliding(enemy)) {
+          console.log("collision with character", enemy);
+          this.character.hit();
+          this.statusBar.setPercentage(this.character.energy);
           console.log(this.character.energy);
         }
       });
@@ -66,10 +67,11 @@ class World {
     this.level.enemies.forEach(enemy => {
       this.addToCanvas(enemy);
     });
+    this.addToCanvas(this.throwableObject);
     this.level.clouds.forEach(cloud => {
       this.addToCanvas(cloud);
     });
-    this.addToCanvas(this.statusBar)
+    this.addToCanvas(this.statusBar);
 
     this.ctx.translate(this.camera_x, 0);
 
@@ -95,9 +97,9 @@ class World {
 
     // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-    
+
     mo.drawFrame(this.ctx);
-    
+
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();

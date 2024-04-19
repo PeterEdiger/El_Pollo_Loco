@@ -3,7 +3,9 @@
 
 
 ```pseudocode
-Baue weitere Status
+Platziere eine Flasche irgendwo im Bild. 
+
+
 
 
 
