@@ -112,38 +112,50 @@ class MovableObject {
   }
 
 
+
   /**
-   * @param {object} obj Objects that could possibly collide with a current instance.
-   * Checks if objects are colliding by comparing their axis.
-   */
+ * @param {number} pointA specified startpoint of span1  
+ * @param {number} pointB specified endpoint of span1  
+ * @param {number} pointC specified endpoint of span2  
+ * @param {number} pointD specified endpoint of span2  
+ * 
+ * Checks if two specified spans are not intersecting. 
+*/
+  spanIntersection(pointA, pointB, pointC, pointD) {
+    return pointA < pointD && pointB > pointC;
+  }
+
+
+/**
+ * @param {instance} obj 
+ * 
+ * Checks if the {obj} frame and the {.this} frame are intersecting. 
+   Resolves to {true} when the {x-spans} and the {y-spans} are colliding. 
+ */
   isColliding(obj) {
-    return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-      (this.y + this.offsetY + this.height) >= obj.y &&
-      (this.y + this.offsetY) <= (obj.y + obj.height);
-    //  && 
-    // obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    return this.spanIntersection(this.x, this.x + this.width, obj.x, obj.x + obj.width) &&
+      this.spanIntersection(this.y, this.y + this.height, obj.y, obj.y + obj.height);
   }
 
 
   hit() {
     this.energy -= 5;
-    if (this.energy < 0)
-     {
+    if (this.energy < 0) {
       this.energy = 0;
-    } 
+    }
     else {
-     this.lastHit = new Date().getTime();
+      this.lastHit = new Date().getTime();
     }
   }
 
-  
-//!
-isHurt() {
-  let timepassed = new Date().getTime() - this.lastHit;
-  timepassed = timepassed / 1000;
-  return timepassed < 3;
-}
-//!
+
+  //!
+  isHurt() {
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
+    return timepassed < 3;
+  }
+  //!
 
   isDead() {
     return this.energy == 0;

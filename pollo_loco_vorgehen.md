@@ -3,8 +3,7 @@
 
 
 ```pseudocode
-Warum wird diese animation nur einmal ausgeführt?
-
+Baue weitere Status
 
 
 

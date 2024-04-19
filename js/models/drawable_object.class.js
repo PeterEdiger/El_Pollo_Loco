@@ -18,6 +18,7 @@ class DrawableObject{
       this.img.src = path;
     }
  
+    
   /**
    * @param {2dContext} ctx The 2d Context of the canvas.
    *  Draws a hitbox rectangle around instances of objects.

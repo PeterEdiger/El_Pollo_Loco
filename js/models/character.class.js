@@ -88,26 +88,36 @@ class Character extends MovableObject {
 
       // moves the camera according to the change of Pepes x-axis.
       this.world.camera_x = this.x - 150;
+      //!
+      this.world.statusBar.x = this.x -100
+      //!
     }, 1000 / 60);
 
     // starts dead animation
-    setInterval(() => {
-      if (this.isDead()) {
-        this.deadAnimation(this.IMAGES_DEAD);
-      }
-    }, 250);
+    // setInterval(() => {
+    //   if (this.isDead()) {
+    //     this.deadAnimation(this.IMAGES_DEAD);
+    //   }
+    // }, 250);
 
+
+    // //!
+    // setInterval(() => {
+    //   if (this.isHurt()) {
+    //     this.playAnimation(this.IMAGES_HURT)
+    //   }
+    // }, 50);
     //!
-    setInterval(() => {
-      if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT)
-      }
-    }, 250);
-    //!
+
 
     // Interval for Pepes movements {walk, jump}
     setInterval(() => {
-      if (this.isAboveGround()) {
+      if (this.isDead()) {
+        this.deadAnimation(this.IMAGES_DEAD);
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
+      }
+      else if (this.isAboveGround()) {
         this.playAnimation(this.IMAGES_JUMPING);
       } else {
         if (this.world.keyboard.right || this.world.keyboard.left) {

@@ -4,17 +4,15 @@
 class World {
   canvas;
   keyboard;
-  camera_x = 0;
-  ctx;
+  camera_x;
+  ctx;y
   level = level1;
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
   staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
-  //!
   statusBar = new StatusBar()
-  //!
   endboss = new Endboss();
 
   constructor(canvas, keyboard) {
@@ -41,6 +39,7 @@ class World {
         if(this.character.isColliding(enemy)){
           console.log("collision with character", enemy)
           this.character.hit()
+          this.statusBar.setPercentage(this.character.energy)
           console.log(this.character.energy);
         }
       });
@@ -70,6 +69,7 @@ class World {
     this.level.clouds.forEach(cloud => {
       this.addToCanvas(cloud);
     });
+    this.addToCanvas(this.statusBar)
 
     this.ctx.translate(this.camera_x, 0);
 
