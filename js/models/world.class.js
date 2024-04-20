@@ -14,7 +14,8 @@ class World {
   backgrounds = level1.backgrounds;
   statusBar = new StatusBar();
   endboss = new Endboss();
-  throwableObject = new ThrowableObject();
+  throwableObjects = [new ThrowableObject()];
+
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -25,6 +26,7 @@ class World {
     this.checkCollisions();
   }
 
+
   /**
    * Gives the instance character all methods and properties of world.
    *
@@ -33,7 +35,10 @@ class World {
     this.character.world = this;
   }
 
-
+  /**
+   * Checks if the game character collides with an object. 
+   * Decreases the statusbar when the character gets hit. 
+   */
   checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach(enemy => {
@@ -47,6 +52,7 @@ class World {
     }, 200);
   }
 
+
   /**
    * Clears the Canvas. 
    * Draws Objects onto the canvas.
@@ -56,29 +62,30 @@ class World {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(-this.camera_x, 0);
-    this.level.backgrounds.forEach(background => {
-      this.addToCanvas(background);
-    });
+    this.addObjectsToMap(this.level.backgrounds);
     this.addToCanvas(this.endboss);
-    this.level.staticObjects.forEach(statObj => {
-      this.addToCanvas(statObj);
-    });
+    this.addObjectsToMap(this.level.staticObjects);
     this.addToCanvas(this.character);
-    this.level.enemies.forEach(enemy => {
-      this.addToCanvas(enemy);
-    });
-    this.addToCanvas(this.throwableObject);
-    this.level.clouds.forEach(cloud => {
-      this.addToCanvas(cloud);
-    });
+    this.addObjectsToMap(this.level.enemies);
+    this.addObjectsToMap(this.throwableObjects);
+    this.addObjectsToMap(this.level.clouds);
     this.addToCanvas(this.statusBar);
 
     this.ctx.translate(this.camera_x, 0);
-
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
     let self = this;
-
     requestAnimationFrame(() => { self.draw(); });
+  }
+
+
+  /**
+   * @param {Array} objects An array holding objects getting drawn on the canvas.
+   * Adds objects on the canvas 
+   */
+  addObjectsToMap(objects) {
+    objects.forEach(o => {
+      this.addToCanvas(o);
+    });
   }
 
 

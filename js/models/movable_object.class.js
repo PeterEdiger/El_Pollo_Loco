@@ -34,12 +34,17 @@ class MovableObject extends DrawableObject {
     }, 1000 / 10);
   }
 
+  
   /**
    * Threshold definition of y-Axis for an object beeing on ground.
    *
    */
   isAboveGround() {
-    return this.y < 230;
+    if(!(this instanceof ThrowableObject)){
+      return this.y < 230;
+    }else {
+      return true
+    }
   }
 
 
