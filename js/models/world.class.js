@@ -14,7 +14,7 @@ class World {
   backgrounds = level1.backgrounds;
   statusBar = new StatusBar();
   endboss = new Endboss();
-  throwableObjects = [new ThrowableObject()];
+  throwableObjects = [];
 
 
   constructor(canvas, keyboard) {

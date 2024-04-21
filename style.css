@@ -1,8 +1,38 @@
+
+@font-face {
+  font-family: "zabras";
+  /* Gewünschter Name */
+  src: url("./assets/fonts/zabars.regular.ttf");
+}
+
 body{
+  background-image: radial-gradient(circle, rgba(245, 182, 95, 0.8), rgba(225, 147, 68, 0.8), rgba(205, 112, 44, 0.8), rgba(183, 76, 25, 0.8), rgba(160, 34, 10, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: radial-gradient(circle, #f5b65f, #e19344, #cd702c, #b74c19, #a0220a); */
+  background-size: cover;
+  overflow-y: hidden;
+  height: 100vh;
+  background-repeat: no-repeat;
+  
+}
+
+h1{
+  font-size: 50px;
+  font-family: "zabras";
+  margin-top: 0;
+}
+
+
+.loco-content{
+  border: solid blue;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 100px;
 }
+
 
 canvas{
   background-color: black;

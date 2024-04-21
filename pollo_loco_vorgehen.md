@@ -3,17 +3,9 @@
 
 
 ```pseudocode
-Wo geht es weiter??
-
-Kodiere den Flaschenwurf so, dass Er von Pepe aus geworfen wird.
-
-
-
-
-
-
-
-
+Nächste Aufgabe: 
+Mache die Schrift von Pollo Loco
+Hübscher und stylischer.
 
 ```
 
@@ -24,3 +16,8 @@ Bei hit wird der aktuelle Zeitstempel gecheckt,
 
 ```
 
+
+
+# Pollo Loco Requirements
+
+![image-20240421143951192](/home/peet/.config/Typora/typora-user-images/image-20240421143951192.png)
