@@ -8,6 +8,7 @@ let keyCollection = {
   "ArrowDown": "down",
   "ArrowLeft": "left",
   "ArrowRight": "right",
+  "d": "d"
 };
 
 

@@ -23,7 +23,8 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
+    // this.checkCollisions();
+    this.run();
   }
 
 
@@ -35,21 +36,33 @@ class World {
     this.character.world = this;
   }
 
+  run() {
+    setInterval(() => {
+      this.checkCollisions();
+      this.checkThrowObjcets()
+    }, 200);
+  }
+
+  checkThrowObjcets(){
+    if(this.keyboard.d){
+      let bottle = new ThrowableObject(this.character.x, this.character.y)
+      this.throwableObjects.push(bottle)
+    }
+  }
+
   /**
    * Checks if the game character collides with an object. 
    * Decreases the statusbar when the character gets hit. 
    */
   checkCollisions() {
-    setInterval(() => {
-      this.level.enemies.forEach(enemy => {
-        if (this.character.isColliding(enemy)) {
-          console.log("collision with character", enemy);
-          this.character.hit();
-          this.statusBar.setPercentage(this.character.energy);
-          console.log(this.character.energy);
-        }
-      });
-    }, 200);
+    this.level.enemies.forEach(enemy => {
+      if (this.character.isColliding(enemy)) {
+        console.log("collision with character", enemy);
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.energy);
+        console.log(this.character.energy);
+      }
+    });
   }
 
 
