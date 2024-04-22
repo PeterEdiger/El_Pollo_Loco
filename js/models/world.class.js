@@ -14,6 +14,7 @@ class World {
   backgrounds = level1.backgrounds;
   statusBarHealth = new StatusBar(-100, 20, "statusBarHealth");
   statusBarCoins = new StatusBar(-100, 50, "statusBarCoins");
+  statusBarBottles = new StatusBar(-100, 80, "statusBarBottles");
   endboss = new Endboss();
   throwableObjects = [];
 
@@ -85,6 +86,7 @@ class World {
     this.addObjectsToMap(this.level.clouds);
     this.addToCanvas(this.statusBarHealth);
     this.addToCanvas(this.statusBarCoins);
+    this.addToCanvas(this.statusBarBottles);
 
     this.ctx.translate(this.camera_x, 0);
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
