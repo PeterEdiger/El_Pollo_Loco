@@ -1,8 +1,8 @@
 
 @font-face {
-  font-family: "zabras";
+  font-family: "rioGrande";
   /* Gewünschter Name */
-  src: url("./assets/fonts/zabars.regular.ttf");
+  src: url("assets/fonts/rio_grande_striped.ttf");
 }
 
 body{
@@ -20,13 +20,15 @@ body{
 
 h1{
   font-size: 50px;
-  font-family: "zabras";
+  color: #A0220A;
+  font-family: "rioGrande";
   margin-top: 0;
+  margin-bottom: 12px;
 }
 
 
 .loco-content{
-  border: solid blue;
+  /* border: solid blue; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,3 +44,17 @@ canvas{
   border: solid red;
   z-index: 10;
 }
+
+ /************************* RESPONSIVNESS *************************/
+
+ @media only screen and (max-width: 720px){
+  canvas {
+    width: 100%
+  }
+ }
+ 
+ @media only screen and (max-height: 480px){
+  canvas {
+    height: 100vh
+  }
+ }

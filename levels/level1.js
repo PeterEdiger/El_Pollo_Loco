@@ -1,6 +1,6 @@
 
 /**
- * All movable and static of a level
+ * All movable and static objects of a level
  * Instatiation at level/level1.js
  */
 const level1 = new Level(

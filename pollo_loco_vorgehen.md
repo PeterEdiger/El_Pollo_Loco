@@ -3,9 +3,12 @@
 
 
 ```pseudocode
-Nächste Aufgabe: 
-Mache die Schrift von Pollo Loco
-Hübscher und stylischer.
+Es gibt immer die Gleiche Anzahl an Statusbar Bildern. 
+Das heißt man kann sie ruhig in eine Klasse Passen. 
+
+Es müssen nur die Bilder Datenbanken und die x.y Werte angepas
+
+
 
 ```
 
