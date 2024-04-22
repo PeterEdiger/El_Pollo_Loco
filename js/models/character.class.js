@@ -89,7 +89,10 @@ class Character extends MovableObject {
       // moves the camera according to the change of Pepes x-axis.
       this.world.camera_x = this.x - 150;
       //!
-      this.world.statusBar.x = this.x -100
+      this.world.statusBarHealth.x = this.x -100
+      this.world.statusBarCoins.x = this.x -100
+      
+
       //!
     }, 1000 / 60);
 

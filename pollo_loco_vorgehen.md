@@ -3,10 +3,9 @@
 
 
 ```pseudocode
-Es gibt immer die Gleiche Anzahl an Statusbar Bildern. 
-Das heißt man kann sie ruhig in eine Klasse Passen. 
+Verändere die StatusbarHealth auf Status bar. Tes
 
-Es müssen nur die Bilder Datenbanken und die x.y Werte angepas
+
 
 
 
@@ -16,7 +15,7 @@ Es müssen nur die Bilder Datenbanken und die x.y Werte angepas
 
 ```pseudocode
 Bei hit wird der aktuelle Zeitstempel gecheckt, 
-
+-
 ```
 
 

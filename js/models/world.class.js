@@ -12,7 +12,8 @@ class World {
   clouds = level1.clouds;
   staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
-  statusBar = new StatusBar();
+  statusBarHealth = new StatusBar(-100, 20, "statusBarHealth");
+  statusBarCoins = new StatusBar(-100, 50, "statusBarCoins");
   endboss = new Endboss();
   throwableObjects = [];
 
@@ -52,14 +53,14 @@ class World {
 
   /**
    * Checks if the game character collides with an object. 
-   * Decreases the statusbar when the character gets hit. 
+   * Decreases the statusBarHealth when the character gets hit. 
    */
   checkCollisions() {
     this.level.enemies.forEach(enemy => {
       if (this.character.isColliding(enemy)) {
         console.log("collision with character", enemy);
         this.character.hit();
-        this.statusBar.setPercentage(this.character.energy);
+        this.statusBarHealth.setPercentage(this.character.energy);
         console.log(this.character.energy);
       }
     });
@@ -82,7 +83,8 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.clouds);
-    this.addToCanvas(this.statusBar);
+    this.addToCanvas(this.statusBarHealth);
+    this.addToCanvas(this.statusBarCoins);
 
     this.ctx.translate(this.camera_x, 0);
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
