@@ -7,6 +7,23 @@ class DrawableObject{
   x;
   y;
 
+  offset = {
+    left: 0,
+    right: 0,
+    up: 0,
+    left: 0,
+  }
+
+  constructor(imgPath, width, height, y) {
+    this.loadImage(imgPath);
+    this.imgPath = imgPath;
+    this.width = width;
+    this.height = height;
+    this.y = y
+    this.x = 200 + Math.random() * 1500;
+  }
+
+
 
     /**
    * @param {string} path needed path to create {src} for {img element}
