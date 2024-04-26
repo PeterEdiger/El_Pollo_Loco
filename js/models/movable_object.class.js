@@ -116,18 +116,24 @@ class MovableObject extends DrawableObject {
      Resolves to {true} when the {x-spans} and the {y-spans} are colliding. 
    */
   isColliding(obj) {
-    let heroX = this.x + this.offset.left;
-    let heroY = this.y + this.offset.top;
-    let heroWidth = this.width - (this.offset.left + this.offset.right);
-    let heroHeight = this.height - (this.offset.top + this.offset.bottom);
-    let objectX = obj.x + obj.offset.left;
-    let objectY = obj.x + obj.offset.top;
-    let objectWidth = obj.height - (obj.offset.top + obj.offset.bottom);
-    let objectHeight = obj.height - (obj.offset.top + obj.offset.bottom);
-    return this.spanIntersection(heroX, heroX + heroWidth, objectX, objectX + objectWidth)
-      && this.spanIntersection(heroY, heroY + heroHeight, objectY, objectY + objectHeight);
+    return this.spanIntersection(
+      this.x + this.offset.left,
+      this.x + this.offset.left + this.width - (this.offset.left + this.offset.right),
+      obj.x + obj.offset.left,
+      obj.x + obj.offset.left + obj.width - (obj.offset.left + obj.offset.right)
+    ) && this.spanIntersection(
+      this.y + this.offset.top,
+      this.y + this.offset.top + this.height - (this.offset.top + this.offset.bottom),
+      obj.y + obj.offset.top,
+      obj.y + obj.offset.top + obj.height - (obj.offset.top + obj.offset.bottom)
+    );
   }
 
+
+
+  collidesWithChicken() {
+
+  }
 
   hit() {
     this.energy -= 5;
