@@ -131,9 +131,6 @@ class MovableObject extends DrawableObject {
 
 
 
-  collidesWithChicken() {
-
-  }
 
   hit() {
     this.energy -= 5;
