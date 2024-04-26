@@ -45,8 +45,12 @@ const level1 = new Level(
   ],
 
   [
-    // @param (imagePath, width, height, y)
     new Coins(), 
-    new Bottle()
+    new Coins(), 
+    new Coins(), 
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
+    new Bottle(),
   ]
 );

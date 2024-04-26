@@ -50,6 +50,14 @@ class Character extends MovableObject {
   ];
 
 
+  offset = {
+    left: 0,
+    right: 0,
+    up: 0,
+    down: 0,
+  }
+
+
   constructor() {
     super()
     this.loadImage("img_pollo_locco/img/2_character_pepe/2_walk/W-21.png");

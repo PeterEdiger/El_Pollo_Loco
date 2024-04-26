@@ -11,15 +11,10 @@ class DrawableObject{
     left: 0,
     right: 0,
     up: 0,
-    left: 0,
+    down: 0,
   }
 
-  constructor(imgPath, width, height, y) {
-    this.loadImage(imgPath);
-    this.imgPath = imgPath;
-    this.width = width;
-    this.height = height;
-    this.y = y
+  constructor() {
     this.x = 200 + Math.random() * 1500;
   }
 
@@ -47,6 +42,9 @@ class DrawableObject{
       ctx.strokeStyle = "blue";
       ctx.rect(this.x, this.y, this.width, this.height);
       ctx.stroke();
+
+
+
     }
   }
     
