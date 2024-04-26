@@ -3,11 +3,7 @@
 
 
 ```pseudocode
-Wo wird gezeichnet?
-Male ein Rotes rechteck um Pepe das offset Werte benutzt. 
-
-Wo wird der rote Ramen gezeichnet?
-
+Warum steht da not intersecting?
 
 
 
