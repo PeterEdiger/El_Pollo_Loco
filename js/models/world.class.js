@@ -10,7 +10,6 @@ class World {
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
-  staticObjects = level1.staticObjects;
   backgrounds = level1.backgrounds;
   statusBarHealth = new StatusBar(-100, 20, "statusBarHealth");
   statusBarCoins = new StatusBar(-100, 50, "statusBarCoins");

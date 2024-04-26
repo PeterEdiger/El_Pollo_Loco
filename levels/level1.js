@@ -4,7 +4,6 @@ function getRandomCoinY(){
 }
 
 
-
 /**
  * All movable and static objects of a level
  * Instatiation at level/level1.js
@@ -47,15 +46,7 @@ const level1 = new Level(
 
   [
     // @param (imagePath, width, height, y)
-    new DrawableObject("img_pollo_locco/img/8_coin/coin_2.png", 100, 100, getRandomCoinY() ),
-    new DrawableObject("img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", 65, 65,  375),
-    // new staticObject("img_pollo_locco/img/8_coin/coin_2.png", 100, 100, getRandomCoinY() ),
-    // new staticObject("img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", 65, 65,  375),
-    // new staticObject("img_pollo_locco/img/8_coin/coin_2.png", 100, 100, getRandomCoinY() ),
-    // new staticObject("img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", 65, 65,  375),
-    // new staticObject("img_pollo_locco/img/8_coin/coin_2.png", 100, 100, getRandomCoinY() ),
-    // new staticObject("img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", 65, 65,  375),
-    // new staticObject("img_pollo_locco/img/8_coin/coin_2.png", 100, 100, getRandomCoinY() ),
-    // new staticObject("img_pollo_locco/img/6_salsa_bottle/1_salsa_bottle_on_ground.png", 65, 65,  375),
+    new Coins(), 
+    new Bottle()
   ]
 );

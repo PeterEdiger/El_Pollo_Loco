@@ -1,8 +1,5 @@
 class Level {
-  enemies;
-  clouds;
-  backgrounds;
-  coins;
+  
   levelEndX = 2000
 
   

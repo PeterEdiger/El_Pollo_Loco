@@ -3,7 +3,7 @@
 
 
 ```pseudocode
-Alle von den Objekten sind movable object
+Versuche den offset für Pepe zu zeichnen. 
 
 
 
