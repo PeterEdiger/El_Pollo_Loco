@@ -16,11 +16,11 @@ class MovableObject extends DrawableObject {
   energy = 100;
   lastHit = 0;
 
-  constructor(){
-   super()
+  constructor() {
+    super();
   }
 
-  
+
   /**
    * Simulates gravity for objects. 
    *
@@ -34,16 +34,16 @@ class MovableObject extends DrawableObject {
     }, 1000 / 10);
   }
 
-  
+
   /**
    * Threshold definition of y-Axis for an object beeing on ground.
    *
    */
   isAboveGround() {
-    if(!(this instanceof ThrowableObject)){
+    if (!(this instanceof ThrowableObject)) {
       return this.y < 230;
-    }else {
-      return true
+    } else {
+      return true;
     }
   }
 
@@ -96,7 +96,6 @@ class MovableObject extends DrawableObject {
 
 
 
-
   /**
  * @param {number} pointA specified startpoint of span1  
  * @param {number} pointB specified endpoint of span1  
@@ -110,23 +109,23 @@ class MovableObject extends DrawableObject {
   }
 
 
-/**
- * @param {instance} obj 
- * 
- * Checks if the {obj} frame and the {.this} frame are intersecting. 
-   Resolves to {true} when the {x-spans} and the {y-spans} are colliding. 
- */
+  /**
+   * @param {instance} obj 
+   * 
+   * Checks if the {hero} frame and the {obj} frame are intersecting. 
+     Resolves to {true} when the {x-spans} and the {y-spans} are colliding. 
+   */
   isColliding(obj) {
-    let heroX = this.x + this.offset.left
-    let heroY = this.y + this.offset.top
-    let heroWidth = this.width - (this.offset.left + this.offset.right)
-    let heroHeight = this.height - (this.offset.top + this.offset.bottom)
-    let ObjectX = obj.x + obj.offset.left
-    let ObjectY = obj.x + obj.offset.top
-    let ObjectWdith = obj.height - (obj.offset.top + obj.offset.bottom)
-    let ObjectHeight = obj.height - (obj.offset.top + obj.offset.bottom)
-    return this.spanIntersection(this.x, this.x + this.width, obj.x, obj.x + obj.width) &&
-      this.spanIntersection(this.y, this.y + this.height, obj.y, obj.y + obj.height);
+    let heroX = this.x + this.offset.left;
+    let heroY = this.y + this.offset.top;
+    let heroWidth = this.width - (this.offset.left + this.offset.right);
+    let heroHeight = this.height - (this.offset.top + this.offset.bottom);
+    let objectX = obj.x + obj.offset.left;
+    let objectY = obj.x + obj.offset.top;
+    let objectWidth = obj.height - (obj.offset.top + obj.offset.bottom);
+    let objectHeight = obj.height - (obj.offset.top + obj.offset.bottom);
+    return this.spanIntersection(heroX, heroX + heroWidth, objectX, objectX + objectWidth)
+      && this.spanIntersection(heroY, heroY + heroHeight, objectY, objectY + objectHeight);
   }
 
 

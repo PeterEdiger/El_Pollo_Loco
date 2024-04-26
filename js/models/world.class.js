@@ -24,7 +24,7 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    // this.checkCollisions();
+    this.checkCollisions();
     this.run();
   }
 
@@ -56,6 +56,10 @@ class World {
    * Decreases the statusBarHealth when the character gets hit. 
    */
   checkCollisions() {
+    this.heroVsEnemyCollision()
+  }
+
+  heroVsEnemyCollision(){
     this.level.enemies.forEach(enemy => {
       if (this.character.isColliding(enemy)) {
         console.log("collision with character", enemy);
@@ -64,8 +68,8 @@ class World {
         console.log(this.character.energy);
       }
     });
-  }
 
+  }
 
   /**
    * Clears the Canvas. 

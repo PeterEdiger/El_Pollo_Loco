@@ -3,7 +3,7 @@
 
 
 ```pseudocode
-Warum steht da not intersecting?
+Ich habe im Moment eine Funktion, die den 
 
 
 

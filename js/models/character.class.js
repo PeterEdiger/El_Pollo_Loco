@@ -12,6 +12,15 @@ class Character extends MovableObject {
   pepeWalkIndex = 0;
   dyingIndex = 0;
 
+
+  offset = {
+    left: 20,
+    right: 20,
+    top: 70,
+    bottom: 15,
+  };
+
+
   IMAGES_WALKING = [
     "img_pollo_locco/img/2_character_pepe/2_walk/W-21.png",
     "img_pollo_locco/img/2_character_pepe/2_walk/W-22.png",
@@ -50,12 +59,6 @@ class Character extends MovableObject {
   ];
 
 
-  offset = {
-    left: 20,
-    right: 20,
-    top: 70,
-    bottom: 15,
-  };
 
 
   constructor() {
