@@ -30,6 +30,10 @@ class MovableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
+        if (this.y === 222){
+          this.y = 244
+        }
+        console.log(this.y);
       }
     }, 1000 / 10);
   }
@@ -41,7 +45,7 @@ class MovableObject extends DrawableObject {
    */
   isAboveGround() {
     if (!(this instanceof ThrowableObject)) {
-      return this.y < 230;
+      return this.y < 244;
     } else {
       return true;
     }
@@ -73,6 +77,10 @@ class MovableObject extends DrawableObject {
 
   jump() {
     this.speedY = 30;
+  }
+
+  bounceFromChicken(){
+    this.speedY = 15
   }
 
   deadAnimation(images) {
@@ -130,6 +138,15 @@ class MovableObject extends DrawableObject {
   }
 
 
+  isAboveChicken(obj) {
+    return this.spanIntersection(
+      this.x + this.offset.left,
+      this.x + this.offset.left + this.width - (this.offset.left + this.offset.right),
+      obj.x + obj.offset.left,
+      obj.x + obj.offset.left + obj.width - (obj.offset.left + obj.offset.right)
+    ) && (this.y + this.height - this.offset.bottom > obj.y -20 &&
+      this.y + this.height - this.offset.bottom < obj.y)
+  }
 
 
   hit() {
@@ -147,7 +164,7 @@ class MovableObject extends DrawableObject {
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
-    return timepassed < 3;
+    return timepassed < 0.7;
   }
   //!
 

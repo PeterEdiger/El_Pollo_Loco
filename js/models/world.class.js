@@ -24,7 +24,6 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
     this.run();
   }
 
@@ -40,11 +39,11 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-      this.checkThrowObjcets()
+      this.checkThrowObjects()
     }, 200);
   }
 
-  checkThrowObjcets(){
+  checkThrowObjects(){
     if(this.keyboard.d){
       let bottle = new ThrowableObject(this.character.x, this.character.y)
       this.throwableObjects.push(bottle)
@@ -62,6 +61,10 @@ class World {
   
   collisionHeroVsEnemy(){
     this.level.enemies.forEach(enemy => {
+      if (this.character.isAboveChicken(enemy)){
+        console.log("I am above");
+        this.character.jump()
+      }
       if (this.character.isColliding(enemy)) {
         console.log(enemy.y)
         console.log(this.character.y + this.character.height - this.character.offset.bottom);;
