@@ -8,6 +8,14 @@ class Coins extends DrawableObject {
     "img_pollo_locco/img/8_coin/coin_2.png"
   ]
 
+  offset = {
+    left: 30,
+    right: 30,
+    top: 30,
+    bottom: 30,
+  };
+
+
   constructor(){
     super()
     this.loadImage("img_pollo_locco/img/8_coin/coin_1.png")

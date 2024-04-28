@@ -36,7 +36,7 @@ class DrawableObject {
    *  Draws a hitbox rectangle around instances of objects.
    */
   drawFrame(ctx) {
-    if (this instanceof Character || this instanceof Chicken) {
+    if (this.offset.right != 0 || this.offset.left != 0 || this.offset.bottom != 0 || this.offset.top != 0  ) {
       ctx.beginPath();
       ctx.lineWidth = "2";
       ctx.strokeStyle = "blue";

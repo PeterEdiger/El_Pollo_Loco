@@ -63,13 +63,12 @@ class World {
     this.level.enemies.forEach(enemy => {
       if (this.character.isAboveChicken(enemy)){
         console.log("I am above");
-        this.character.jump()
+        this.character.jumpFromChicken()
       }
       if (this.character.isColliding(enemy)) {
         console.log(enemy.y)
         console.log(this.character.y + this.character.height - this.character.offset.bottom);;
         if(this.character.y + this.character.offset.top + this.character.height ===  enemy.y){
-          console.log("comming from top");
         }
         console.log("collision with character", enemy);
         this.character.hit();

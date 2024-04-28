@@ -30,8 +30,8 @@ class MovableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-        if (this.y === 222){
-          this.y = 244
+        if (this.y === 226) {
+          this.y = 244;
         }
         console.log(this.y);
       }
@@ -79,8 +79,8 @@ class MovableObject extends DrawableObject {
     this.speedY = 30;
   }
 
-  bounceFromChicken(){
-    this.speedY = 15
+  jumpFromChicken() {
+    this.speedY = 17;
   }
 
   deadAnimation(images) {
@@ -126,14 +126,15 @@ class MovableObject extends DrawableObject {
   isColliding(obj) {
     return this.spanIntersection(
       this.x + this.offset.left,
-      this.x + this.offset.left + this.width - (this.offset.left + this.offset.right),
+      this.x + this.width - this.offset.right,
       obj.x + obj.offset.left,
-      obj.x + obj.offset.left + obj.width - (obj.offset.left + obj.offset.right)
-    ) && this.spanIntersection(
-      this.y + this.offset.top,
-      this.y + this.offset.top + this.height - (this.offset.top + this.offset.bottom),
-      obj.y + obj.offset.top,
-      obj.y + obj.offset.top + obj.height - (obj.offset.top + obj.offset.bottom)
+      obj.x + obj.width - obj.offset.right
+    )
+      && this.spanIntersection(
+        this.y + this.offset.top,
+        this.y + this.height - this.offset.bottom,
+        obj.y + obj.offset.top,
+        obj.y + obj.height - obj.offset.bottom
     );
   }
 
@@ -144,9 +145,10 @@ class MovableObject extends DrawableObject {
       this.x + this.offset.left + this.width - (this.offset.left + this.offset.right),
       obj.x + obj.offset.left,
       obj.x + obj.offset.left + obj.width - (obj.offset.left + obj.offset.right)
-    ) && (this.y + this.height - this.offset.bottom > obj.y -20 &&
-      this.y + this.height - this.offset.bottom < obj.y)
+    ) && (this.y + this.height - this.offset.bottom > obj.y - 30 &&
+      this.y + this.height - this.offset.bottom < obj.y - 10);
   }
+
 
 
   hit() {
