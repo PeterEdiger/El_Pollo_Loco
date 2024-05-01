@@ -40,7 +40,7 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkThrowObjects()
-    }, 200);
+    }, 100);
   }
 
   checkThrowObjects(){
@@ -65,7 +65,7 @@ class World {
         console.log("I am above");
         this.character.jumpFromChicken()
       }
-      if (this.character.isColliding(enemy)) {
+      else if (this.character.isColliding(enemy)) {
         console.log(enemy.y)
         console.log(this.character.y + this.character.height - this.character.offset.bottom);;
         if(this.character.y + this.character.offset.top + this.character.height ===  enemy.y){

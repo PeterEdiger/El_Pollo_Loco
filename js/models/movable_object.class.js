@@ -33,7 +33,6 @@ class MovableObject extends DrawableObject {
         if (this.y === 226) {
           this.y = 244;
         }
-        console.log(this.y);
       }
     }, 1000 / 10);
   }
@@ -135,24 +134,34 @@ class MovableObject extends DrawableObject {
         this.y + this.height - this.offset.bottom,
         obj.y + obj.offset.top,
         obj.y + obj.height - obj.offset.bottom
-    );
+      );
   }
 
 
   isAboveChicken(obj) {
     return this.spanIntersection(
       this.x + this.offset.left,
-      this.x + this.offset.left + this.width - (this.offset.left + this.offset.right),
+      this.x + this.width - this.offset.right,
       obj.x + obj.offset.left,
-      obj.x + obj.offset.left + obj.width - (obj.offset.left + obj.offset.right)
-    ) && (this.y + this.height - this.offset.bottom > obj.y - 30 &&
-      this.y + this.height - this.offset.bottom < obj.y - 10);
+      obj.x + obj.width - obj.offset.right
+    )
+      && this.spanIntersection(
+        this.y + this.height - this.offset.bottom,
+        this.y + this.height - this.offset.bottom +5,
+        obj.y -5,
+        obj.y 
+      )
+        
+      
   }
 
 
 
   hit() {
     this.energy -= 5;
+    //!
+    console.log(this.energy);
+    //!
     if (this.energy < 0) {
       this.energy = 0;
     }
@@ -161,12 +170,12 @@ class MovableObject extends DrawableObject {
     }
   }
 
-
+0
   //!
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
-    return timepassed < 0.7;
+    return timepassed < 0.5;
   }
   //!
 
