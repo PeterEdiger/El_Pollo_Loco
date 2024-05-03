@@ -98,6 +98,9 @@ class World {
     this.addToCanvas(this.statusBarHealth);
     this.addToCanvas(this.statusBarCoins);
     this.addToCanvas(this.statusBarBottles);
+    this.character.drawFrame(this.ctx)
+    this.drawFrameAllInstances(this.enemies)
+    
 
     this.ctx.translate(this.camera_x, 0);
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
@@ -129,17 +132,23 @@ class World {
       this.ctx.scale(-1, 1);
       mo.x = mo.x * -1;
     }
-
     // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-
-    mo.drawFrame(this.ctx);
-
-    if (mo.otherDirection) {
+//!
+// mo.drawFrame(this.ctx);
+//!
+if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
     }
   }
+
+  drawFrameAllInstances(objectsArray){
+    objectsArray.forEach(obj => {
+      obj.drawFrame(this.ctx)
+    });
+  }
+
 }
 
 

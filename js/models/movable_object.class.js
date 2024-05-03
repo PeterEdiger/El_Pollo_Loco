@@ -1,6 +1,6 @@
 // canvas width="720" height="480"
 
-class MovableObject extends DrawableObject {
+class MovableObject extends CollidableObject {
   x;
   y;
   height;

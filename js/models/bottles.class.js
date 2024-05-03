@@ -1,4 +1,4 @@
-class Bottle extends DrawableObject{
+class Bottle extends CollidableObject{
 
   width = 50; 
   height = 50;
