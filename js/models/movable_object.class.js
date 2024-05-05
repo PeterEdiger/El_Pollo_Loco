@@ -79,7 +79,7 @@ class MovableObject extends CollidableObject {
   }
 
   jumpFromChicken() {
-    this.speedY = 17;
+    this.speedY = 22;
   }
 
   deadAnimation(images) {
@@ -170,7 +170,7 @@ class MovableObject extends CollidableObject {
     }
   }
 
-0
+
   //!
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;

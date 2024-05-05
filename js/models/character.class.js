@@ -74,24 +74,13 @@ class Character extends MovableObject {
 
 
   /**
-   * Starts the animation of the character.
-   *
+   * Handles the different animations of the character based on a state or move. 
+   *  f.E  jump, move, isHurt.
    */
   animate() {
-    // Checks for Pepes running direction 
     setInterval(() => {
       this.walkingSound.pause();
-      if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
-        this.moveRight();
-        this.otherDirection = false;
-        this.walkingSound.play();
-      }
-
-      if (this.world.keyboard.left && this.x > -200) {
-        this.moveLeft();
-        this.otherDirection = true;
-        this.walkingSound.play();
-      }
+      this.changeRunningDirection()
 
       // Jumping logic. 
       if (!this.isAboveGround() && this.world.keyboard.up) {
@@ -100,32 +89,13 @@ class Character extends MovableObject {
 
       // moves the camera according to the change of Pepes x-axis.
       this.world.camera_x = this.x - 150;
-      //!
+
       this.world.statusBarHealth.x = this.x -100
       this.world.statusBarCoins.x = this.x -100
       this.world.statusBarBottles.x = this.x -100
-      
-
-      //!
     }, 1000 / 60);
 
-    // starts dead animation
-    // setInterval(() => {
-    //   if (this.isDead()) {
-    //     this.deadAnimation(this.IMAGES_DEAD);
-    //   }
-    // }, 250);
-
-
-    // //!
-    // setInterval(() => {
-    //   if (this.isHurt()) {
-    //     this.playAnimation(this.IMAGES_HURT)
-    //   }
-    // }, 50);
-    //!
-
-
+    
     // Interval for Pepes movements {walk, jump}
     setInterval(() => {
       if (this.isDead()) {
@@ -141,6 +111,28 @@ class Character extends MovableObject {
         }
       }
     }, 50);
+  }
+
+
+  /**
+   * Changes the running direction of the character based on a pressed key. 
+   *
+   */
+  changeRunningDirection(){
+      if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
+        this.moveRight();
+        this.otherDirection = false;
+        this.walkingSound.play();
+      }
+      if (this.world.keyboard.left && this.x > -200) {
+        this.moveLeft();
+        this.otherDirection = true;
+        this.walkingSound.play();
+      }
+  }
+
+  moveStatusBarWithCharacter(){
+    return
   }
 }
 
