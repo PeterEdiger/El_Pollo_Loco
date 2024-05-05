@@ -43,11 +43,7 @@ class MovableObject extends CollidableObject {
    *
    */
   isAboveGround() {
-    if (!(this instanceof ThrowableObject)) {
-      return this.y < 244;
-    } else {
-      return true;
-    }
+    return this instanceof ThrowableObject || this.y < 244
   }
 
 
