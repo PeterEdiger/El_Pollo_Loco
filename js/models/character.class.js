@@ -81,18 +81,9 @@ class Character extends MovableObject {
     setInterval(() => {
       this.walkingSound.pause();
       this.changeRunningDirection()
-
-      // Jumping logic. 
-      if (!this.isAboveGround() && this.world.keyboard.up) {
-        this.jump();
-      }
-
-      // moves the camera according to the change of Pepes x-axis.
+      this.moveStatusBarWithCharacter()
+      this.characterJump()
       this.world.camera_x = this.x - 150;
-
-      this.world.statusBarHealth.x = this.x -100
-      this.world.statusBarCoins.x = this.x -100
-      this.world.statusBarBottles.x = this.x -100
     }, 1000 / 60);
 
     
@@ -115,6 +106,10 @@ class Character extends MovableObject {
     
   }
 
+  animateCharacterMovements(){
+    
+  }
+
 
   /**
    * Changes the running direction of the character based on a pressed key. 
@@ -134,7 +129,16 @@ class Character extends MovableObject {
   }
 
   moveStatusBarWithCharacter(){
-    return
+    this.world.statusBarHealth.x = this.x -100
+    this.world.statusBarCoins.x = this.x -100
+    this.world.statusBarBottles.x = this.x -100
+  }
+
+  characterJump(){
+    if (!this.isAboveGround() && this.world.keyboard.up) {
+      this.jump();
+    }
+  
   }
 }
 
