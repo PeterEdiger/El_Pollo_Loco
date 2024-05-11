@@ -85,14 +85,17 @@ class Character extends MovableObject {
       this.characterJump()
       this.world.camera_x = this.x - 150;
     }, 1000 / 60);
-    setInterval(() => this.animateCharacterMovements(), 200);
 
-    
+    setInterval(() => this.animateCharacterMovements(), 200);
   }
 
+  /**
+   * Changes pngs of the character when movements are triggered. 
+   * Simulates the movements of jump, hurt, dead, walk.
+   */
   animateCharacterMovements(){
     if (this.isDead()) {
-      this.playAnimation(this.IMAGES_DEAD);
+      this.deadAnimation(this.IMAGES_DEAD);
     } else if (this.isHurt()) {
       this.playAnimation(this.IMAGES_HURT);
     }

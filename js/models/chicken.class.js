@@ -5,12 +5,18 @@ class Chicken extends MovableObject {
   width = 50;
   height = 50;
   y = 380;
+  intervalNrMove = 0;
+  intervalNrWalk = 0
   
   IMAGES_WALKING = [
     "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
     "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
     "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
+
+  IMAGES_DEAD = [
+    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png"
+  ]
 
   offset = {
     left: 1,
@@ -28,6 +34,10 @@ class Chicken extends MovableObject {
     this.fillImgCache(this.IMAGES_WALKING);
     this.x = 200 + Math.random() * 500;
     this.animate();
+    //!
+    console.log(this.intervalNrMove);
+    console.log(this.intervalNrWalk);
+    //!
   }
 
 
@@ -37,16 +47,26 @@ class Chicken extends MovableObject {
    * Calls the {moveLeft} method.
    */
   animate() {
-    setInterval(() => {
+    let interval1 = setInterval(() => {
       this.playAnimation(this.IMAGES_WALKING)
     }, 250);
-    
+
+    this.intervalNrWalk = interval1
     this.speed = Math.random() * 0.7
-    setInterval(() => {
+    let interval2 =     setInterval(() => {
       this.moveLeft()
     }, 1000 / 60);
+    this.intervalNrMove = interval2
+
+
   }
+
+enemieDeadAnimation(){
+  console.log("animation success");
+  this.loadImage("img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png")
 }
+}
+
 
 
 

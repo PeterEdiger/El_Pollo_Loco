@@ -80,6 +80,17 @@ class MovableObject extends CollidableObject {
 
 
   /**
+   *
+   *
+   */
+  deadAnimation(images) {
+    if (this.dyingIndex < images.length) {
+      this.img = this.imgCache[images[this.dyingIndex]];
+      this.dyingIndex += 1;
+    }
+  }
+
+  /**
    * 
    * @param {array} images that will animate moves of an object.
    * Repeats changing images of an object.

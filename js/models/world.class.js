@@ -10,6 +10,7 @@ class World {
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
+  bottlesAndCoins = level1.staticObjects
   backgrounds = level1.backgrounds;
   statusBarHealth = new StatusBar(-100, 20, "statusBarHealth");
   statusBarCoins = new StatusBar(-100, 50, "statusBarCoins");
@@ -39,14 +40,14 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
-      this.checkThrowObjects()
+      this.checkThrowObjects();
     }, 100);
   }
 
-  checkThrowObjects(){
-    if(this.keyboard.d){
-      let bottle = new ThrowableObject(this.character.x, this.character.y)
-      this.throwableObjects.push(bottle)
+  checkThrowObjects() {
+    if (this.keyboard.d) {
+      let bottle = new ThrowableObject(this.character.x, this.character.y);
+      this.throwableObjects.push(bottle);
     }
   }
 
@@ -55,20 +56,25 @@ class World {
    * Decreases the statusBarHealth when the character gets hit. 
    */
   checkCollisions() {
-    this.collisionHeroVsEnemy()
+    this.collisionHeroVsEnemy();
   }
 
-  
-  collisionHeroVsEnemy(){
-    this.level.enemies.forEach(enemy => {
-      if (this.character.isAboveChicken(enemy)){
-        console.log("I am above");
-        this.character.jumpFromChicken()
+
+  collisionHeroVsEnemy() {
+    this.level.enemies.forEach((enemy, index) => {
+      if (this.character.isAboveChicken(enemy)) {
+        clearInterval(enemy.intervalNrWalk)
+        clearInterval(enemy.intervalNrMove)
+        this.character.jumpFromChicken();
+        this.enemies[index].enemieDeadAnimation()
+        setTimeout(() => {
+          this.enemies.splice(index, 1)
+        }, 400);
       }
       else if (this.character.isColliding(enemy)) {
-        console.log(enemy.y)
+        console.log(enemy.y);
         console.log(this.character.y + this.character.height - this.character.offset.bottom);;
-        if(this.character.y + this.character.offset.top + this.character.height ===  enemy.y){
+        if (this.character.y + this.character.offset.top + this.character.height === enemy.y) {
         }
         console.log("collision with character", enemy);
         this.character.hit();
@@ -76,8 +82,8 @@ class World {
         console.log(this.character.energy);
       }
     });
-
   }
+
 
   /**
    * Clears the Canvas. 
@@ -98,9 +104,10 @@ class World {
     this.addToCanvas(this.statusBarHealth);
     this.addToCanvas(this.statusBarCoins);
     this.addToCanvas(this.statusBarBottles);
-    this.character.drawFrame(this.ctx)
-    this.drawFrameAllInstances(this.enemies)
-    
+    this.character.drawFrame(this.ctx);
+    this.drawFrameAllInstances(this.enemies);
+    this.drawFrameAllInstances(this.bottlesAndCoins)
+
 
     this.ctx.translate(this.camera_x, 0);
     // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
@@ -134,18 +141,18 @@ class World {
     }
     // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-//!
-// mo.drawFrame(this.ctx);
-//!
-if (mo.otherDirection) {
+    //!
+    // mo.drawFrame(this.ctx);
+    //!
+    if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
     }
   }
 
-  drawFrameAllInstances(objectsArray){
+  drawFrameAllInstances(objectsArray) {
     objectsArray.forEach(obj => {
-      obj.drawFrame(this.ctx)
+      obj.drawFrame(this.ctx);
     });
   }
 
