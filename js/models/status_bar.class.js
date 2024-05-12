@@ -2,41 +2,25 @@ class StatusBar extends DrawableObject {
 
   percentage = 100;
 
-  IMAGES = {
-    statusBarHealth: [
-      "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
-    ],
-    statusBarCoins: [
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/80.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/60.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/40.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/20.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png",
-    ],
-    statusBarBottles: [
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/100.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/80.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/60.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/40.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/20.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png",
-    ]
-  };
 
-  constructor(x, y, imagesKey) {
+  IMAGES = [
+    "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png",
+    "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png",
+    "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png",
+    "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/60.png",
+    "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png",
+    "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
+  ];
+
+
+
+  constructor(x, y) {
     super();
-    this.x = x
-    this.y = y
-    this.imagesKey = imagesKey
+    this.x = x;
+    this.y = y;
     this.width = 100;
     this.height = 30;
-    this.fillImgCache(this.IMAGES[this.imagesKey]);
+    this.fillImgCache(this.IMAGES);
     this.setPercentage(100);
   }
 
@@ -65,7 +49,7 @@ class StatusBar extends DrawableObject {
 
   setPercentage(percentage) {
     this.percentage = percentage;
-    let path = this.IMAGES[this.imagesKey][this.resolveImageIndex()];
+    let path = this.IMAGES[this.resolveImageIndex()];
     this.img = this.imgCache[path];
   }
 }

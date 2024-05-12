@@ -13,9 +13,9 @@ class World {
   coins = level1.coins;
   bottles = level1.bottles;
   backgrounds = level1.backgrounds;
-  statusBarHealth = new StatusBar(-100, 20, "statusBarHealth");
-  statusBarCoins = new StatusBar(-100, 50, "statusBarCoins");
-  statusBarBottles = new StatusBar(-100, 80, "statusBarBottles");
+  statusBarHealth = new StatusBar(-100, 20);
+  // statusBarCoins = new StatusBar(-100, 50, imagesStatusBarCoins);
+  // statusBarBottles = new StatusBar(-100, 80, imagesStatusBarBottles);
   endboss = new Endboss();
   throwableObjects = [];
 
@@ -51,6 +51,7 @@ class World {
       this.throwableObjects.push(bottle);
     }
   }
+
 
   /**
    * Checks if the game character collides with an object. 
@@ -91,7 +92,6 @@ class World {
   collisionHeroVsCoins() {
     this.level.coins.forEach((element, index) => {
       if (this.character.isColliding(element)) {
-        this.statusBarCoins.loadImage(this.statusBarCoins.IMAGES.statusBarCoins[0]) ;
         console.log("Pepe collides with coin");
         this.level.coins.splice(index, 1);
       }
@@ -128,8 +128,8 @@ class World {
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addToCanvas(this.statusBarHealth);
-    this.addToCanvas(this.statusBarCoins);
-    this.addToCanvas(this.statusBarBottles);
+    // this.addToCanvas(this.statusBarCoins);
+    // this.addToCanvas(this.statusBarBottles);
     this.character.drawFrame(this.ctx);
     this.drawFrameAllInstances(this.enemies);
     this.drawFrameAllInstances(this.coins);
