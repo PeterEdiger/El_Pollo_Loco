@@ -12,20 +12,20 @@ class StatusBar extends DrawableObject {
       "img_pollo_locco/img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
     ],
     statusBarCoins: [
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/20.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/40.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/60.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/80.png",
       "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/100.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/80.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/60.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/40.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/20.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/1_statusbar_coin/green/0.png",
     ],
     statusBarBottles: [
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/20.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/40.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/60.png",
-      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/80.png",
       "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/100.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/80.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/60.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/40.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/20.png",
+      "img_pollo_locco/img/7_statusbars/1_statusbar/3_statusbar_bottle/green/0.png",
     ]
   };
 

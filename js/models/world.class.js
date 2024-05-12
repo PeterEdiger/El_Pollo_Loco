@@ -10,7 +10,8 @@ class World {
   character = new Character();
   enemies = level1.enemies;
   clouds = level1.clouds;
-  bottlesAndCoins = level1.staticObjects
+  coins = level1.coins;
+  bottles = level1.bottles;
   backgrounds = level1.backgrounds;
   statusBarHealth = new StatusBar(-100, 20, "statusBarHealth");
   statusBarCoins = new StatusBar(-100, 50, "statusBarCoins");
@@ -57,18 +58,20 @@ class World {
    */
   checkCollisions() {
     this.collisionHeroVsEnemy();
+    this.collisionHeroVsCoins();
+    this.collisionHeroVsBottles();
   }
 
 
   collisionHeroVsEnemy() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isAboveChicken(enemy)) {
-        clearInterval(enemy.intervalNrWalk)
-        clearInterval(enemy.intervalNrMove)
+        clearInterval(enemy.intervalNrWalk);
+        clearInterval(enemy.intervalNrMove);
         this.character.jumpFromChicken();
-        this.enemies[index].enemieDeadAnimation()
+        this.enemies[index].enemieDeadAnimation();
         setTimeout(() => {
-          this.enemies.splice(index, 1)
+          this.enemies.splice(index, 1);
         }, 400);
       }
       else if (this.character.isColliding(enemy)) {
@@ -85,6 +88,28 @@ class World {
   }
 
 
+  collisionHeroVsCoins() {
+    this.level.coins.forEach((element, index) => {
+      if (this.character.isColliding(element)) {
+        this.statusBarCoins.loadImage(this.statusBarCoins.IMAGES.statusBarCoins[0]) ;
+        console.log("Pepe collides with coin");
+        this.level.coins.splice(index, 1);
+      }
+    });
+  }
+
+
+  collisionHeroVsBottles() {
+    this.level.bottles.forEach((element, index) => {
+      if (this.character.isColliding(element)) {
+        console.log("Pepe collides with bottle");
+        this.level.bottles.splice(index, 1);
+      }
+    });
+  }
+
+
+
   /**
    * Clears the Canvas. 
    * Draws Objects onto the canvas.
@@ -96,7 +121,8 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
     this.addObjectsToMap(this.level.backgrounds);
     this.addToCanvas(this.endboss);
-    this.addObjectsToMap(this.level.staticObjects);
+    this.addObjectsToMap(this.level.coins);
+    this.addObjectsToMap(this.level.bottles);
     this.addToCanvas(this.character);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.throwableObjects);
@@ -106,7 +132,8 @@ class World {
     this.addToCanvas(this.statusBarBottles);
     this.character.drawFrame(this.ctx);
     this.drawFrameAllInstances(this.enemies);
-    this.drawFrameAllInstances(this.bottlesAndCoins)
+    this.drawFrameAllInstances(this.coins);
+    this.drawFrameAllInstances(this.bottles);
 
 
     this.ctx.translate(this.camera_x, 0);
@@ -141,9 +168,6 @@ class World {
     }
     // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-    //!
-    // mo.drawFrame(this.ctx);
-    //!
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
