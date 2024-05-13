@@ -6,7 +6,6 @@ class MovableObject extends CollidableObject {
   height;
   width;
   img;
-  imgCache = {};
   speed;
   otherDirection = false;
   currentIndex = 0;

@@ -13,9 +13,9 @@ class World {
   coins = level1.coins;
   bottles = level1.bottles;
   backgrounds = level1.backgrounds;
-  statusBarHealth = new StatusBar(-100, 20);
-  // statusBarCoins = new StatusBar(-100, 50, imagesStatusBarCoins);
-  // statusBarBottles = new StatusBar(-100, 80, imagesStatusBarBottles);
+  statusBarHealth = new HealthBar(-100, 20);
+  statusBarCoins = new CoinsBar(-100, 50);
+  statusBarBottles = new BottlesBar(-100, 80);
   endboss = new Endboss();
   throwableObjects = [];
 
@@ -128,8 +128,8 @@ class World {
     this.addObjectsToMap(this.throwableObjects);
     this.addObjectsToMap(this.level.clouds);
     this.addToCanvas(this.statusBarHealth);
-    // this.addToCanvas(this.statusBarCoins);
-    // this.addToCanvas(this.statusBarBottles);
+    this.addToCanvas(this.statusBarCoins);
+    this.addToCanvas(this.statusBarBottles);
     this.character.drawFrame(this.ctx);
     this.drawFrameAllInstances(this.enemies);
     this.drawFrameAllInstances(this.coins);

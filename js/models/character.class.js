@@ -128,8 +128,8 @@ class Character extends MovableObject {
 
   moveStatusBarWithCharacter(){
     this.world.statusBarHealth.x = this.x -100
-    // this.world.statusBarCoins.x = this.x -100
-    // this.world.statusBarBottles.x = this.x -100
+    this.world.statusBarCoins.x = this.x -100
+    this.world.statusBarBottles.x = this.x -100
   }
 
   characterJump(){
