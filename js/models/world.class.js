@@ -18,6 +18,8 @@ class World {
   statusBarBottles = new BottlesBar(-100, 80);
   endboss = new Endboss();
   throwableObjects = [];
+  bottleImgIndex = 0;
+
 
 
   constructor(canvas, keyboard) {
@@ -46,12 +48,15 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.d) {
+    if (this.keyboard.d && this.bottleImgIndex >= 1) {
+      let bottleBarImages = this.statusBarBottles.IMAGES;
+      console.log(this.bottleImgIndex);
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
-    }
+      this.bottleImgIndex -= 1
+      this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex])
   }
-
+  }
 
   /**
    * Checks if the game character collides with an object. 
@@ -89,11 +94,17 @@ class World {
   }
 
 
+  coinImgIndex = 1;
   collisionHeroVsCoins() {
-    this.level.coins.forEach((element, index) => {
-      if (this.character.isColliding(element)) {
-        console.log("Pepe collides with coin");
+    this.level.coins.forEach((coin, index) => {
+      if (this.character.isColliding(coin)) {
+        let coinBarImages = this.statusBarCoins.IMAGES;
+        this.statusBarCoins.loadImage(coinBarImages[this.coinImgIndex]);
         this.level.coins.splice(index, 1);
+        if (this.coinImgIndex < 5) {
+          this.coinImgIndex += 1;
+        }
+        console.log("Pepe collides with coin");
       }
     });
   }
@@ -102,8 +113,13 @@ class World {
   collisionHeroVsBottles() {
     this.level.bottles.forEach((element, index) => {
       if (this.character.isColliding(element)) {
-        console.log("Pepe collides with bottle");
+        let bottleBarImages = this.statusBarBottles.IMAGES;
+        this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex +1]);
+        if (this.bottleImgIndex < 5) {
+          this.bottleImgIndex += 1;
+        }
         this.level.bottles.splice(index, 1);
+        console.log("Pepe collides with bottle");
       }
     });
   }
