@@ -48,13 +48,13 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.d && this.bottleImgIndex >= 1) {
+    if (this.keyboard.d && this.bottleImgIndex >= 0) {
       let bottleBarImages = this.statusBarBottles.IMAGES;
       console.log(this.bottleImgIndex);
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
-      this.bottleImgIndex -= 1
       this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex])
+      this.bottleImgIndex -= 1
   }
   }
 
@@ -115,10 +115,10 @@ class World {
       if (this.character.isColliding(element)) {
         let bottleBarImages = this.statusBarBottles.IMAGES;
         this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex +1]);
-        if (this.bottleImgIndex < 5) {
+        if (this.bottleImgIndex < 4) {
           this.bottleImgIndex += 1;
+          this.level.bottles.splice(index, 1);
         }
-        this.level.bottles.splice(index, 1);
         console.log("Pepe collides with bottle");
       }
     });
@@ -183,7 +183,12 @@ class World {
       mo.x = mo.x * -1;
     }
     // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
-    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    try {
+      this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    } catch (error) {
+      console.warn("Error loading image", error)
+      console.log("Could not load image", mo.img.src)
+    }
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
