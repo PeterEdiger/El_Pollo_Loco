@@ -4,8 +4,8 @@ class Coins extends CollidableObject {
   height = 100; 
 
   IMAGES = [
-    "img_pollo_locco/img/8_coin/coin_1.png",
-    "img_pollo_locco/img/8_coin/coin_2.png"
+    "./img/8_coin/coin_1.png",
+    "./img/8_coin/coin_2.png"
   ]
 
   offset = {
@@ -18,7 +18,7 @@ class Coins extends CollidableObject {
 
   constructor(){
     super()
-    this.loadImage("img_pollo_locco/img/8_coin/coin_1.png")
+    this.loadImage("./img/8_coin/coin_1.png")
     this.y = 375 - Math.random() * 250
   }
 }

@@ -2,7 +2,7 @@
 @font-face {
   font-family: "rioGrande";
   /* Gewünschter Name */
-  src: url("assets/fonts/rio_grande_striped.ttf");
+  src: url("./assets/fonts/rio_grande_striped.ttf");
 }
 
 body{

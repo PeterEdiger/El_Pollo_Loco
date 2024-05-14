@@ -9,13 +9,13 @@ class Chicken extends MovableObject {
   intervalNrWalk = 0
   
   IMAGES_WALKING = [
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
+    "./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
+    "./img/3_enemies_chicken/chicken_normal/1_walk/2_w.png",
+    "./img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
   ];
 
   IMAGES_DEAD = [
-    "img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png"
+    "./img/3_enemies_chicken/chicken_normal/2_dead/dead.png"
   ]
 
   offset = {
@@ -30,7 +30,7 @@ class Chicken extends MovableObject {
   constructor() {
     super()
     
-    this.loadImage("img_pollo_locco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+    this.loadImage("./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
     this.fillImgCache(this.IMAGES_WALKING);
     this.x = 200 + Math.random() * 500;
     this.animate();
@@ -63,7 +63,7 @@ class Chicken extends MovableObject {
 
 enemieDeadAnimation(){
   console.log("animation success");
-  this.loadImage("img_pollo_locco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png")
+  this.loadImage("./img/3_enemies_chicken/chicken_normal/2_dead/dead.png")
 }
 }
 
