@@ -47,6 +47,12 @@ class World {
     }, 100);
   }
 
+ 
+  /**
+   * Checks if a throwable Object got thrown. 
+   * Pushes throwable object into an array.
+   * Controlls which Img will be shown in the bottle-status-bar.
+   */
   checkThrowObjects() {
     if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
       let bottleBarImages = this.statusBarBottles.IMAGES;
@@ -54,6 +60,7 @@ class World {
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
       this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex])
+      
       this.bottlesAvailableIndex -= 1
   }
   }
