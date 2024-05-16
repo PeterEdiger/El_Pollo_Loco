@@ -18,7 +18,7 @@ class World {
   statusBarBottles = new BottlesBar(-100, 80);
   endboss = new Endboss();
   throwableObjects = [];
-  bottleImgIndex = 0;
+  bottlesAvailableIndex = 0;
 
 
 
@@ -48,13 +48,13 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.d && this.bottleImgIndex >= 0) {
+    if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
       let bottleBarImages = this.statusBarBottles.IMAGES;
-      console.log(this.bottleImgIndex);
+      console.log(this.bottlesAvailableIndex);
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
-      this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex])
-      this.bottleImgIndex -= 1
+      this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex])
+      this.bottlesAvailableIndex -= 1
   }
   }
 
@@ -114,9 +114,9 @@ class World {
     this.level.bottles.forEach((element, index) => {
       if (this.character.isColliding(element)) {
         let bottleBarImages = this.statusBarBottles.IMAGES;
-        this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex +1]);
-        if (this.bottleImgIndex < 4) {
-          this.bottleImgIndex += 1;
+        this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex +1]);
+        if (this.bottlesAvailableIndex < 4) {
+          this.bottlesAvailableIndex += 1;
           this.level.bottles.splice(index, 1);
         }
         console.log("Pepe collides with bottle");

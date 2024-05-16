@@ -1,18 +1,13 @@
-setInterval(animateCharacterMovements, 200);
 
-
-animateCharacterMovements(){
-  if (this.isDead()) {
-    this.deadAnimation(this.IMAGES_DEAD);
-  } else if (this.isHurt()) {
-    this.playAnimation(this.IMAGES_HURT);
-  }
-  else if (this.isAboveGround()) {
-    this.playAnimation(this.IMAGES_JUMPING);
-  } else {
-    if (this.world.keyboard.right || this.world.keyboard.left) {
-      this.playAnimation(this.IMAGES_WALKING);
-    }
-  }
-
+checkThrowObjects() {
+  // was ist bottleImgIndex und wie könnte man es umbenennen?
+  // bottleImgIndexx zeigt auf das Bild von der bottle StatusBar. 
+  if (this.keyboard.d && this.bottleImgIndex >= 0) {
+    let bottleBarImages = this.statusBarBottles.IMAGES;
+    console.log(this.bottleImgIndex);
+    let bottle = new ThrowableObject(this.character.x, this.character.y);
+    this.throwableObjects.push(bottle);
+    this.statusBarBottles.loadImage(bottleBarImages[this.bottleImgIndex])
+    this.bottleImgIndex -= 1
+}
 }
