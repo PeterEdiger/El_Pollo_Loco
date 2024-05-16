@@ -47,7 +47,7 @@ class World {
     }, 100);
   }
 
- 
+
   /**
    * Checks if a throwable Object got thrown. 
    * Pushes throwable object into an array.
@@ -59,10 +59,10 @@ class World {
       console.log(this.bottlesAvailableIndex);
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
-      this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex])
-      
-      this.bottlesAvailableIndex -= 1
-  }
+      this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
+
+      this.bottlesAvailableIndex -= 1;
+    }
   }
 
   /**
@@ -121,7 +121,7 @@ class World {
     this.level.bottles.forEach((element, index) => {
       if (this.character.isColliding(element)) {
         let bottleBarImages = this.statusBarBottles.IMAGES;
-        this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex +1]);
+        this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex + 1]);
         if (this.bottlesAvailableIndex < 4) {
           this.bottlesAvailableIndex += 1;
           this.level.bottles.splice(index, 1);
@@ -154,6 +154,7 @@ class World {
     this.addToCanvas(this.statusBarCoins);
     this.addToCanvas(this.statusBarBottles);
     this.character.drawFrame(this.ctx);
+    this.endboss.drawFrame(this.ctx);
     this.drawFrameAllInstances(this.enemies);
     this.drawFrameAllInstances(this.coins);
     this.drawFrameAllInstances(this.bottles);
@@ -193,8 +194,8 @@ class World {
     try {
       this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     } catch (error) {
-      console.warn("Error loading image", error)
-      console.log("Could not load image", mo.img.src)
+      console.warn("Error loading image", error);
+      console.log("Could not load image", mo.img.src);
     }
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
