@@ -16,6 +16,7 @@ class World {
   statusBarHealth = new HealthBar(-100, 20);
   statusBarCoins = new CoinsBar(-100, 50);
   statusBarBottles = new BottlesBar(-100, 80);
+  statusBarEndboss = new EndbossBar(500, 120);
   endboss = new Endboss();
   throwableObjects = [];
   bottlesAvailableIndex = 0;
@@ -64,6 +65,18 @@ class World {
       this.bottlesAvailableIndex -= 1;
     }
   }
+
+
+  checkStatusBarEndBoss(){
+    if(this.character.x > 500){
+      console.log("x > 500 triggered");
+      console.log(this.statusBarEndboss.x);
+      console.log(this.statusBarEndboss.y);
+      console.log(this.statusBarEndboss.img);
+      this.addToCanvas(this.statusBarEndboss)
+    }
+  }
+
 
   /**
    * Checks if the game character collides with an object. 
@@ -153,6 +166,7 @@ class World {
     this.addToCanvas(this.statusBarHealth);
     this.addToCanvas(this.statusBarCoins);
     this.addToCanvas(this.statusBarBottles);
+    this.checkStatusBarEndBoss()
     this.character.drawFrame(this.ctx);
     this.endboss.drawFrame(this.ctx);
     this.drawFrameAllInstances(this.enemies);
