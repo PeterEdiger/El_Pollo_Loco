@@ -16,7 +16,7 @@ class World {
   statusBarHealth = new HealthBar(-100, 20);
   statusBarCoins = new CoinsBar(-100, 50);
   statusBarBottles = new BottlesBar(-100, 80);
-  statusBarEndboss = new EndbossBar(500, 120);
+  statusBarEndboss = new EndbossBar(20);
   endboss = new Endboss();
   throwableObjects = [];
   bottlesAvailableIndex = 0;
@@ -68,11 +68,7 @@ class World {
 
 
   checkStatusBarEndBoss(){
-    if(this.character.x > 500){
-      console.log("x > 500 triggered");
-      console.log(this.statusBarEndboss.x);
-      console.log(this.statusBarEndboss.y);
-      console.log(this.statusBarEndboss.img);
+    if(this.character.x > 1500){
       this.addToCanvas(this.statusBarEndboss)
     }
   }

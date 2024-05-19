@@ -130,7 +130,8 @@ class Character extends MovableObject {
     this.world.statusBarHealth.x = this.x -100
     this.world.statusBarCoins.x = this.x -100
     this.world.statusBarBottles.x = this.x -100
-  }
+    this.world.statusBarEndboss.x = this.x + 400
+   }
 
   characterJump(){
     if (!this.isAboveGround() && this.world.keyboard.up) {
