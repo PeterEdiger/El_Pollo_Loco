@@ -19,7 +19,8 @@ class World {
   statusBarEndboss = new EndbossBar(20);
   endboss = new Endboss();
   throwableObjects = [];
-  bottlesAvailableIndex = 0;
+  bottlesAvailableIndex = 1;
+  endBossDyeIndex = 1
 
 
 
@@ -82,6 +83,7 @@ class World {
     this.collisionHeroVsEnemy();
     this.collisionHeroVsCoins();
     this.collisionHeroVsBottles();
+    this.collisionBottleVsEndBoss();
   }
 
 
@@ -141,6 +143,20 @@ class World {
   }
 
 
+  collisionBottleVsEndBoss(){
+    this.throwableObjects.forEach((element, index) =>{
+      if(this.endboss.isColliding(element)){
+        let statusBarImgs = this.statusBarEndboss.IMAGES
+        console.log(statusBarImgs);
+        console.log(this.endBossDyeIndex);
+        this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex])
+        this.endBossDyeIndex ++
+        this.throwableObjects.splice(index, 1)
+        console.log("Bottle collides endboss");
+      }
+    }
+  )
+  }
 
   /**
    * Clears the Canvas. 
