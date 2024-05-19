@@ -20,7 +20,7 @@ class World {
   endboss = new Endboss();
   throwableObjects = [];
   bottlesAvailableIndex = 1;
-  endBossDyeIndex = 1
+  endBossDyeIndex = 1;
 
 
 
@@ -62,15 +62,14 @@ class World {
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
       this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
-
       this.bottlesAvailableIndex -= 1;
     }
   }
 
 
-  checkStatusBarEndBoss(){
-    if(this.character.x > 1500){
-      this.addToCanvas(this.statusBarEndboss)
+  checkStatusBarEndBoss() {
+    if (this.character.x > 1500) {
+      this.addToCanvas(this.statusBarEndboss);
     }
   }
 
@@ -143,19 +142,17 @@ class World {
   }
 
 
-  collisionBottleVsEndBoss(){
-    this.throwableObjects.forEach((element, index) =>{
-      if(this.endboss.isColliding(element)){
-        let statusBarImgs = this.statusBarEndboss.IMAGES
-        console.log(statusBarImgs);
-        console.log(this.endBossDyeIndex);
-        this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex])
-        this.endBossDyeIndex ++
-        this.throwableObjects.splice(index, 1)
-        console.log("Bottle collides endboss");
+  collisionBottleVsEndBoss() {
+    this.throwableObjects.forEach((element, index) => {
+      if (this.endboss.isColliding(element)) {
+        let statusBarImgs = this.statusBarEndboss.IMAGES;
+        this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
+        this.endBossDyeIndex++;
+        this.throwableObjects.splice(index, 1);
+        this.endboss.deadAnimation(this.endboss.IMAGES_HURT)
       }
     }
-  )
+    );
   }
 
   /**
@@ -178,7 +175,7 @@ class World {
     this.addToCanvas(this.statusBarHealth);
     this.addToCanvas(this.statusBarCoins);
     this.addToCanvas(this.statusBarBottles);
-    this.checkStatusBarEndBoss()
+    this.checkStatusBarEndBoss();
     this.character.drawFrame(this.ctx);
     this.endboss.drawFrame(this.ctx);
     this.drawFrameAllInstances(this.enemies);
