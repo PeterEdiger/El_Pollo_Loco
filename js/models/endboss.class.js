@@ -1,8 +1,5 @@
 class Endboss extends MovableObject {
 
-  walking = true;
-  hurt = false;
-  dead = false;
   x = 2200;
   y = 145;
   width = 300;
@@ -53,11 +50,7 @@ class Endboss extends MovableObject {
       setInterval(() => {
         this.playAnimation(this.IMAGES_WALKING);
       }, 250);
-    } else if (this.hurt) {
-      setInterval(() => {
-        this.playAnimation(this.IMAGES_HURT);
-      }, 500);
-    }
+    } 
   }
 
 
