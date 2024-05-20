@@ -95,7 +95,7 @@ class Character extends MovableObject {
    */
   animateCharacterMovements(){
     if (this.isDead()) {
-      this.deadAnimation(this.IMAGES_DEAD, this.dyingIndex);
+      this.deadAnimation(this.IMAGES_DEAD);
     } else if (this.isHurt()) {
       this.playAnimation(this.IMAGES_HURT);
     }

@@ -82,11 +82,10 @@ class MovableObject extends CollidableObject {
    *
    *
    */
-  deadAnimation(images, index) {
-    if (index < images.length) {
-      this.img = this.imgCache[images[index]];
-      console.log(index);
-      index += 1;
+  deadAnimation(images) {
+    if (this.dyingIndex < images.length) {
+      this.img = this.imgCache[images[this.dyingIndex]];
+      this.dyingIndex += 1;
     }
   }
 
