@@ -34,10 +34,6 @@ class Chicken extends MovableObject {
     this.fillImgCache(this.IMAGES_WALKING);
     this.x = 200 + Math.random() * 500;
     this.animate();
-    //!
-    console.log(this.intervalNrMove);
-    console.log(this.intervalNrWalk);
-    //!
   }
 
 

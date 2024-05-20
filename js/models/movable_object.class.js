@@ -82,10 +82,11 @@ class MovableObject extends CollidableObject {
    *
    *
    */
-  deadAnimation(images) {
-    if (this.dyingIndex < images.length) {
-      this.img = this.imgCache[images[this.dyingIndex]];
-      this.dyingIndex += 1;
+  deadAnimation(images, index) {
+    if (index < images.length) {
+      this.img = this.imgCache[images[index]];
+      console.log(index);
+      index += 1;
     }
   }
 
@@ -159,9 +160,6 @@ class MovableObject extends CollidableObject {
 
   hit() {
     this.energy -= 5;
-    //!
-    console.log(this.energy);
-    //!
     if (this.energy < 0) {
       this.energy = 0;
     }
