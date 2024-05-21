@@ -1,5 +1,6 @@
 class Endboss extends MovableObject {
 
+
   x = 2200;
   y = 145;
   width = 300;
@@ -41,18 +42,47 @@ class Endboss extends MovableObject {
     super().loadImage(this.IMAGES_WALKING[0]),
       this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_HURT);
+    this.walkIntervall = null;
+    this.hurtIntervall = null;
+    this.hurtIndex = 0;
+    this.currentAnimation = null;
     this.animate();
   }
 
 
   animate() {
-    if (this.walking) {
-      setInterval(() => {
-        this.playAnimation(this.IMAGES_WALKING);
-      }, 250);
-    } 
+    this.walkInterval = setInterval(() => {
+      this.playAnimation(this.IMAGES_WALKING);
+    }, 250);
+    this.currentAnimation = 'walk'
   }
 
 
+
+  hurtAnimation(images) {
+    clearInterval(this.walkIntervall);
+    this.currentAnimation = 'hurt';
+    
+    this.hurtIntervall = setInterval(() => {
+      if (this.hurtIndex < images.length) {
+        this.img = this.imgCache[images[this.hurtIndex]];
+        this.hurtIndex += 1;
+      } else {
+        this.hurtIndex = 0;
+        clearInterval(this.hurtIntervall);
+        setTimeout(() => {
+          this.resumePreviousAnimation();
+        }, 2000); // Optional delay before resuming the previous animation
+      }
+    }, 250);
+  }
+
+
+  resumePreviousAnimation() {
+    if (this.currentAnimation === 'hurt') {
+      this.animate(); // Resume the walking animation or whatever the previous animation was
+    }
+
 }
 
+}

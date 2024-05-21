@@ -145,6 +145,7 @@ class World {
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;
         this.throwableObjects.splice(index, 1);
+        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT)
       }
     }
     );
