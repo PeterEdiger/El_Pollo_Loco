@@ -113,9 +113,9 @@ class World {
       if (this.character.isColliding(coin)) {
         let coinBarImages = this.statusBarCoins.IMAGES;
         this.statusBarCoins.loadImage(coinBarImages[this.coinImgIndex]);
-        this.level.coins.splice(index, 1);
         if (this.coinImgIndex < 5) {
           this.coinImgIndex += 1;
+          this.level.coins.splice(index, 1);
         }
         console.log("Pepe collides with coin");
       }
@@ -136,6 +136,8 @@ class World {
       }
     });
   }
+
+
 
 
   collisionBottleVsEndBoss() {
