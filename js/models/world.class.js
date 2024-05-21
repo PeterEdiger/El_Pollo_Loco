@@ -139,8 +139,8 @@ class World {
 
 
   collisionBottleVsEndBoss() {
-    this.throwableObjects.forEach((element, index) => {
-      if (this.endboss.isColliding(element)) {
+    this.throwableObjects.forEach((bottle, index) => {
+      if (this.endboss.isColliding(bottle)) {
         let statusBarImgs = this.statusBarEndboss.IMAGES;
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;

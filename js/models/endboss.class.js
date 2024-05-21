@@ -6,6 +6,11 @@ class Endboss extends MovableObject {
   width = 300;
   height = 300;
 
+  hurtIndex = 0
+  walkInteval 
+  hurtIntervall
+  currentAnimation = null;
+
   offset = {
     left: 30,
     right: 30,
@@ -42,10 +47,6 @@ class Endboss extends MovableObject {
     super().loadImage(this.IMAGES_WALKING[0]),
       this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_HURT);
-    this.walkIntervall = null;
-    this.hurtIntervall = null;
-    this.hurtIndex = 0;
-    this.currentAnimation = null;
     this.animate();
   }
 
@@ -60,7 +61,7 @@ class Endboss extends MovableObject {
 
 
   hurtAnimation(images) {
-    clearInterval(this.walkIntervall);
+    clearInterval(this.walkInterval);
     this.currentAnimation = 'hurt';
     
     this.hurtIntervall = setInterval(() => {
@@ -70,9 +71,9 @@ class Endboss extends MovableObject {
       } else {
         this.hurtIndex = 0;
         clearInterval(this.hurtIntervall);
+        this.resumePreviousAnimation();
         setTimeout(() => {
-          this.resumePreviousAnimation();
-        }, 2000); // Optional delay before resuming the previous animation
+        }, 500); // Optional delay before resuming the previous animation
       }
     }, 250);
   }
