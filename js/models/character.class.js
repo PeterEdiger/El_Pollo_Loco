@@ -9,9 +9,23 @@ class Character extends MovableObject {
   world;
   speed = 10;
   walkingSound = new Audio("audio/pepe_running.wav");
+  jumpingSound = new Audio("audio/jump.wav");
+  bottleHitSound = new Audio("audio/bottle_hit.wav");
+  sleepingSound = new Audio("audio/sleeping.wav");
   pepeWalkIndex = 0;
   dyingIndex = 0;
 
+  audioCollection = [
+    this.walkingSound, this.jumpingSound, this.bottleHitSound,
+    this.sleepingSound
+  ]
+
+  stopAllAudio(){
+    // console.log(this.audioCollection);
+    this.audioCollection.forEach(sound =>{
+      sound.muted = true
+    })
+  }
 
   offset = {
     left: 20,
@@ -99,6 +113,7 @@ class Character extends MovableObject {
     this.fillImgCache(this.IMAGES_SLEEP);
     this.applyGravity();
     this.animate();
+    this.stopAllAudio()
   }
 
 
@@ -133,16 +148,31 @@ class Character extends MovableObject {
       this.playAnimation(this.IMAGES_JUMPING);
     } else {
       if (this.world.keyboard.right || this.world.keyboard.left) {
+        this.idle = false;
         this.playAnimation(this.IMAGES_WALKING);
       }
     }
   }
 
+
+  beginIdle = 0;
+  idle = false;
   characterIdle() {
     let keyboard = this.world.keyboard;
     let keys = Object.keys(keyboard);
+    if (!this.idle) {
+      this.beginIdle = new Date().getTime();
+    }
     if (keys.every(key => keyboard[key] === false)) {
-      this.playAnimation(this.IMAGES_IDLE);
+      this.idle = true;
+      if ((new Date().getTime() - this.beginIdle) > 5000) {
+        this.playAnimation(this.IMAGES_SLEEP);
+        this.sleepingSound.play()
+      }
+      else {
+        this.playAnimation(this.IMAGES_IDLE);
+
+      }
     }
   }
 
@@ -153,11 +183,13 @@ class Character extends MovableObject {
    */
   changeRunningDirection() {
     if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
+      this.sleepingSound.pause()
       this.moveRight();
       this.otherDirection = false;
       this.walkingSound.play();
     }
     if (this.world.keyboard.left && this.x > -200) {
+      this.sleepingSound.pause()
       this.moveLeft();
       this.otherDirection = true;
       this.walkingSound.play();
@@ -175,6 +207,7 @@ class Character extends MovableObject {
 
   characterJump() {
     if (!this.isAboveGround() && this.world.keyboard.up) {
+      this.jumpingSound.play();
       this.jump();
     }
 

@@ -148,6 +148,7 @@ class World {
         this.endBossDyeIndex++;
         this.throwableObjects.splice(index, 1);
         this.endboss.hurtAnimation(this.endboss.IMAGES_HURT)
+        this.character.bottleHitSound.play()
       }
     }
     );
