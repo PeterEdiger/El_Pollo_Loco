@@ -1,6 +1,12 @@
 // canvas width="720" height="480"
 
 class MovableObject extends CollidableObject {
+
+  constructor() {
+    super();
+  }
+
+
   x;
   y;
   height;
@@ -14,10 +20,6 @@ class MovableObject extends CollidableObject {
   acceleration = 4;
   energy = 100;
   lastHit = 0;
-
-  constructor() {
-    super();
-  }
 
 
   /**

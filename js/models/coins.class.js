@@ -1,4 +1,10 @@
 class Coins extends CollidableObject {
+  
+  constructor(){
+    super()
+    this.loadImage("./img/8_coin/coin_1.png")
+    this.y = 375 - Math.random() * 250
+  }
 
   width = 100; 
   height = 100; 
@@ -14,11 +20,4 @@ class Coins extends CollidableObject {
     top: 30,
     bottom: 30,
   };
-
-
-  constructor(){
-    super()
-    this.loadImage("./img/8_coin/coin_1.png")
-    this.y = 375 - Math.random() * 250
-  }
 }

@@ -1,7 +1,16 @@
 class HealthBar extends DrawableObject {
+  
+  constructor(x, y) {
+    super();
+    this.x = x;
+    this.y = y;
+    this.width = 100;
+    this.height = 30;
+    this.setPercentage(100);
+  }
+
 
   percentage = 100;
-
 
   IMAGES = [
     "./img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png",
@@ -11,17 +20,6 @@ class HealthBar extends DrawableObject {
     "./img/7_statusbars/1_statusbar/2_statusbar_health/green/80.png",
     "./img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
   ];
-
-
-
-  constructor(x, y) {
-    super();
-    this.x = x;
-    this.y = y;
-    this.width = 100;
-    this.height = 30;
-    this.setPercentage(100);
-  }
 
 
   resolveImageIndex() {

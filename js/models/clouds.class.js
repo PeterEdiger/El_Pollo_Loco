@@ -1,14 +1,14 @@
 class Clouds extends MovableObject {
-  y = 15;
-  width = 550;
-  height = 200;
-
-
+ 
   constructor(path, x) {
     super().loadImage(path);
     this.animate();
     this.x = x;
   }
+
+  y = 15;
+  width = 550;
+  height = 200;
 
   
   animate() {

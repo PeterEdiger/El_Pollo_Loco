@@ -1,4 +1,10 @@
 class DrawableObject {
+
+  constructor() {
+    this.x = 200 + Math.random() * 1500;
+  }
+
+
   height;
   width;
   img;
@@ -14,11 +20,6 @@ class DrawableObject {
     bottom: 0,
   };
 
-  constructor() {
-    this.x = 200 + Math.random() * 1500;
-  }
-
-
 
   /**
  * @param {string} path needed path to create {src} for {img element}
@@ -29,8 +30,6 @@ class DrawableObject {
     this.img = new Image();
     this.img.src = path;
   }
-
-
 
 
   /**

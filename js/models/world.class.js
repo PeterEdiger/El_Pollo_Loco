@@ -2,6 +2,17 @@
 
 
 class World {
+
+  constructor(canvas, keyboard) {
+    this.ctx = canvas.getContext("2d");
+    this.canvas = canvas;
+    this.keyboard = keyboard;
+    this.draw();
+    this.setWorld();
+    this.run();
+  }
+
+
   canvas;
   keyboard;
   camera_x;
@@ -21,18 +32,7 @@ class World {
   throwableObjects = [];
   bottlesAvailableIndex = 1;
   endBossDyeIndex = 1;
-
-
-
-  constructor(canvas, keyboard) {
-    this.ctx = canvas.getContext("2d");
-    this.canvas = canvas;
-    this.keyboard = keyboard;
-    this.draw();
-    this.setWorld();
-    this.run();
-  }
-
+  
 
   /**
    * Gives the instance character all methods and properties of world.
@@ -138,8 +138,6 @@ class World {
   }
 
 
-
-
   collisionBottleVsEndBoss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss.isColliding(bottle)) {
@@ -153,6 +151,7 @@ class World {
     }
     );
   }
+
 
   /**
    * Clears the Canvas. 
@@ -225,6 +224,7 @@ class World {
     }
   }
 
+  
   drawFrameAllInstances(objectsArray) {
     objectsArray.forEach(obj => {
       obj.drawFrame(this.ctx);

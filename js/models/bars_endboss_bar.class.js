@@ -1,5 +1,14 @@
 class EndbossBar extends DrawableObject{
 
+  constructor( y) {
+    super();
+    this.y = y;
+    this.width = 100;
+    this.height = 30;
+    this.loadImage(this.IMAGES[0])
+  }
+
+
   IMAGES = [
     "img/7_statusbars/2_statusbar_endboss/green/green100.png",
     "img/7_statusbars/2_statusbar_endboss/green/green80.png",
@@ -10,12 +19,4 @@ class EndbossBar extends DrawableObject{
   ];
 
 
-  constructor( y) {
-    super();
-    // this.x = x;
-    this.y = y;
-    this.width = 100;
-    this.height = 30;
-    this.loadImage(this.IMAGES[0])
-  }
 }

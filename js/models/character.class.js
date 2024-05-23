@@ -2,6 +2,21 @@
 
 
 class Character extends MovableObject {
+
+  constructor() {
+    super();
+    this.loadImage("./img/2_character_pepe/2_walk/W-21.png");
+    this.fillImgCache(this.IMAGES_WALKING);
+    this.fillImgCache(this.IMAGES_JUMPING);
+    this.fillImgCache(this.IMAGES_DEAD);
+    this.fillImgCache(this.IMAGES_HURT);
+    this.fillImgCache(this.IMAGES_IDLE);
+    this.fillImgCache(this.IMAGES_SLEEP);
+    this.applyGravity();
+    this.animate();
+    this.stopAllAudio()
+  }
+  
   x = 0;
   y = 244;
   width = 100;
@@ -14,7 +29,7 @@ class Character extends MovableObject {
   sleepingSound = new Audio("audio/sleeping.wav");
   pepeWalkIndex = 0;
   dyingIndex = 0;
-
+  
   audioCollection = [
     this.walkingSound, this.jumpingSound, this.bottleHitSound,
     this.sleepingSound
@@ -102,19 +117,6 @@ class Character extends MovableObject {
   ];
 
 
-  constructor() {
-    super();
-    this.loadImage("./img/2_character_pepe/2_walk/W-21.png");
-    this.fillImgCache(this.IMAGES_WALKING);
-    this.fillImgCache(this.IMAGES_JUMPING);
-    this.fillImgCache(this.IMAGES_DEAD);
-    this.fillImgCache(this.IMAGES_HURT);
-    this.fillImgCache(this.IMAGES_IDLE);
-    this.fillImgCache(this.IMAGES_SLEEP);
-    this.applyGravity();
-    this.animate();
-    this.stopAllAudio()
-  }
 
 
   /**
