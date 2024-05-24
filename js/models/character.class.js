@@ -30,6 +30,7 @@ class Character extends MovableObject {
   pepeWalkIndex = 0;
   dyingIndex = 0;
   
+  
   audioCollection = [
     this.walkingSound, this.jumpingSound, this.bottleHitSound,
     this.sleepingSound

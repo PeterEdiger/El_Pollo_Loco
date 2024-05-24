@@ -2,21 +2,24 @@ class Endboss extends MovableObject {
   
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]),
-      this.fillImgCache(this.IMAGES_WALKING);
+    this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_HURT);
+    this.fillImgCache(this.IMAGES_ALERT);
     this.animate();
+    this.speed = 0;
   }
 
-  
+
   x = 2200;
   y = 145;
   width = 300;
   height = 300;
 
-  hurtIndex = 0
-  walkInteval 
-  hurtIntervall
+  hurtIndex = 0;
+  walkInteval;
+  hurtIntervall;
   currentAnimation = null;
+  endbossWalking = false
 
   offset = {
     left: 30,
@@ -33,15 +36,15 @@ class Endboss extends MovableObject {
   ];
 
   IMAGES_ALERT = [
-    "./img/4_enemie_boss_chicken/2_alert/G5.png",
-    "./img/4_enemie_boss_chicken/2_alert/G6.png",
-    "./img/4_enemie_boss_chicken/2_alert/G7.png",
-    "./img/4_enemie_boss_chicken/2_alert/G8.png",
-    "./img/4_enemie_boss_chicken/2_alert/G9.png",
-    "./img/4_enemie_boss_chicken/2_alert/G10.png",
-    "./img/4_enemie_boss_chicken/2_alert/G11.png",
-    "./img/4_enemie_boss_chicken/2_alert/G12.png"
-  ]
+    "img/4_enemie_boss_chicken/2_alert/G5.png",
+    "img/4_enemie_boss_chicken/2_alert/G6.png",
+    "img/4_enemie_boss_chicken/2_alert/G7.png",
+    "img/4_enemie_boss_chicken/2_alert/G8.png",
+    "img/4_enemie_boss_chicken/2_alert/G9.png",
+    "img/4_enemie_boss_chicken/2_alert/G10.png",
+    "img/4_enemie_boss_chicken/2_alert/G11.png",
+    "img/4_enemie_boss_chicken/2_alert/G12.png",
+  ];
 
   IMAGES_HURT = [
     "./img/4_enemie_boss_chicken/4_hurt/G21.png",
@@ -56,16 +59,14 @@ class Endboss extends MovableObject {
   ];
 
 
-
   animate() {
-    this.speed = 1
     setInterval(() => {
       this.moveLeft();
     }, 1000 / 60);
     this.walkInterval = setInterval(() => {
-      this.playAnimation(this.IMAGES_WALKING);
+      this.playAnimation(this.IMAGES_ALERT);
     }, 250);
-    this.currentAnimation = 'walk'
+    this.currentAnimation = 'walk';
   }
 
 
@@ -73,7 +74,7 @@ class Endboss extends MovableObject {
   hurtAnimation(images) {
     clearInterval(this.walkInterval);
     this.currentAnimation = 'hurt';
-    
+
     this.hurtIntervall = setInterval(() => {
       if (this.hurtIndex < images.length) {
         this.img = this.imgCache[images[this.hurtIndex]];
@@ -94,6 +95,6 @@ class Endboss extends MovableObject {
       this.animate(); // Resume the walking animation or whatever the previous animation was
     }
 
-}
+  }
 
 }

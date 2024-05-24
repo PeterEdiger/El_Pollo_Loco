@@ -32,7 +32,7 @@ class World {
   throwableObjects = [];
   bottlesAvailableIndex = 1;
   endBossDyeIndex = 1;
-  
+
 
   /**
    * Gives the instance character all methods and properties of world.
@@ -83,6 +83,7 @@ class World {
     this.collisionHeroVsCoins();
     this.collisionHeroVsBottles();
     this.collisionBottleVsEndBoss();
+    this.collisionHeroVsEndboss();
   }
 
 
@@ -141,15 +142,24 @@ class World {
   collisionBottleVsEndBoss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss.isColliding(bottle)) {
+        this.endboss.speed = 0.5;
         let statusBarImgs = this.statusBarEndboss.IMAGES;
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;
         this.throwableObjects.splice(index, 1);
-        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT)
-        this.character.bottleHitSound.play()
+        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
+        this.endboss.playAnimation(this.endboss.IMAGES_WALKING);
+        this.character.bottleHitSound.play();
       }
     }
     );
+  }
+
+
+  collisionHeroVsEndboss() {
+    if (this.character.isColliding(this.endboss)) {
+      this.character.hit();
+    }
   }
 
 
@@ -224,7 +234,7 @@ class World {
     }
   }
 
-  
+
   drawFrameAllInstances(objectsArray) {
     objectsArray.forEach(obj => {
       obj.drawFrame(this.ctx);
