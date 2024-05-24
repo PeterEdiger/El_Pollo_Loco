@@ -142,13 +142,17 @@ class World {
   collisionBottleVsEndBoss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss.isColliding(bottle)) {
-        this.endboss.speed = 0.5;
+        // this.endboss.speed = 0.5;
         let statusBarImgs = this.statusBarEndboss.IMAGES;
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;
         this.throwableObjects.splice(index, 1);
         this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
-        this.endboss.playAnimation(this.endboss.IMAGES_WALKING);
+        setTimeout(() => {
+          clearInterval(this.endboss.hurtInterval)
+          this.endboss.animate()
+        }, 2000);
+        clearInterval(this.endboss.alertInterval)
         this.character.bottleHitSound.play();
       }
     }
