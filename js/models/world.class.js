@@ -58,7 +58,6 @@ class World {
   checkThrowObjects() {
     if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
       let bottleBarImages = this.statusBarBottles.IMAGES;
-      console.log(this.bottlesAvailableIndex);
       let bottle = new ThrowableObject(this.character.x, this.character.y);
       this.throwableObjects.push(bottle);
       this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
@@ -142,18 +141,16 @@ class World {
   collisionBottleVsEndBoss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss.isColliding(bottle)) {
-        // this.endboss.speed = 0.5;
+        this.endboss.hurtAnimationIndex = 0
+
+        this.endboss.speed = 0.7;
         let statusBarImgs = this.statusBarEndboss.IMAGES;
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;
         this.throwableObjects.splice(index, 1);
-        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
-        setTimeout(() => {
-          clearInterval(this.endboss.hurtInterval)
-          this.endboss.animate()
-        }, 2000);
-        clearInterval(this.endboss.alertInterval)
         this.character.bottleHitSound.play();
+        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT)
+        clearInterval(this.endboss.walkInterval)
       }
     }
     );

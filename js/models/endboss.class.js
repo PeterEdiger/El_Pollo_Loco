@@ -1,8 +1,8 @@
 class Endboss extends MovableObject {
-  
+
   constructor() {
     super().loadImage(this.IMAGES_WALKING[0]),
-    this.fillImgCache(this.IMAGES_WALKING);
+      this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_HURT);
     this.fillImgCache(this.IMAGES_ALERT);
     this.animate();
@@ -17,9 +17,11 @@ class Endboss extends MovableObject {
 
   hurtIndex = 0;
   walkInteval;
-  hurtIntervall;
+  hurtInterval;
   currentAnimation = null;
-  endbossWalking = false
+  endbossWalking = false;
+  hurtAnimationIndex = 0;
+  walkingInterval;
 
   offset = {
     left: 30,
@@ -45,7 +47,7 @@ class Endboss extends MovableObject {
     "./img/4_enemie_boss_chicken/4_hurt/G22.png",
     "./img/4_enemie_boss_chicken/4_hurt/G23.png"
   ];
-  
+
 
   IMAGES_WALKING = [
     "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -64,7 +66,7 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/3_attack/G18.png",
     "img/4_enemie_boss_chicken/3_attack/G19.png",
     "img/4_enemie_boss_chicken/3_attack/G20.png",
-  ]
+  ];
 
 
   IMAGES_DEAD = [
@@ -87,21 +89,22 @@ class Endboss extends MovableObject {
 
 
   hurtAnimation(images) {
-    clearInterval(this.walkInterval);
-    this.currentAnimation = 'hurt';
-
-    this.hurtIntervall = setInterval(() => {
-      if (this.hurtIndex < images.length) {
-        this.img = this.imgCache[images[this.hurtIndex]];
-        this.hurtIndex += 1;
-      } else {
-        this.hurtIndex = 0;
-        clearInterval(this.hurtIntervall);
-        this.resumePreviousAnimation();
-        setTimeout(() => {
-        }, 500); // Optional delay before resuming the previous animation
+    this.hurtInterval = setInterval(() => {
+      if (this.hurtAnimationIndex < images.length) {
+        clearInterval(this.walkingInterval);
+        this.playAnimation(images);
+        console.log("coming in here");
+        this.hurtAnimationIndex++;
+        console.log(this.hurtAnimationIndex);
       }
-    }, 250);
+    }, 500);
+    setTimeout(() => {
+      clearInterval(this.hurtInterval);
+      this.walkInterval = setInterval(() => {
+        this.playAnimation(this.IMAGES_WALKING);
+      }, 500);
+    }, 1000);
+
   }
 
 
