@@ -55,19 +55,31 @@ class World {
    * Pushes throwable object into an array.
    * Controlls which Img will be shown in the bottle-status-bar.
    */
+
+  throwBottleStamp;
+  gotStamp = false
+  firstBottle = true
   checkThrowObjects() {
+    if(!this.gotStamp){
+      this.throwBottleStamp = new Date().getTime();
+    }
     if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
-      let bottleBarImages = this.statusBarBottles.IMAGES;
-      let bottle = new ThrowableObject(this.character.x, this.character.y);
-      this.throwableObjects.push(bottle);
-      this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
-      this.bottlesAvailableIndex -= 1;
+      this.gotStamp = true
+      if ((new Date().getTime() - this.throwBottleStamp) > 500 || this.firstBottle) {
+        this.firstBottle = false
+        let bottleBarImages = this.statusBarBottles.IMAGES;
+        let bottle = new ThrowableObject(this.character.x, this.character.y);
+        this.throwableObjects.push(bottle);
+        this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
+        this.bottlesAvailableIndex -= 1;
+        this.gotStamp = false
+      }
     }
   }
 
 
   checkStatusBarEndBoss() {
-    if (this.character.x > 1500) {
+    if (this.character.x > 300) {
       this.addToCanvas(this.statusBarEndboss);
     }
   }
@@ -141,16 +153,21 @@ class World {
   collisionBottleVsEndBoss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss.isColliding(bottle)) {
-        this.endboss.hurtAnimationIndex = 0
+        this.endboss.hurtAnimationIndex = 0;
 
         this.endboss.speed = 0.7;
         let statusBarImgs = this.statusBarEndboss.IMAGES;
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;
+        //!Correct this after testing
+        if(this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length){
+          this.endboss.deadAnimation(this.endboss.IMAGES_DEAD)
+          this.endboss.speed = 0
+        }
         this.throwableObjects.splice(index, 1);
         this.character.bottleHitSound.play();
-        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT)
-        clearInterval(this.endboss.walkInterval)
+        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
+        clearInterval(this.endboss.walkInterval);
       }
     }
     );

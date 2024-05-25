@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
       this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_HURT);
     this.fillImgCache(this.IMAGES_ALERT);
+    this.fillImgCache(this.IMAGES_DEAD);
     this.animate();
     this.speed = 0;
   }
@@ -15,13 +16,15 @@ class Endboss extends MovableObject {
   width = 300;
   height = 300;
 
+  deadInterval;
+  walkingInterval;
   hurtIndex = 0;
+  deadIndex = 0;
   walkInteval;
   hurtInterval;
   currentAnimation = null;
   endbossWalking = false;
   hurtAnimationIndex = 0;
-  walkingInterval;
 
   offset = {
     left: 30,
@@ -86,6 +89,18 @@ class Endboss extends MovableObject {
     this.currentAnimation = 'walk';
   }
 
+
+  deadAnimation(images) {
+
+    this.deadInterval = setInterval(() => {
+      if (this.deadIndex < this.IMAGES_DEAD.length) {
+        this.deadIndex++;
+        clearInterval(this.walkingInterval);
+        clearInterval(this.hurtInterval);
+        this.playAnimation(images);
+      }
+    }, 400);
+  }
 
 
   hurtAnimation(images) {
