@@ -1,8 +1,13 @@
-// canvas width="720" height="480"
-
-
+/**
+ * Class representing the game world.
+ */
 class World {
 
+  /**
+   * Constructs the World object and initializes the canvas, keyboard, and game elements.
+   * @param {HTMLCanvasElement} canvas - The canvas element where the game is rendered.
+   * @param {object} keyboard - The keyboard input handler.
+   */
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -12,11 +17,11 @@ class World {
     this.run();
   }
 
-
   canvas;
   keyboard;
   camera_x;
-  ctx; y;
+  ctx;
+  y;
   level = level1;
   character = new Character();
   enemies = level1.enemies;
@@ -33,15 +38,17 @@ class World {
   bottlesAvailableIndex = 1;
   endBossDyeIndex = 1;
 
-
   /**
-   * Gives the instance character all methods and properties of world.
-   *
+   * Assigns the world context to the character.
    */
   setWorld() {
     this.character.world = this;
   }
 
+
+  /**
+   * Initiates the game loop by setting up collision and object check intervals.
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -49,35 +56,36 @@ class World {
     }, 100);
   }
 
+  throwBottleStamp;
+  gotStamp = false;
+  firstBottle = true;
 
   /**
-   * Checks if a throwable Object got thrown. 
-   * Pushes throwable object into an array.
-   * Controlls which Img will be shown in the bottle-status-bar.
+   * Checks if a throwable object is thrown and updates the bottle status bar.
+   * If the 'd' key is pressed, a new throwable object is created and added to the array.
    */
-
-  throwBottleStamp;
-  gotStamp = false
-  firstBottle = true
   checkThrowObjects() {
-    if(!this.gotStamp){
+    if (!this.gotStamp) {
       this.throwBottleStamp = new Date().getTime();
     }
     if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
-      this.gotStamp = true
+      this.gotStamp = true;
       if ((new Date().getTime() - this.throwBottleStamp) > 500 || this.firstBottle) {
-        this.firstBottle = false
+        this.firstBottle = false;
         let bottleBarImages = this.statusBarBottles.IMAGES;
         let bottle = new ThrowableObject(this.character.x, this.character.y);
         this.throwableObjects.push(bottle);
         this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
         this.bottlesAvailableIndex -= 1;
-        this.gotStamp = false
+        this.gotStamp = false;
       }
     }
   }
 
 
+  /**
+   * Adds the endboss status bar to the canvas when the character is past a certain point.
+   */
   checkStatusBarEndBoss() {
     if (this.character.x > 300) {
       this.addToCanvas(this.statusBarEndboss);
@@ -86,8 +94,8 @@ class World {
 
 
   /**
-   * Checks if the game character collides with an object. 
-   * Decreases the statusBarHealth when the character gets hit. 
+   * Checks for collisions between the character and other objects.
+   * Updates the health status bar when the character is hit.
    */
   checkCollisions() {
     this.collisionHeroVsEnemy();
@@ -98,6 +106,10 @@ class World {
   }
 
 
+  /**
+   * Checks for collisions between the character and enemies.
+   * Handles character jumping on enemies and getting hit.
+   */
   collisionHeroVsEnemy() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isAboveChicken(enemy)) {
@@ -108,8 +120,7 @@ class World {
         setTimeout(() => {
           this.enemies.splice(index, 1);
         }, 400);
-      }
-      else if (this.character.isColliding(enemy)) {
+      } else if (this.character.isColliding(enemy)) {
         if (this.character.y + this.character.offset.top + this.character.height === enemy.y) {
         }
         this.character.hit();
@@ -118,8 +129,12 @@ class World {
     });
   }
 
-
   coinImgIndex = 1;
+
+  /**
+   * Checks for collisions between the character and coins.
+   * Updates the coin status bar and removes collected coins from the array.
+   */
   collisionHeroVsCoins() {
     this.level.coins.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
@@ -129,12 +144,17 @@ class World {
           this.coinImgIndex += 1;
           this.level.coins.splice(index, 1);
         }
+        this.level.coins.splice(index, 1);
         console.log("Pepe collides with coin");
       }
     });
   }
 
 
+  /**
+   * Checks for collisions between the character and bottles.
+   * Updates the bottle status bar and removes collected bottles from the array.
+   */
   collisionHeroVsBottles() {
     this.level.bottles.forEach((element, index) => {
       if (this.character.isColliding(element)) {
@@ -150,30 +170,35 @@ class World {
   }
 
 
+  /**
+   * Checks for collisions between throwable objects and the endboss.
+   * Updates the endboss status bar and handles the endboss getting hit.
+   */
   collisionBottleVsEndBoss() {
     this.throwableObjects.forEach((bottle, index) => {
       if (this.endboss.isColliding(bottle)) {
         this.endboss.hurtAnimationIndex = 0;
-
         this.endboss.speed = 0.7;
         let statusBarImgs = this.statusBarEndboss.IMAGES;
         this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
         this.endBossDyeIndex++;
-        //!Correct this after testing
-        if(this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length){
-          this.endboss.deadAnimation(this.endboss.IMAGES_DEAD)
-          this.endboss.speed = 0
+        if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
+          this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
+          this.endboss.speed = 0;
         }
         this.throwableObjects.splice(index, 1);
         this.character.bottleHitSound.play();
         this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
         clearInterval(this.endboss.walkInterval);
       }
-    }
-    );
+    });
   }
 
 
+  /**
+   * Checks for collisions between the character and the endboss.
+   * Handles the character getting hit by the endboss.
+   */
   collisionHeroVsEndboss() {
     if (this.character.isColliding(this.endboss)) {
       this.character.hit();
@@ -182,10 +207,8 @@ class World {
 
 
   /**
-   * Clears the Canvas. 
-   * Draws Objects onto the canvas.
-   * Uses {requestAnimationFrame} to render the next frame.
-   *
+   * Clears the canvas and redraws all game objects.
+   * Uses requestAnimationFrame to render the next frame.
    */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -208,17 +231,16 @@ class World {
     this.drawFrameAllInstances(this.coins);
     this.drawFrameAllInstances(this.bottles);
 
-
     this.ctx.translate(this.camera_x, 0);
-    // requestAnimationFrame cant handle this keyword. Thats why the workaround with self variable.
+    // requestAnimationFrame can't handle this keyword. That's why the workaround with self variable.
     let self = this;
     requestAnimationFrame(() => { self.draw(); });
   }
 
 
   /**
-   * @param {Array} objects An array holding objects getting drawn on the canvas.
-   * Adds objects on the canvas 
+   * Adds objects to the canvas.
+   * @param {Array} objects - An array of objects to be drawn on the canvas.
    */
   addObjectsToMap(objects) {
     objects.forEach(o => {
@@ -228,10 +250,9 @@ class World {
 
 
   /**
-   * @param {object} mo - represents a <movable object>
-   * Adds movable objects to the Canvas
-   * Draws a Frame around movable Objects 
-  */
+   * Adds a movable object to the canvas and draws a frame around it.
+   * @param {object} mo - The movable object to be added to the canvas.
+   */
   addToCanvas(mo) {
     if (mo.otherDirection) {
       this.ctx.save();
@@ -239,7 +260,7 @@ class World {
       this.ctx.scale(-1, 1);
       mo.x = mo.x * -1;
     }
-    // Draws an Image with a certain width, height, x-point and y-point onto the canvas.  
+    // Draws an image with a certain width, height, x-point, and y-point onto the canvas.  
     try {
       this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     } catch (error) {
@@ -253,6 +274,10 @@ class World {
   }
 
 
+  /**
+   * Draws a frame for all instances in an array of objects.
+   * @param {Array} objectsArray - The array of objects whose frames are to be drawn.
+   */
   drawFrameAllInstances(objectsArray) {
     objectsArray.forEach(obj => {
       obj.drawFrame(this.ctx);
@@ -260,5 +285,3 @@ class World {
   }
 
 }
-
-

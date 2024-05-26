@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,16 +24,23 @@
   <script src="./js/models/bars_coins_bar.class.js" defer></script>
   <script src="./js/models/bars_bottles_bar.class.js" defer></script>
   <script src="./js/models/bars_endboss_bar.class.js" defer></script>
-  
+
   <script src="./js/models/world.class.js" defer></script>
   <script src="./js/game.js" defer></script>
 
   <link rel="stylesheet" href="./style.css">
 </head>
+
 <body onload="init()">
   <div class="loco-content">
     <h1>El Pollo Loco</h1>
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <div class="canvas-container">
+      <canvas id="canvas" width="720" height="480"></canvas>
+      <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png" alt="">
+      <img onclick="world.character.playAllAudio()" class="d-none" id="icon-sound-off" src="./img/10_game_icons/icon_sound_off.png" alt="">
+  </div>
+  
   </div>
 </body>
+
 </html>

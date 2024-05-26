@@ -5,6 +5,7 @@ class Character extends MovableObject {
 
   constructor() {
     super();
+    this.backgroundMusic = new Audio("./audio/latin_guitar.mp3")
     this.loadImage("./img/2_character_pepe/2_walk/W-21.png");
     this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_JUMPING);
@@ -14,7 +15,10 @@ class Character extends MovableObject {
     this.fillImgCache(this.IMAGES_SLEEP);
     this.applyGravity();
     this.animate();
-    this.stopAllAudio()
+    this.audioCollection = [
+      this.walkingSound, this.jumpingSound, this.bottleHitSound,
+      this.sleepingSound, this.backgroundMusic
+    ]
   }
   
   x = 0;
@@ -23,23 +27,30 @@ class Character extends MovableObject {
   height = 200;
   world;
   speed = 10;
-  walkingSound = new Audio("audio/pepe_running.wav");
-  jumpingSound = new Audio("audio/jump.wav");
-  bottleHitSound = new Audio("audio/bottle_hit.wav");
-  sleepingSound = new Audio("audio/sleeping.wav");
+  walkingSound = new Audio("./audio/pepe_running.wav");
+  jumpingSound = new Audio("./audio/jump.wav");
+  bottleHitSound = new Audio("./audio/bottle_hit.wav");
+  sleepingSound = new Audio("./audio/sleeping.wav");
+  throwingSound = new Audio("./audio/throwing.mp3")
   pepeWalkIndex = 0;
   dyingIndex = 0;
   
   
-  audioCollection = [
-    this.walkingSound, this.jumpingSound, this.bottleHitSound,
-    this.sleepingSound
-  ]
 
   stopAllAudio(){
-    // console.log(this.audioCollection);
+    console.log("stop audio triggered");
+    document.getElementById(`icon-sound-on`).classList.toggle("d-none")
+    document.getElementById(`icon-sound-off`).classList.toggle("d-none")
     this.audioCollection.forEach(sound =>{
       sound.muted = true
+    })
+  }
+  
+  playAllAudio(){
+    document.getElementById(`icon-sound-on`).classList.toggle("d-none")
+    document.getElementById(`icon-sound-off`).classList.toggle("d-none")
+    this.audioCollection.forEach(sound =>{
+      sound.muted = false
     })
   }
 
@@ -145,7 +156,7 @@ class Character extends MovableObject {
     if (this.isDead()) {
       this.deadAnimation(this.IMAGES_DEAD);
     } else if (this.isHurt()) {
-      this.playAnimation(this.IMAGES_HURT);
+       this.playAnimation(this.IMAGES_HURT);
     }
     else if (this.isAboveGround()) {
       this.playAnimation(this.IMAGES_JUMPING);
@@ -190,6 +201,8 @@ class Character extends MovableObject {
       this.moveRight();
       this.otherDirection = false;
       this.walkingSound.play();
+      this.backgroundMusic.play()
+
     }
     if (this.world.keyboard.left && this.x > -200) {
       this.sleepingSound.pause()
