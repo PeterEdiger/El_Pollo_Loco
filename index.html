@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>El Pollo Loco</title>
 
+  <link rel="icon" type="image/png" href="img/favicon_mexican_hat.webp"/>
+
   <script src="./js/models/drawable_object.class.js" defer></script>
   <script src="./js/models/collidable_object.class.js" defer></script>
   <script src="./js/models/movable_object.class.js" defer></script>
@@ -24,18 +26,20 @@
   <script src="./js/models/bars_coins_bar.class.js" defer></script>
   <script src="./js/models/bars_bottles_bar.class.js" defer></script>
   <script src="./js/models/bars_endboss_bar.class.js" defer></script>
-
+  <script src="./js/models/start_screen.class.js" defer></script>
+  
   <script src="./js/models/world.class.js" defer></script>
   <script src="./js/game.js" defer></script>
 
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body onload="init()">
+<body onload= "">
   <div class="loco-content">
     <h1>El Pollo Loco</h1>
     <div class="canvas-container">
       <canvas id="canvas" width="720" height="480"></canvas>
+      <img id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
       <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png" alt="">
       <img onclick="world.character.playAllAudio()" class="d-none" id="icon-sound-off" src="./img/10_game_icons/icon_sound_off.png" alt="">
   </div>

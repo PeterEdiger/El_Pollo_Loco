@@ -1,6 +1,9 @@
 let keyboard = new Keyboard();
 let pressedKey = "";
+let canvas = document.getElementById(`canvas`);
 let ctx = canvas.getContext("2d");
+
+console.log(ctx);
 
 let keyCollection = {
   " ": "space",
@@ -16,10 +19,10 @@ let keyCollection = {
  * Initializer of the game. Starts {body onload="init()"}
  * Initiates the world
  */
-function init() {
-  canvas = document.getElementById(`canvas`);
-  world = new World(canvas, keyboard);
-}
+// function init() {
+//   canvas = document.getElementById(`canvas`);
+//   world = new World(canvas, keyboard);
+// }
 
 
 /**
