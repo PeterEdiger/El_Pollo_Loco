@@ -19,10 +19,10 @@ let keyCollection = {
  * Initializer of the game. Starts {body onload="init()"}
  * Initiates the world
  */
-// function init() {
-//   canvas = document.getElementById(`canvas`);
-//   world = new World(canvas, keyboard);
-// }
+function init() {
+  canvas = document.getElementById(`canvas`);
+  world = new World(canvas, keyboard);
+}
 
 
 /**
