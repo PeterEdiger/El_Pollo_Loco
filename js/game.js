@@ -25,6 +25,28 @@ function init() {
 }
 
 
+function showLegalNotice(){
+  let dialog = document.querySelector(`.dialog-bg`)
+  dialog.classList.remove("d-none")
+  dialog.innerHTML = ""
+  dialog.innerHTML = legalNoticeTemplate()
+}
+
+
+function hideDialogBg(){
+  document.querySelector(`.dialog-bg`).classList.add("d-none")
+}
+
+
+function showPrivacyPolicy(){
+  let dialog = document.querySelector(`.dialog-bg`)
+  dialog.classList.remove("d-none")
+  dialog.innerHTML = ""
+  dialog.innerHTML = privacyPolicyTemplate()
+}
+
+
+
 /**
  * Event Listener for {keydown} event.
  * Waits till a key is pressed down. 

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>El Pollo Loco</title>
 
-  <link rel="icon" type="image/png" href="img/favicon_mexican_hat.webp"/>
+  <link rel="icon" type="image/png" href="img/favicon_mexican_hat.webp" />
 
   <script src="./js/models/drawable_object.class.js" defer></script>
   <script src="./js/models/collidable_object.class.js" defer></script>
@@ -26,26 +26,58 @@
   <script src="./js/models/bars_coins_bar.class.js" defer></script>
   <script src="./js/models/bars_bottles_bar.class.js" defer></script>
   <script src="./js/models/bars_endboss_bar.class.js" defer></script>
-  <script src="./js/models/start_screen.class.js" defer></script>
-  
+
+  <script src="./templates/start_screen_templates.js" defer></script>
+
   <script src="./js/models/world.class.js" defer></script>
   <script src="./js/game.js" defer></script>
 
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body onload= "">
+<body onload="">
   <div class="loco-content">
     <h1>El Pollo Loco</h1>
+    <!---------------------------- CANVAS ---------------------------->
     <div class="canvas-container">
       <canvas id="canvas" width="720" height="480"></canvas>
-      <img id="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
+      <!---------------------------- START SCREEN ---------------------------->
+      <img id="start-screen" src="./img/9_intro_outro_screens/start/startscreen_1.png" alt="">
       <div class="start-button">Start</div>
-      <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png" alt="">
-      <img onclick="world.character.playAllAudio()" class="d-none" id="icon-sound-off" src="./img/10_game_icons/icon_sound_off.png" alt="">
+      <div class="game-controls">Game Controls</div>
+      <div class="privacy-policy" onclick="showPrivacyPolicy()">Privacy Policy</div>
+      <div class="legal-notice" onclick="showLegalNotice()">Legal Notice</div>
+      <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png"
+        alt="">
+      <img onclick="world.character.playAllAudio()" class="d-none" id="icon-sound-off"
+        src="./img/10_game_icons/icon_sound_off.png" alt="">
+    </div>
   </div>
-  
+
+  <!---------------------------- DIALOG ---------------------------->
+  <div class="dialog-bg" onclick="hideDialogBg()">
+    <div class="game-controls-container">
+      <div class="key-description-box">
+        <img src="./img/11_keys/arrow_key_left.png" alt="">
+        <span>Move Left</span>
+      </div>
+      <div class="key-description-box">
+        <img src="./img/11_keys/arrow_key_right.png" alt="">
+        <span>Move Right</span>
+      </div>
+      <div class="key-description-box">
+      </div>
+      <div class="key-description-box">
+        <img src="./img/11_keys/arrow_key_up.png" alt="">
+        <span>Jump</span>
+      </div>
+      <div class="key-description-box">
+        <div class="letter-d">d</div>
+        <span>Throw Bottle</span>
+      </div>
+    </div>
   </div>
+
 </body>
 
 </html>
