@@ -5,6 +5,7 @@ let ctx = canvas.getContext("2d");
 let dialog = document.querySelector(`.dialog-bg`);
 let startScreen = document.querySelector(`.start-screen-container`);
 let youLostScreen = document.querySelector(`.you-lost-container`);
+let youWinScreen = document.querySelector(`.you-win-container`)
 let audioBtnsHolder = document.querySelector(`.audio-button-holder`);
 
 console.log(ctx);
@@ -24,7 +25,7 @@ let keyCollection = {
  * Initiates the world
  */
 function init() {
-  // initLevel()
+  initLevel()
   canvas = document.getElementById(`canvas`);
   world = new World(canvas, keyboard);
   startScreen.classList.add("d-none");
@@ -45,6 +46,7 @@ function hideDialogBg() {
 
 function showStartScreen() {
   youLostScreen.classList.add("d-none");
+  youWinScreen.classList.add("d-none")
   startScreen.classList.remove(`d-none`)  
 }
 
@@ -73,6 +75,12 @@ function showPrivacyPolicy() {
 function showLostScreen() {
   document.querySelector(`.you-lost-container`).classList.remove("d-none");
 }
+
+
+function showWinScreen(){
+  document.querySelector(`.you-win-container`).classList.remove("d-none");
+}
+
 
 /**
  * Event Listener for {keydown} event.

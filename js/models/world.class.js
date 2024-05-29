@@ -187,6 +187,10 @@ class World {
         if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
           this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
           this.endboss.speed = 0;
+          setTimeout(() => {
+          clearAllIntervals()   
+          showWinScreen()
+          }, 1500);
         }
         this.throwableObjects.splice(index, 1);
         this.character.bottleHitSound.play();
