@@ -155,6 +155,12 @@ class Character extends MovableObject {
   animateCharacterMovements() {
     if (this.isDead()) {
       this.deadAnimation(this.IMAGES_DEAD);
+      setTimeout(() => {
+        clearAllIntervals()
+        document.querySelector(`.audio-button-holder`).classList.add("d-none")
+        showLostScreen()
+        this.stopAllAudio()
+      }, 1500);
     } else if (this.isHurt()) {
        this.playAnimation(this.IMAGES_HURT);
     }
@@ -179,7 +185,7 @@ class Character extends MovableObject {
     }
     if (keys.every(key => keyboard[key] === false)) {
       this.idle = true;
-      if ((new Date().getTime() - this.beginIdle) > 5000) {
+      if ((new Date().getTime() - this.beginIdle) > 15000) {
         this.playAnimation(this.IMAGES_SLEEP);
         this.sleepingSound.play()
       }

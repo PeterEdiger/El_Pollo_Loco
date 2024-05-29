@@ -1,7 +1,4 @@
 
-function getRandomCoinY(){
-  return 375 - Math.random() * 250  
-}
 
 
 /**

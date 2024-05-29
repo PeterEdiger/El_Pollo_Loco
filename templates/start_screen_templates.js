@@ -17,7 +17,7 @@ function legalNoticeTemplate() {
   arrow keys with left filled by haykam from <a href="https://thenounproject.com/browse/icons/term/arrow-keys-with-left-filled/" target="_blank" title="arrow keys with left filled Icons">Noun Project</a> (CC BY 3.0)
   </div>
   `
-  ;
+    ;
 }
 
 
@@ -80,6 +80,38 @@ function privacyPolicyTemplate() {
     den Zweck des Vertrages erforderlich ist. Sie können diese Einwilligung schriftlich oder per E-Mail uns gegenüber
     jederzeit mit Wirkung für die Zukunft widerrufen.
   </span>
+</div>
+
+  `;
+}
+
+
+function gameControlsTemplate() {
+  return `
+  <div class="game-controls-container">
+  <div class="key-description-box">
+    <img src="./img/11_keys/arrow_key_left.png" alt="">
+    <span>Move Left</span>
+  </div>
+  <div class="key-description-box">
+    <img src="./img/11_keys/arrow_key_right.png" alt="">
+    <span>Move Right</span>
+  </div>
+  <div class="key-description-box">
+  </div>
+  <div class="key-description-box">
+    <img src="./img/11_keys/arrow_key_up.png" alt="">
+    <span>Jump</span>
+  </div>
+  <div class="key-description-box">
+    <div class="letter-d">d</div>
+    <span>Throw Bottle</span>
+  </div>
+  <div class="game-description">
+    Keep the bottles for the endboss!!<br>
+    Kill other enemies by jumping on them.<br>
+    Have fun!!
+  </div>
 </div>
 
   `;

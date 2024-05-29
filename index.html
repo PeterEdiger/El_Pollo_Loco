@@ -42,40 +42,31 @@
     <div class="canvas-container">
       <canvas id="canvas" width="720" height="480"></canvas>
       <!---------------------------- START SCREEN ---------------------------->
-      <img id="start-screen" src="./img/9_intro_outro_screens/start/startscreen_1.png" alt="">
-      <div class="start-button">Start</div>
-      <div class="game-controls">Game Controls</div>
-      <div class="privacy-policy" onclick="showPrivacyPolicy()">Privacy Policy</div>
-      <div class="legal-notice" onclick="showLegalNotice()">Legal Notice</div>
-      <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png"
-        alt="">
-      <img onclick="world.character.playAllAudio()" class="d-none" id="icon-sound-off"
-        src="./img/10_game_icons/icon_sound_off.png" alt="">
+      <div class="start-screen-container">
+        <img class="start-screen" src="./img/9_intro_outro_screens/start/startscreen_1.png" alt="">
+        <div class="start-button" onclick="init()">Start</div>
+        <div class="game-controls" onclick="showGameControls()">Game Controls</div>
+        <div class="privacy-policy" onclick="showPrivacyPolicy()">Privacy Policy</div>
+        <div class="legal-notice" onclick="showLegalNotice()">Legal Notice</div>
+      </div>
+      <!---------------------------- YOU LOST SCREEN ---------------------------->
+      <div class="you-lost-container d-none">
+        <img class="end-screen" src="./img/5_background/first_half_background.png" alt="">
+        <img class="you-lost-img" src="./img/9_intro_outro_screens/game_over/you lost.png" alt="">
+        <div class="game-controls" onclick="showStartScreen()">Back to Menu</div>
+      </div>    
+      <!---------------------------- AUDIO BUTTONS ---------------------------->
+      <div class="audio-button-holder d-none">
+        <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png"
+          alt="">
+        <img onclick="world.character.playAllAudio()" class="d-none" id="icon-sound-off"
+          src="./img/10_game_icons/icon_sound_off.png" alt="">
+      </div>
     </div>
   </div>
 
   <!---------------------------- DIALOG ---------------------------->
-  <div class="dialog-bg" onclick="hideDialogBg()">
-    <div class="game-controls-container">
-      <div class="key-description-box">
-        <img src="./img/11_keys/arrow_key_left.png" alt="">
-        <span>Move Left</span>
-      </div>
-      <div class="key-description-box">
-        <img src="./img/11_keys/arrow_key_right.png" alt="">
-        <span>Move Right</span>
-      </div>
-      <div class="key-description-box">
-      </div>
-      <div class="key-description-box">
-        <img src="./img/11_keys/arrow_key_up.png" alt="">
-        <span>Jump</span>
-      </div>
-      <div class="key-description-box">
-        <div class="letter-d">d</div>
-        <span>Throw Bottle</span>
-      </div>
-    </div>
+  <div class="dialog-bg d-none" onclick="hideDialogBg()">
   </div>
 
 </body>

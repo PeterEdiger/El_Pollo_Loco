@@ -2,6 +2,10 @@ let keyboard = new Keyboard();
 let pressedKey = "";
 let canvas = document.getElementById(`canvas`);
 let ctx = canvas.getContext("2d");
+let dialog = document.querySelector(`.dialog-bg`);
+let startScreen = document.querySelector(`.start-screen-container`);
+let youLostScreen = document.querySelector(`.you-lost-container`);
+let audioBtnsHolder = document.querySelector(`.audio-button-holder`);
 
 console.log(ctx);
 
@@ -20,32 +24,55 @@ let keyCollection = {
  * Initiates the world
  */
 function init() {
+  // initLevel()
   canvas = document.getElementById(`canvas`);
   world = new World(canvas, keyboard);
+  startScreen.classList.add("d-none");
+  audioBtnsHolder.classList.remove("d-none");
+  
 }
 
 
-function showLegalNotice(){
-  let dialog = document.querySelector(`.dialog-bg`)
-  dialog.classList.remove("d-none")
-  dialog.innerHTML = ""
-  dialog.innerHTML = legalNoticeTemplate()
+function clearAllIntervals() {
+  for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 
-function hideDialogBg(){
-  document.querySelector(`.dialog-bg`).classList.add("d-none")
+function hideDialogBg() {
+  document.querySelector(`.dialog-bg`).classList.add("d-none");
 }
 
 
-function showPrivacyPolicy(){
-  let dialog = document.querySelector(`.dialog-bg`)
-  dialog.classList.remove("d-none")
-  dialog.innerHTML = ""
-  dialog.innerHTML = privacyPolicyTemplate()
+function showStartScreen() {
+  youLostScreen.classList.add("d-none");
+  startScreen.classList.remove(`d-none`)  
 }
 
 
+function showLegalNotice() {
+  dialog.classList.remove("d-none");
+  dialog.innerHTML = "";
+  dialog.innerHTML = legalNoticeTemplate();
+}
+
+
+function showGameControls() {
+  dialog.classList.remove("d-none");
+  dialog.innerHTML = "";
+  dialog.innerHTML = gameControlsTemplate();
+}
+
+
+function showPrivacyPolicy() {
+  dialog.classList.remove("d-none");
+  dialog.innerHTML = "";
+  dialog.innerHTML = privacyPolicyTemplate();
+}
+
+
+function showLostScreen() {
+  document.querySelector(`.you-lost-container`).classList.remove("d-none");
+}
 
 /**
  * Event Listener for {keydown} event.

@@ -17,6 +17,7 @@ class World {
     this.run();
   }
 
+
   canvas;
   keyboard;
   camera_x;
@@ -38,6 +39,7 @@ class World {
   bottlesAvailableIndex = 1;
   endBossDyeIndex = 1;
 
+
   /**
    * Assigns the world context to the character.
    */
@@ -56,10 +58,10 @@ class World {
     }, 100);
   }
 
+
   throwBottleStamp;
   gotStamp = false;
   firstBottle = true;
-
   /**
    * Checks if a throwable object is thrown and updates the bottle status bar.
    * If the 'd' key is pressed, a new throwable object is created and added to the array.
@@ -202,6 +204,7 @@ class World {
   collisionHeroVsEndboss() {
     if (this.character.isColliding(this.endboss)) {
       this.character.hit();
+      this.statusBarHealth.setPercentage(this.character.energy);
     }
   }
 
@@ -230,7 +233,6 @@ class World {
     this.drawFrameAllInstances(this.enemies);
     this.drawFrameAllInstances(this.coins);
     this.drawFrameAllInstances(this.bottles);
-
     this.ctx.translate(this.camera_x, 0);
     // requestAnimationFrame can't handle this keyword. That's why the workaround with self variable.
     let self = this;

@@ -90,8 +90,9 @@ canvas {
   opacity: 0.8;
 }
 
-/************************* START- ENDSCREEN  *************************/
-#start-screen {
+
+/************************* START-SCREEN *************************/
+.start-screen {
   position: absolute;
   right: 0;
   top: 0;
@@ -120,6 +121,25 @@ canvas {
   opacity: 0.8;
 }
 
+
+/************************* END-SCREEN *************************/
+.end-screen {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.you-lost-img{
+  position:absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;}
+
+
+/************************* GAME-CONTROLS *************************/
 .game-controls {
   position: absolute;
   right: 50%;
@@ -197,7 +217,7 @@ canvas {
   overflow: auto;
 }
 
-#impressum {
+.legal-notice-container h2{
   margin: 25px 0 5px 0;
   letter-spacing: 1px;
   font-family: "salsa";
@@ -206,14 +226,6 @@ canvas {
   font-size: 25px;
 }
 
-#contact {
-  margin: 25px 0 5px 0;
-  letter-spacing: 1px;
-  font-family: "salsa";
-  color: #FFA400 !important;
-  -webkit-text-stroke: 1px #843516;
-  font-size: 25px;
-}
 
 /************************* PRIVACY POLICY *************************/
 
@@ -240,6 +252,7 @@ canvas {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  /* border:solid red; */
 }
 
 .game-controls-container div{
@@ -264,10 +277,14 @@ canvas {
   padding: 0 25px 0 25px
 }
 
+.game-description{
+  padding-top: 20px;
+}
+
 /************************* DIALOG *************************/
 
 .dialog-bg {
-  background-color: rgb(55, 173, 208, 0.9);
+  background-color: rgb(55, 173, 208, 0.95);
   position: fixed;
   top: 0;
   bottom: 0;
