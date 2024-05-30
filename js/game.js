@@ -22,51 +22,70 @@ let keyCollection = {
 
 /**
  * Initializer of the game. Starts {body onload="init()"}
- * Initiates the world
+ * Initiates the world.
  */
 function init() {
-  initLevel()
-  showActionBtns()
+  initLevel();
+  showActionBtns();
   canvas = document.getElementById(`canvas`);
   world = new World(canvas, keyboard);
   startScreen.classList.add("d-none");
   audioBtnsHolder.classList.remove("d-none");
-  
 }
 
 
+/**
+ * Clears all intervals set in the game.
+ */
 function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 
+/**
+ * Hides the dialog background.
+ */
 function hideDialogBg() {
   document.querySelector(`.dialog-bg`).classList.add("d-none");
 }
 
-function hideActionBtns(){
+
+/**
+ * Hides all action buttons.
+ */
+function hideActionBtns() {
   let allActnBtns = document.querySelectorAll(`.action-btns`);
   allActnBtns.forEach(btn => {
-    btn.classList.add(`d-none`)
-  }); 
-   
+    btn.classList.add(`d-none`);
+  });
 }
 
-function showActionBtns(){
+
+/**
+ * Shows all action buttons.
+ */
+function showActionBtns() {
   let allActnBtns = document.querySelectorAll(`.action-btns`);
   allActnBtns.forEach(btn => {
-    btn.classList.remove(`d-none`)
-  }); 
+    btn.classList.remove(`d-none`);
+  });
 }
 
+
+/**
+ * Shows the start screen.
+ */
 function showStartScreen() {
-  hideActionBtns()
+  hideActionBtns();
   youLostScreen.classList.add("d-none");
-  youWinScreen.classList.add("d-none")
-  startScreen.classList.remove(`d-none`)  
+  youWinScreen.classList.add("d-none");
+  startScreen.classList.remove(`d-none`);
 }
 
 
+/**
+ * Shows the legal notice dialog.
+ */
 function showLegalNotice() {
   dialog.classList.remove("d-none");
   dialog.innerHTML = "";
@@ -74,6 +93,9 @@ function showLegalNotice() {
 }
 
 
+/**
+ * Shows the game controls dialog.
+ */
 function showGameControls() {
   dialog.classList.remove("d-none");
   dialog.innerHTML = "";
@@ -81,6 +103,9 @@ function showGameControls() {
 }
 
 
+/**
+ * Shows the privacy policy dialog.
+ */
 function showPrivacyPolicy() {
   dialog.classList.remove("d-none");
   dialog.innerHTML = "";
@@ -88,15 +113,21 @@ function showPrivacyPolicy() {
 }
 
 
+/**
+ * Shows the lost screen.
+ */
 function showLostScreen() {
   document.querySelector(`.you-lost-container`).classList.remove("d-none");
-  hideActionBtns()
+  hideActionBtns();
 }
 
 
-function showWinScreen(){
+/**
+ * Shows the win screen.
+ */
+function showWinScreen() {
   document.querySelector(`.you-win-container`).classList.remove("d-none");
-  hideActionBtns()
+  hideActionBtns();
 }
 
 
@@ -146,8 +177,3 @@ function deactivatePressedKey(pressedKey) {
     keyboard[keyCollectionValue] = false;
   }
 }
-
-
-
-
-
