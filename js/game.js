@@ -26,6 +26,7 @@ let keyCollection = {
  */
 function init() {
   initLevel()
+  showActionBtns()
   canvas = document.getElementById(`canvas`);
   world = new World(canvas, keyboard);
   startScreen.classList.add("d-none");
@@ -43,8 +44,23 @@ function hideDialogBg() {
   document.querySelector(`.dialog-bg`).classList.add("d-none");
 }
 
+function hideActionBtns(){
+  let allActnBtns = document.querySelectorAll(`.action-btns`);
+  allActnBtns.forEach(btn => {
+    btn.classList.add(`d-none`)
+  }); 
+   
+}
+
+function showActionBtns(){
+  let allActnBtns = document.querySelectorAll(`.action-btns`);
+  allActnBtns.forEach(btn => {
+    btn.classList.remove(`d-none`)
+  }); 
+}
 
 function showStartScreen() {
+  hideActionBtns()
   youLostScreen.classList.add("d-none");
   youWinScreen.classList.add("d-none")
   startScreen.classList.remove(`d-none`)  
@@ -74,11 +90,13 @@ function showPrivacyPolicy() {
 
 function showLostScreen() {
   document.querySelector(`.you-lost-container`).classList.remove("d-none");
+  hideActionBtns()
 }
 
 
 function showWinScreen(){
   document.querySelector(`.you-win-container`).classList.remove("d-none");
+  hideActionBtns()
 }
 
 

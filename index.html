@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body onload="">
+<body onload="showStartScreen()">
   <div class="loco-content">
     <h1>El Pollo Loco</h1>
     <!---------------------------- CANVAS ---------------------------->
@@ -54,14 +54,14 @@
         <img class="end-screen" src="./img/5_background/first_half_background.png" alt="">
         <img class="you-lost-img" src="./img/9_intro_outro_screens/game_over/you lost.png" alt="">
         <div class="game-controls" onclick="showStartScreen()">Back to Menu</div>
-      </div>    
+      </div>
       <!---------------------------- YOU WIN SCREEN ---------------------------->
       <div class="you-win-container d-none">
         <img class="win-screen" src="./img/5_background/first_half_background.png" alt="">
-        <div class="you-win-letters">YOU WI !!</div>
+        <div class="you-win-letters">YOU WIN!!</div>
         <div class="game-controls" onclick="showStartScreen()">Back to Menu</div>
-      </div>    
-      
+      </div>
+
       <!---------------------------- AUDIO BUTTONS ---------------------------->
       <div class="audio-button-holder d-none">
         <img onclick="world.character.stopAllAudio()" id="icon-sound-on" src="./img/10_game_icons/icon_sound_on.png"
@@ -71,7 +71,23 @@
       </div>
     </div>
   </div>
-
+  <!---------------------------- ACTION BUTTONS ---------------------------->
+  <div class="action-btns" id="action-btn-right">
+    <img src="./img/12_action_buttons/right_arrow.png" alt="">
+  </div>
+  <div class="action-btns" id="action-btn-left">
+    <img src="./img/12_action_buttons/left_arrow.png"  alt="">
+  </div>
+  <div class="action-btns" id="action-btn-up">
+    <img src="./img/12_action_buttons/up_arrow.png"  alt="">
+  </div>
+  <div class="action-btns" id="action-btn-throw">
+    <img id="throw-img" src="./img/12_action_buttons/throw_bottle.png"  alt="">
+  </div>
+  <!---------------------------- ROTATE PHONE ---------------------------->
+  <div class="rotate-phone-container">
+    <img class="rotate-phone-img" src="./img/rotate_phone.png" alt="">
+  </div>
   <!---------------------------- DIALOG ---------------------------->
   <div class="dialog-bg d-none" onclick="hideDialogBg()">
   </div>

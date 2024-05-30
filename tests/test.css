@@ -1,3 +1,14 @@
 body{
   background-color: lightgrey;
 }
+
+.action-btns{
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(55, 173, 208, 0.95);
+  border: solid black 1px;
+}
