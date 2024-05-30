@@ -104,6 +104,7 @@ class World {
     this.collisionHeroVsBottles();
     this.collisionBottleVsEndBoss();
     this.collisionHeroVsEndboss();
+    this.checkHeroAboveEnemy();
   }
 
 
@@ -112,6 +113,22 @@ class World {
    * Handles character jumping on enemies and getting hit.
    */
   collisionHeroVsEnemy() {
+    this.level.enemies.forEach((enemy) => {
+      if (this.character.isColliding(enemy)) {
+        if (this.character.y + this.character.offset.top + this.character.height === enemy.y) {
+        }
+        this.character.hit();
+        this.statusBarHealth.setPercentage(this.character.energy);
+      }
+    });
+  }
+
+
+  /**
+   * Checks if hero is above the enemy.
+   *
+   */
+  checkHeroAboveEnemy() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isAboveChicken(enemy)) {
         clearInterval(enemy.intervalNrWalk);
@@ -121,15 +138,9 @@ class World {
         setTimeout(() => {
           this.enemies.splice(index, 1);
         }, 400);
-      } else if (this.character.isColliding(enemy)) {
-        if (this.character.y + this.character.offset.top + this.character.height === enemy.y) {
-        }
-        this.character.hit();
-        this.statusBarHealth.setPercentage(this.character.energy);
       }
     });
   }
-
 
   coinImgIndex = 1;
   /**
@@ -169,52 +180,52 @@ class World {
   }
 
 
-/**
- * Checks for collisions between throwable objects and the endboss.
- * Updates the endboss status bar and handles the endboss getting hit.
- */
-collisionBottleVsEndBoss() {
-  this.throwableObjects.forEach((bottle, index) => {
-    if (this.endboss.isColliding(bottle)) {
-      this.handleEndbossHit(index);
-    }
-  });
-}
-
-
-/**
- * Handles the actions to be taken when the endboss is hit by a throwable object.
- * @param {number} bottleIndex - The index of the bottle that hit the endboss.
- */
-handleEndbossHit(bottleIndex) {
-  this.endboss.hurtAnimationIndex = 0;
-  this.endboss.speed = 2;
-  let statusBarImgs = this.statusBarEndboss.IMAGES;
-  this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
-  this.endBossDyeIndex++;
-  if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
-    this.handleEndbossDefeated();
+  /**
+   * Checks for collisions between throwable objects and the endboss.
+   * Updates the endboss status bar and handles the endboss getting hit.
+   */
+  collisionBottleVsEndBoss() {
+    this.throwableObjects.forEach((bottle, index) => {
+      if (this.endboss.isColliding(bottle)) {
+        this.handleEndbossHit(index);
+      }
+    });
   }
-  this.throwableObjects.splice(bottleIndex, 1);
-  this.character.bottleHitSound.play();
-  this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
-  clearInterval(this.endboss.walkInterval);
-}
 
 
-/**
- * Handles the actions to be taken when the endboss is defeated.
- */
-handleEndbossDefeated() {
-  this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
-  this.endboss.speed = 0;
-  setTimeout(() => {
-    clearAllIntervals();
-    document.querySelector('.audio-button-holder').classList.add('d-none');
-    showWinScreen();
-    this.character.stopAllAudio();
-  }, 1500);
-}
+  /**
+   * Handles the actions to be taken when the endboss is hit by a throwable object.
+   * @param {number} bottleIndex - The index of the bottle that hit the endboss.
+   */
+  handleEndbossHit(bottleIndex) {
+    this.endboss.hurtAnimationIndex = 0;
+    this.endboss.speed = 2;
+    let statusBarImgs = this.statusBarEndboss.IMAGES;
+    this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
+    this.endBossDyeIndex++;
+    if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
+      this.handleEndbossDefeated();
+    }
+    this.throwableObjects.splice(bottleIndex, 1);
+    this.character.bottleHitSound.play();
+    this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
+    clearInterval(this.endboss.walkInterval);
+  }
+
+
+  /**
+   * Handles the actions to be taken when the endboss is defeated.
+   */
+  handleEndbossDefeated() {
+    this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
+    this.endboss.speed = 0;
+    setTimeout(() => {
+      clearAllIntervals();
+      document.querySelector('.audio-button-holder').classList.add('d-none');
+      showWinScreen();
+      this.character.stopAllAudio();
+    }, 1500);
+  }
 
 
   /**
