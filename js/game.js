@@ -26,11 +26,14 @@ let keyCollection = {
  */
 function init() {
   initLevel();
-  showActionBtns();
-  canvas = document.getElementById(`canvas`);
-  world = new World(canvas, keyboard);
-  startScreen.classList.add("d-none");
-  audioBtnsHolder.classList.remove("d-none");
+  setTimeout(() => {
+    showActionBtns();
+    canvas = document.getElementById(`canvas`);
+    world = new World(canvas, keyboard);
+    startScreen.classList.add("d-none");
+    audioBtnsHolder.classList.remove("d-none");
+    
+  }, 50);
 }
 
 

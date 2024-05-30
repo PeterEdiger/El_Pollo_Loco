@@ -89,15 +89,14 @@ class World {
    * Adds the endboss status bar to the canvas when the character is past a certain point.
    */
   checkStatusBarEndBoss() {
-    if (this.character.x > 300) {
+    if (this.character.x > 100) {
       this.addToCanvas(this.statusBarEndboss);
     }
   }
 
 
   /**
-   * Checks for collisions between the character and other objects.
-   * Updates the health status bar when the character is hit.
+   * Checks for collisions between objects.
    */
   checkCollisions() {
     this.collisionHeroVsEnemy();
@@ -131,8 +130,8 @@ class World {
     });
   }
 
-  coinImgIndex = 1;
 
+  coinImgIndex = 1;
   /**
    * Checks for collisions between the character and coins.
    * Updates the coin status bar and removes collected coins from the array.
@@ -147,7 +146,6 @@ class World {
           this.level.coins.splice(index, 1);
         }
         this.level.coins.splice(index, 1);
-        console.log("Pepe collides with coin");
       }
     });
   }
@@ -166,39 +164,57 @@ class World {
           this.bottlesAvailableIndex += 1;
           this.level.bottles.splice(index, 1);
         }
-        console.log("Pepe collides with bottle");
       }
     });
   }
 
 
-  /**
-   * Checks for collisions between throwable objects and the endboss.
-   * Updates the endboss status bar and handles the endboss getting hit.
-   */
-  collisionBottleVsEndBoss() {
-    this.throwableObjects.forEach((bottle, index) => {
-      if (this.endboss.isColliding(bottle)) {
-        this.endboss.hurtAnimationIndex = 0;
-        this.endboss.speed = 0.7;
-        let statusBarImgs = this.statusBarEndboss.IMAGES;
-        this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
-        this.endBossDyeIndex++;
-        if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
-          this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
-          this.endboss.speed = 0;
-          setTimeout(() => {
-          clearAllIntervals()   
-          showWinScreen()
-          }, 1500);
-        }
-        this.throwableObjects.splice(index, 1);
-        this.character.bottleHitSound.play();
-        this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
-        clearInterval(this.endboss.walkInterval);
-      }
-    });
+/**
+ * Checks for collisions between throwable objects and the endboss.
+ * Updates the endboss status bar and handles the endboss getting hit.
+ */
+collisionBottleVsEndBoss() {
+  this.throwableObjects.forEach((bottle, index) => {
+    if (this.endboss.isColliding(bottle)) {
+      this.handleEndbossHit(index);
+    }
+  });
+}
+
+
+/**
+ * Handles the actions to be taken when the endboss is hit by a throwable object.
+ * @param {number} bottleIndex - The index of the bottle that hit the endboss.
+ */
+handleEndbossHit(bottleIndex) {
+  this.endboss.hurtAnimationIndex = 0;
+  this.endboss.speed = 2;
+  let statusBarImgs = this.statusBarEndboss.IMAGES;
+  this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
+  this.endBossDyeIndex++;
+  if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
+    this.handleEndbossDefeated();
   }
+  this.throwableObjects.splice(bottleIndex, 1);
+  this.character.bottleHitSound.play();
+  this.endboss.hurtAnimation(this.endboss.IMAGES_HURT);
+  clearInterval(this.endboss.walkInterval);
+}
+
+
+/**
+ * Handles the actions to be taken when the endboss is defeated.
+ */
+handleEndbossDefeated() {
+  this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
+  this.endboss.speed = 0;
+  setTimeout(() => {
+    clearAllIntervals();
+    document.querySelector('.audio-button-holder').classList.add('d-none');
+    showWinScreen();
+    this.character.stopAllAudio();
+  }, 1500);
+}
 
 
   /**
@@ -232,11 +248,6 @@ class World {
     this.addToCanvas(this.statusBarCoins);
     this.addToCanvas(this.statusBarBottles);
     this.checkStatusBarEndBoss();
-    this.character.drawFrame(this.ctx);
-    this.endboss.drawFrame(this.ctx);
-    this.drawFrameAllInstances(this.enemies);
-    this.drawFrameAllInstances(this.coins);
-    this.drawFrameAllInstances(this.bottles);
     this.ctx.translate(this.camera_x, 0);
     let self = this;
     requestAnimationFrame(() => { self.draw(); });
@@ -265,7 +276,6 @@ class World {
       this.ctx.scale(-1, 1);
       mo.x = mo.x * -1;
     }
-    // Draws an image with a certain width, height, x-point, and y-point onto the canvas.  
     try {
       this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     } catch (error) {

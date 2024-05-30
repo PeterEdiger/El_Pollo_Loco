@@ -1,3 +1,6 @@
+/**
+ * Class representing a drawable object.
+ */
 class DrawableObject {
 
   constructor() {
@@ -24,7 +27,7 @@ class DrawableObject {
   /**
  * @param {string} path needed path to create {src} for {img element}
  * Creates an HTML {img element}.
- * Adds a {.src property}  to that {img element} 
+ * Adds a {.src property} to that {img element} 
  */
   loadImage(path) {
     this.img = new Image();

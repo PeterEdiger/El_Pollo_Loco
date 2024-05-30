@@ -1,5 +1,3 @@
-// canvas width="720" height="480"
-
 /**
  * Class representing a movable object.
  * @extends CollidableObject
@@ -27,6 +25,7 @@ class MovableObject extends CollidableObject {
   energy = 100;
   lastHit = 0;
 
+
   /**
    * Simulates gravity for objects.
    */
@@ -42,6 +41,7 @@ class MovableObject extends CollidableObject {
     }, 1000 / 10);
   }
 
+
   /**
    * Threshold definition of y-axis for an object being on the ground.
    * @returns {boolean} True if the object is above the ground.
@@ -49,6 +49,7 @@ class MovableObject extends CollidableObject {
   isAboveGround() {
     return this instanceof ThrowableObject || this.y < 244;
   }
+
 
   /**
    * Fills image cache with image elements.
@@ -62,12 +63,14 @@ class MovableObject extends CollidableObject {
     });
   }
 
+
   /**
    * Moves the object to the right.
    */
   moveRight() {
     this.x += this.speed;
   }
+
 
   /**
    * Moves the object to the left.
@@ -76,6 +79,7 @@ class MovableObject extends CollidableObject {
     this.x -= this.speed;
   }
 
+
   /**
    * Makes the object jump.
    */
@@ -83,12 +87,14 @@ class MovableObject extends CollidableObject {
     this.speedY = 30;
   }
 
+
   /**
    * Makes the object jump from a chicken.
    */
   jumpFromChicken() {
     this.speedY = 22;
   }
+
 
   /**
    * Plays the dead animation for the object.
@@ -101,6 +107,7 @@ class MovableObject extends CollidableObject {
     }
   }
 
+
   /**
    * Repeats changing images of an object to simulate animation.
    * @param {Array} images - The images that will animate moves of an object.
@@ -111,6 +118,7 @@ class MovableObject extends CollidableObject {
     this.img = this.imgCache[images[this.currentIndex]];
     this.currentIndex += 1;
   }
+
 
   /**
    * Checks if two specified spans are intersecting.
@@ -123,6 +131,7 @@ class MovableObject extends CollidableObject {
   spanIntersection(pointA, pointB, pointC, pointD) {
     return pointA < pointD && pointB > pointC;
   }
+
 
   /**
    * Checks if the hero frame and the object frame are intersecting.
@@ -144,6 +153,7 @@ class MovableObject extends CollidableObject {
     );
   }
 
+
   /**
    * Checks if the hero is above a chicken.
    * @param {MovableObject} obj - The chicken object.
@@ -163,6 +173,7 @@ class MovableObject extends CollidableObject {
     );
   }
 
+
   /**
    * Reduces the object's energy by 5. Sets energy to 0 if below 0.
    */
@@ -175,6 +186,7 @@ class MovableObject extends CollidableObject {
     }
   }
 
+
   /**
    * Checks if the object is hurt.
    * @returns {boolean} True if the object was hit in the last 0.5 seconds.
@@ -185,6 +197,7 @@ class MovableObject extends CollidableObject {
     return timePassed < 0.5;
   }
 
+  
   /**
    * Checks if the object is dead.
    * @returns {boolean} True if the object's energy is 0.
