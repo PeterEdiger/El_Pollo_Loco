@@ -238,7 +238,6 @@ class World {
     this.drawFrameAllInstances(this.coins);
     this.drawFrameAllInstances(this.bottles);
     this.ctx.translate(this.camera_x, 0);
-    // requestAnimationFrame can't handle this keyword. That's why the workaround with self variable.
     let self = this;
     requestAnimationFrame(() => { self.draw(); });
   }

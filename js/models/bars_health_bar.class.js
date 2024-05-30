@@ -1,5 +1,14 @@
+/**
+ * Class representing a health bar object.
+ * @extends DrawableObject
+ */
 class HealthBar extends DrawableObject {
   
+  /**
+   * Create a health bar object.
+   * @param {number} x - The initial x-coordinate.
+   * @param {number} y - The initial y-coordinate.
+   */
   constructor(x, y) {
     super();
     this.x = x;
@@ -8,7 +17,6 @@ class HealthBar extends DrawableObject {
     this.height = 30;
     this.setPercentage(100);
   }
-
 
   percentage = 100;
 
@@ -21,7 +29,10 @@ class HealthBar extends DrawableObject {
     "./img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
   ];
 
-
+  /**
+   * Resolve the index of the image based on the percentage.
+   * @returns {number} The index of the image to be displayed.
+   */
   resolveImageIndex() {
     if (this.percentage === 100) {
       return 5;
@@ -43,11 +54,13 @@ class HealthBar extends DrawableObject {
     }
   }
 
-
+  /**
+   * Set the percentage of the health bar and update the image.
+   * @param {number} percentage - The percentage to set.
+   */
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.IMAGES[this.resolveImageIndex()];
-    this.loadImage(path)
+    this.loadImage(path);
   }
 }
-

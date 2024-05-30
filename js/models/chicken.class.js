@@ -1,8 +1,12 @@
-// canvas width="720" height="480"
-// normal chicken img properties 248x243  1/0,97
-
+/**
+ * Class representing a chicken object.
+ * @extends MovableObject
+ */
 class Chicken extends MovableObject {
 
+  /**
+   * Create a chicken object.
+   */
   constructor() {
     super();
     this.loadImage("./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
@@ -10,7 +14,6 @@ class Chicken extends MovableObject {
     this.x = 200 + Math.random() * 500;
     this.animate();
   }
-
 
   width = 50;
   height = 50;
@@ -35,14 +38,10 @@ class Chicken extends MovableObject {
     bottom: 0,
   };
 
-
-
-
-
   /**
-   * Rotates chicken Images simulating moving feet. 
-   * Gives every instance a different {Math.random} speed.
-   * Calls the {moveLeft} method.
+   * Rotates chicken images simulating moving feet.
+   * Gives every instance a different random speed.
+   * Calls the moveLeft method.
    */
   animate() {
     let interval1 = setInterval(() => {
@@ -55,16 +54,13 @@ class Chicken extends MovableObject {
       this.moveLeft();
     }, 1000 / 60);
     this.intervalNrMove = interval2;
-
-
   }
 
+  /**
+   * Triggers the dead animation for the chicken.
+   */
   enemieDeadAnimation() {
     console.log("animation success");
     this.loadImage("./img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
   }
 }
-
-
-
-

@@ -1,11 +1,17 @@
 // canvas width="720" height="480"
 
-
+/**
+ * Class representing the character.
+ * @extends MovableObject
+ */
 class Character extends MovableObject {
 
+  /**
+   * Create a character object.
+   */
   constructor() {
     super();
-    this.backgroundMusic = new Audio("./audio/latin_guitar.mp3")
+    this.backgroundMusic = new Audio("./audio/latin_guitar.mp3");
     this.loadImage("./img/2_character_pepe/2_walk/W-21.png");
     this.fillImgCache(this.IMAGES_WALKING);
     this.fillImgCache(this.IMAGES_JUMPING);
@@ -18,9 +24,9 @@ class Character extends MovableObject {
     this.audioCollection = [
       this.walkingSound, this.jumpingSound, this.bottleHitSound,
       this.sleepingSound, this.backgroundMusic
-    ]
+    ];
   }
-  
+
   x = 0;
   y = 244;
   width = 100;
@@ -31,28 +37,12 @@ class Character extends MovableObject {
   jumpingSound = new Audio("./audio/jump.wav");
   bottleHitSound = new Audio("./audio/bottle_hit.wav");
   sleepingSound = new Audio("./audio/sleeping.wav");
-  throwingSound = new Audio("./audio/throwing.mp3")
+  throwingSound = new Audio("./audio/throwing.mp3");
   pepeWalkIndex = 0;
   dyingIndex = 0;
-  
-  
 
-  stopAllAudio(){
-    console.log("stop audio triggered");
-    document.getElementById(`icon-sound-on`).classList.toggle("d-none")
-    document.getElementById(`icon-sound-off`).classList.toggle("d-none")
-    this.audioCollection.forEach(sound =>{
-      sound.muted = true
-    })
-  }
-  
-  playAllAudio(){
-    document.getElementById(`icon-sound-on`).classList.toggle("d-none")
-    document.getElementById(`icon-sound-off`).classList.toggle("d-none")
-    this.audioCollection.forEach(sound =>{
-      sound.muted = false
-    })
-  }
+  beginIdle = 0;
+  idle = false;
 
   offset = {
     left: 20,
@@ -60,7 +50,6 @@ class Character extends MovableObject {
     top: 70,
     bottom: 15,
   };
-
 
   IMAGES_WALKING = [
     "./img/2_character_pepe/2_walk/W-21.png",
@@ -93,13 +82,11 @@ class Character extends MovableObject {
     "./img/2_character_pepe/5_dead/D-57.png",
   ];
 
-
   IMAGES_HURT = [
     "./img/2_character_pepe/4_hurt/H-41.png",
     "./img/2_character_pepe/4_hurt/H-42.png",
     "./img/2_character_pepe/4_hurt/H-43.png",
   ];
-
 
   IMAGES_IDLE = [
     "img/2_character_pepe/1_idle/idle/I-1.png",
@@ -114,7 +101,6 @@ class Character extends MovableObject {
     "img/2_character_pepe/1_idle/idle/I-10.png"
   ];
 
-
   IMAGES_SLEEP = [
     "img/2_character_pepe/1_idle/long_idle/I-11.png",
     "img/2_character_pepe/1_idle/long_idle/I-12.png",
@@ -128,12 +114,9 @@ class Character extends MovableObject {
     "img/2_character_pepe/1_idle/long_idle/I-20.png"
   ];
 
-
-
-
   /**
-   * Handles the different animations of the character based on a state or move. 
-   *  f.E  jump, move, isHurt.
+   * Handles the different animations of the character based on a state or move,
+   * such as jump, move, or isHurt.
    */
   animate() {
     setInterval(() => {
@@ -147,24 +130,22 @@ class Character extends MovableObject {
     setInterval(() => this.animateCharacterMovements(), 200);
   }
 
-
   /**
-   * Changes pngs of the character when movements are triggered. 
+   * Changes PNGs of the character when movements are triggered.
    * Simulates the movements of jump, hurt, dead, walk.
    */
   animateCharacterMovements() {
     if (this.isDead()) {
       this.deadAnimation(this.IMAGES_DEAD);
       setTimeout(() => {
-        clearAllIntervals()
-        document.querySelector(`.audio-button-holder`).classList.add("d-none")
-        showLostScreen()
-        this.stopAllAudio()
+        clearAllIntervals();
+        document.querySelector(`.audio-button-holder`).classList.add("d-none");
+        showLostScreen();
+        this.stopAllAudio();
       }, 1500);
     } else if (this.isHurt()) {
-       this.playAnimation(this.IMAGES_HURT);
-    }
-    else if (this.isAboveGround()) {
+      this.playAnimation(this.IMAGES_HURT);
+    } else if (this.isAboveGround()) {
       this.playAnimation(this.IMAGES_JUMPING);
     } else {
       if (this.world.keyboard.right || this.world.keyboard.left) {
@@ -174,9 +155,9 @@ class Character extends MovableObject {
     }
   }
 
-
-  beginIdle = 0;
-  idle = false;
+  /**
+   * Handles the character's idle state and animation.
+   */
   characterIdle() {
     let keyboard = this.world.keyboard;
     let keys = Object.keys(keyboard);
@@ -187,38 +168,35 @@ class Character extends MovableObject {
       this.idle = true;
       if ((new Date().getTime() - this.beginIdle) > 15000) {
         this.playAnimation(this.IMAGES_SLEEP);
-        this.sleepingSound.play()
-      }
-      else {
+        this.sleepingSound.play();
+      } else {
         this.playAnimation(this.IMAGES_IDLE);
-
       }
     }
   }
 
-
   /**
-   * Changes the running direction of the character based on a pressed key. 
-   *
+   * Changes the running direction of the character based on a pressed key.
    */
   changeRunningDirection() {
     if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
-      this.sleepingSound.pause()
+      this.sleepingSound.pause();
       this.moveRight();
       this.otherDirection = false;
       this.walkingSound.play();
-      this.backgroundMusic.play()
-
+      this.backgroundMusic.play();
     }
     if (this.world.keyboard.left && this.x > -200) {
-      this.sleepingSound.pause()
+      this.sleepingSound.pause();
       this.moveLeft();
       this.otherDirection = true;
       this.walkingSound.play();
     }
   }
 
-
+  /**
+   * Moves the status bar along with the character.
+   */
   moveStatusBarWithCharacter() {
     this.world.statusBarHealth.x = this.x - 100;
     this.world.statusBarCoins.x = this.x - 100;
@@ -226,13 +204,35 @@ class Character extends MovableObject {
     this.world.statusBarEndboss.x = this.x + 400;
   }
 
-
+  /**
+   * Handles the character's jump action.
+   */
   characterJump() {
     if (!this.isAboveGround() && this.world.keyboard.up) {
       this.jumpingSound.play();
       this.jump();
     }
+  }
 
+  /**
+   * Stops all audio associated with the character.
+   */
+  stopAllAudio() {
+    document.getElementById(`icon-sound-on`).classList.toggle("d-none");
+    document.getElementById(`icon-sound-off`).classList.toggle("d-none");
+    this.audioCollection.forEach(sound => {
+      sound.muted = true;
+    });
+  }
+
+  /**
+   * Plays all audio associated with the character.
+   */
+  playAllAudio() {
+    document.getElementById(`icon-sound-on`).classList.toggle("d-none");
+    document.getElementById(`icon-sound-off`).classList.toggle("d-none");
+    this.audioCollection.forEach(sound => {
+      sound.muted = false;
+    });
   }
 }
-

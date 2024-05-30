@@ -1,10 +1,16 @@
-class Bottle extends CollidableObject{
+/**
+ * Class representing a bottle object.
+ * @extends CollidableObject
+ */
+class Bottle extends CollidableObject {
 
-  constructor(){
-   super()
-   this.loadImage("./img/6_salsa_bottle/1_salsa_bottle_on_ground.png")
+  /**
+   * Create a bottle object.
+   */
+  constructor() {
+    super();
+    this.loadImage("./img/6_salsa_bottle/1_salsa_bottle_on_ground.png");
   }
-
 
   width = 50; 
   height = 50;

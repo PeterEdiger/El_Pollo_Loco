@@ -1,9 +1,16 @@
+/**
+ * Class representing a coin object.
+ * @extends CollidableObject
+ */
 class Coins extends CollidableObject {
   
-  constructor(){
-    super()
-    this.loadImage("./img/8_coin/coin_1.png")
-    this.y = 375 - Math.random() * 250
+  /**
+   * Create a coin object.
+   */
+  constructor() {
+    super();
+    this.loadImage("./img/8_coin/coin_1.png");
+    this.y = 375 - Math.random() * 250;
   }
 
   width = 100; 
@@ -12,7 +19,7 @@ class Coins extends CollidableObject {
   IMAGES = [
     "./img/8_coin/coin_1.png",
     "./img/8_coin/coin_2.png"
-  ]
+  ];
 
   offset = {
     left: 30,
