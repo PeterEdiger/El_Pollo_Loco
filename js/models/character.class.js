@@ -127,7 +127,7 @@ class Character extends MovableObject {
       this.world.camera_x = this.x - 150;
     }, 1000 / 60);
     setInterval(() => { this.characterIdle(); }, 500);
-    setInterval(() => this.animateCharacterMovements(), 200);
+    setInterval(() => this.animateCharacterMovements(), 70);
   }
 
 
@@ -138,12 +138,7 @@ class Character extends MovableObject {
   animateCharacterMovements() {
     if (this.isDead()) {
       this.deadAnimation(this.IMAGES_DEAD);
-      setTimeout(() => {
-        clearAllIntervals();
-        document.querySelector(`.audio-button-holder`).classList.add("d-none");
-        showLostScreen();
-        this.stopAllAudio();
-      }, 1500);
+      this.afterCharacterDead()
     } else if (this.isHurt()) {
       this.playAnimation(this.IMAGES_HURT);
     } else if (this.isAboveGround()) {
@@ -154,6 +149,20 @@ class Character extends MovableObject {
         this.playAnimation(this.IMAGES_WALKING);
       }
     }
+  }
+
+  
+  /**
+   * Stops Intervals and shows the endscreen after character is dead.
+   */
+  afterCharacterDead(){
+    setTimeout(() => {
+      clearAllIntervals();
+      document.querySelector(`.audio-button-holder`).classList.add("d-none");
+      showLostScreen();
+      this.stopAllAudio();
+    }, 1500);
+
   }
 
 
