@@ -38,6 +38,9 @@ class World {
   throwableObjects = [];
   bottlesAvailableIndex = 1;
   endBossDyeIndex = 1;
+  throwBottleStamp;
+  gotStamp = false;
+  firstBottle = true;
 
 
   /**
@@ -59,9 +62,7 @@ class World {
   }
 
 
-  throwBottleStamp;
-  gotStamp = false;
-  firstBottle = true;
+
   /**
    * Checks if a throwable object is thrown and updates the bottle status bar.
    * If the 'd' key is pressed, a new throwable object is created and added to the array.
@@ -83,6 +84,8 @@ class World {
       }
     }
   }
+
+
 
 
   /**
