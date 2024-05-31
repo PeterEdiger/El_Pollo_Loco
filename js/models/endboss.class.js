@@ -80,6 +80,7 @@ class Endboss extends MovableObject {
     "./img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
+
   /**
    * Initiates the walking animation and movement for the Endboss.
    */
@@ -92,6 +93,7 @@ class Endboss extends MovableObject {
     }, 250);
     this.currentAnimation = 'walk';
   }
+
 
   /**
    * Plays the dead animation for the Endboss using the provided images.
@@ -108,6 +110,7 @@ class Endboss extends MovableObject {
     }, 400);
   }
 
+  
   /**
    * Plays the hurt animation for the Endboss using the provided images.
    * @param {string[]} images - Array of image paths to be used in the hurt animation.
@@ -137,7 +140,7 @@ class Endboss extends MovableObject {
     }, 1000);
   }
 
-  
+
   /**
    * Resumes the previous animation of the Endboss.
    * Currently resumes the walking animation.

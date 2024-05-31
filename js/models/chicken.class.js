@@ -56,6 +56,7 @@ class Chicken extends MovableObject {
     this.intervalNrMove = interval2;
   }
 
+  
   /**
    * Triggers the dead animation for the chicken.
    */
