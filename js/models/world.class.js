@@ -215,7 +215,7 @@ throwBottleIfReady() {
    */
   handleEndbossHit(bottleIndex) {
     this.endboss.hurtAnimationIndex = 0;
-    this.endboss.speed = 2;
+    this.endboss.speed = 3;
     let statusBarImgs = this.statusBarEndboss.IMAGES;
     this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
     this.endBossDyeIndex++;

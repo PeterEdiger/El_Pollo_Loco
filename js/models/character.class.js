@@ -151,7 +151,7 @@ class Character extends MovableObject {
     }
   }
 
-  
+
   /**
    * Stops Intervals and shows the endscreen after character is dead.
    */
@@ -161,8 +161,7 @@ class Character extends MovableObject {
       document.querySelector(`.audio-button-holder`).classList.add("d-none");
       showLostScreen();
       this.stopAllAudio();
-    }, 1500);
-
+    }, 1200);
   }
 
 
