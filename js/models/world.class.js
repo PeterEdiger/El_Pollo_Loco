@@ -142,6 +142,7 @@ class World {
     });
   }
 
+
   coinImgIndex = 1;
   /**
    * Checks for collisions between the character and coins.
@@ -154,7 +155,6 @@ class World {
         this.statusBarCoins.loadImage(coinBarImages[this.coinImgIndex]);
         if (this.coinImgIndex < 5) {
           this.coinImgIndex += 1;
-          this.level.coins.splice(index, 1);
         }
         this.level.coins.splice(index, 1);
       }
