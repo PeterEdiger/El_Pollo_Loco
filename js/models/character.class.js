@@ -40,7 +40,7 @@ class Character extends MovableObject {
   throwingSound = new Audio("./audio/throwing.mp3");
   pepeWalkIndex = 0;
   dyingIndex = 0;
-  jumpUpIndex = 0; 
+  jumpUpIndex = 0;
   jumpDownIndex = 0;
 
   beginIdle = 0;
@@ -75,7 +75,7 @@ class Character extends MovableObject {
     "./img/2_character_pepe/3_jump/J-37.png",
     "./img/2_character_pepe/3_jump/J-38.png",
     "./img/2_character_pepe/3_jump/J-39.png",
-  ]
+  ];
 
   IMAGES_DEAD = [
     "./img/2_character_pepe/5_dead/D-51.png",
@@ -119,7 +119,7 @@ class Character extends MovableObject {
     "./img/2_character_pepe/1_idle/long_idle/I-20.png"
   ];
 
-  
+
   /**
    * Handles the different animations of the character based on a state or move,
    * such as jump, move, or isHurt.
@@ -144,11 +144,19 @@ class Character extends MovableObject {
   animateCharacterMovements() {
     if (this.isDead()) {
       this.deadAnimation(this.IMAGES_DEAD);
-      this.afterCharacterDead()
+      this.afterCharacterDead();
     } else if (this.isHurt()) {
       this.playAnimation(this.IMAGES_HURT);
     } else if (this.isAboveGround()) {
-      this.playAnimation(this.IMAGES_JUMPING_UP);
+      if (this.speedY < 30 && this.speedY > 2) {
+        this.jumpUpAnimation(this.IMAGES_JUMPING_UP);
+        console.log(this.jumpUpIndex);
+        this.jumpDownIndex = 0;
+      }else if(this.speedY > -15 && this.speedY < -5){
+        this.jumpDownAnimation(this.IMAGES_JUMPING_DOWN);
+        console.log(this.jumpDownIndex);
+        this.jumpUpIndex = 0;
+      }
     } else {
       if (this.world.keyboard.right || this.world.keyboard.left) {
         this.idle = false;
@@ -161,7 +169,7 @@ class Character extends MovableObject {
   /**
    * Stops Intervals and shows the endscreen after character is dead.
    */
-  afterCharacterDead(){
+  afterCharacterDead() {
     setTimeout(() => {
       clearAllIntervals();
       document.querySelector(`.audio-button-holder`).classList.add("d-none");
@@ -230,8 +238,8 @@ class Character extends MovableObject {
     if (!this.isAboveGround() && this.world.keyboard.up) {
       this.jumpingSound.play();
       this.jump();
-  }console.log(this.speedY);
-}
+    } 
+  }
 
 
   /**
