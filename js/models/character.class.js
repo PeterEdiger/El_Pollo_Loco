@@ -113,6 +113,7 @@ class Character extends MovableObject {
     "./img/2_character_pepe/1_idle/long_idle/I-20.png"
   ];
 
+  
   /**
    * Handles the different animations of the character based on a state or move,
    * such as jump, move, or isHurt.
@@ -128,6 +129,7 @@ class Character extends MovableObject {
     setInterval(() => { this.characterIdle(); }, 500);
     setInterval(() => this.animateCharacterMovements(), 200);
   }
+
 
   /**
    * Changes PNGs of the character when movements are triggered.
@@ -154,6 +156,7 @@ class Character extends MovableObject {
     }
   }
 
+
   /**
    * Handles the character's idle state and animation.
    */
@@ -174,6 +177,7 @@ class Character extends MovableObject {
     }
   }
 
+
   /**
    * Changes the running direction of the character based on a pressed key.
    */
@@ -193,6 +197,7 @@ class Character extends MovableObject {
     }
   }
 
+
   /**
    * Moves the status bar along with the character.
    */
@@ -203,6 +208,7 @@ class Character extends MovableObject {
     this.world.statusBarEndboss.x = this.x + 400;
   }
 
+
   /**
    * Handles the character's jump action.
    */
@@ -210,8 +216,9 @@ class Character extends MovableObject {
     if (!this.isAboveGround() && this.world.keyboard.up) {
       this.jumpingSound.play();
       this.jump();
-    }
   }
+}
+
 
   /**
    * Stops all audio associated with the character.
@@ -223,6 +230,7 @@ class Character extends MovableObject {
       sound.muted = true;
     });
   }
+
 
   /**
    * Plays all audio associated with the character.
