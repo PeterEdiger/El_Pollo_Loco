@@ -183,8 +183,8 @@ class MovableObject extends CollidableObject {
       obj.x + obj.width - obj.offset.right
     ) && this.spanIntersection(
       this.y + this.height - this.offset.bottom,
-      this.y + this.height - this.offset.bottom + 5,
-      obj.y - 5,
+      this.y + this.height - this.offset.bottom + 12,
+      obj.y - 12,
       obj.y
     );
   }
