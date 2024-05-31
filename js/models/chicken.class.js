@@ -56,12 +56,11 @@ class Chicken extends MovableObject {
     this.intervalNrMove = interval2;
   }
 
-  
+
   /**
    * Triggers the dead animation for the chicken.
    */
   enemieDeadAnimation() {
-    console.log("animation success");
     this.loadImage("./img/3_enemies_chicken/chicken_normal/2_dead/dead.png");
   }
 }

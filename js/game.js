@@ -8,7 +8,6 @@ let youLostScreen = document.querySelector(`.you-lost-container`);
 let youWinScreen = document.querySelector(`.you-win-container`)
 let audioBtnsHolder = document.querySelector(`.audio-button-holder`);
 
-console.log(ctx);
 
 let keyCollection = {
   " ": "space",
