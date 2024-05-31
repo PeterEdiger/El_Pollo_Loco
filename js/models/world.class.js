@@ -89,7 +89,7 @@ updateThrowBottleStampAndCheckKey() {
  * Creates and throws a new bottle if the cooldown period has passed or if it's the first bottle.
  */
 throwBottleIfReady() {
-  if ((new Date().getTime() - this.throwBottleStamp) > 2000 || this.firstBottle) {
+  if ((new Date().getTime() - this.throwBottleStamp) > 1000 || this.firstBottle) {
     this.firstBottle = false;
     let bottleBarImages = this.statusBarBottles.IMAGES;
     let bottle = new ThrowableObject(this.character.x, this.character.y);
@@ -218,7 +218,10 @@ throwBottleIfReady() {
     let statusBarImgs = this.statusBarEndboss.IMAGES;
     this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
     this.endBossDyeIndex++;
-    if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length) {
+    //! include this again instead of  2
+    // 
+    //! include this again instead of  2
+    if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length ) {
       this.handleEndbossDefeated();
     }
     this.throwableObjects.splice(bottleIndex, 1);
@@ -235,9 +238,7 @@ throwBottleIfReady() {
     this.endboss.deadAnimation(this.endboss.IMAGES_DEAD);
     this.endboss.speed = 0;
     setTimeout(() => {
-      clearAllIntervals();
       document.querySelector('.audio-button-holder').classList.add('d-none');
-      showWinScreen();
       this.character.stopAllAudio();
     }, 1500);
   }

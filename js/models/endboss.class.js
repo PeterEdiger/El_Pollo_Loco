@@ -101,14 +101,37 @@ class Endboss extends MovableObject {
    * @param {string[]} images - Array of image paths to be used in the dead animation.
    */
   deadAnimation(images) {
+    this.speed = 0;
     this.deadInterval = setInterval(() => {
       if (this.deadIndex < this.IMAGES_DEAD.length) {
         this.deadIndex++;
         clearInterval(this.walkingInterval);
         clearInterval(this.hurtInterval);
-        this.playAnimation(images);
+        this.deathAnimation(images)
+        ;
       }
     }, 400);
+  }
+
+
+  /**
+   * Plays the dead animation for the object.
+   * @param {Array} images - The images for the dead animation.
+   */
+  deathAnimation(images) {
+    if (this.deadIndex < images.length) {
+      clearInterval(this.walkingInterval);
+      clearInterval(this.hurtInterval);
+      this.img = this.imgCache[images[this.deadIndex]];
+      this.deadIndex += 1;
+    }else{
+      this.img = this.imgCache[this.IMAGES_DEAD[2]]
+      clearAllIntervals()
+      setTimeout(() => {
+        showWinScreen()
+      }, 1000);
+    }
+    
   }
 
 
@@ -117,11 +140,11 @@ class Endboss extends MovableObject {
    * @param {string[]} images - Array of image paths to be used in the hurt animation.
    */
   hurtAnimation(images) {
+    this.bossResumesWalking();
     this.speed = 0;
     setTimeout(() => {
       this.speed = 4;
     }, 1000);
-    this.bossResumesWalking();
     this.hurtInterval = setInterval(() => {
       if (this.hurtAnimationIndex < images.length) {
         clearInterval(this.walkingInterval);
@@ -144,7 +167,7 @@ class Endboss extends MovableObject {
       this.walkInterval = setInterval(() => {
         this.playAnimation(this.IMAGES_WALKING);
       }, 250);
-    }, 1000);
+    }, 500);
   }
 
 

@@ -184,7 +184,7 @@ class Character extends MovableObject {
       document.querySelector(`.audio-button-holder`).classList.add("d-none");
       showLostScreen();
       this.stopAllAudio();
-    }, 1200);
+    }, 2000);
   }
 
 
