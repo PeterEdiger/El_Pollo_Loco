@@ -166,11 +166,9 @@ class Character extends MovableObject {
   handleJumpAnimation() {
     if (this.speedY < 30 && this.speedY > 2) {
       this.jumpUpAnimation(this.IMAGES_JUMPING_UP);
-      console.log(this.jumpUpIndex);
       this.jumpDownIndex = 0;
     } else if (this.speedY > -15 && this.speedY < -5) {
       this.jumpDownAnimation(this.IMAGES_JUMPING_DOWN);
-      console.log(this.jumpDownIndex);
       this.jumpUpIndex = 0;
     }
   }
@@ -182,8 +180,8 @@ class Character extends MovableObject {
     setTimeout(() => {
       clearAllIntervals();
       document.querySelector(`.audio-button-holder`).classList.add("d-none");
-      showLostScreen();
       this.stopAllAudio();
+      showLostScreen();
     }, 2000);
   }
 

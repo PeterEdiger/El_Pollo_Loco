@@ -218,9 +218,6 @@ throwBottleIfReady() {
     let statusBarImgs = this.statusBarEndboss.IMAGES;
     this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
     this.endBossDyeIndex++;
-    //! include this again instead of  2
-    // 
-    //! include this again instead of  2
     if (this.endBossDyeIndex === this.statusBarEndboss.IMAGES.length ) {
       this.handleEndbossDefeated();
     }
@@ -240,7 +237,7 @@ throwBottleIfReady() {
     setTimeout(() => {
       document.querySelector('.audio-button-holder').classList.add('d-none');
       this.character.stopAllAudio();
-    }, 1500);
+    }, 700);
   }
 
 

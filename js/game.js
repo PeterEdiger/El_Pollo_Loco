@@ -25,6 +25,8 @@ let keyCollection = {
  */
 function init() {
   initLevel();
+  document.getElementById(`icon-sound-on`).classList.remove("d-none")
+  document.getElementById(`icon-sound-off`).classList.add("d-none")
   setTimeout(() => {
     showActionBtns();
     canvas = document.getElementById(`canvas`);

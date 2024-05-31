@@ -128,8 +128,9 @@ class Endboss extends MovableObject {
       this.img = this.imgCache[this.IMAGES_DEAD[2]]
       clearAllIntervals()
       setTimeout(() => {
+        
         showWinScreen()
-      }, 1000);
+      }, 1100);
     }
     
   }
