@@ -130,7 +130,7 @@ class World {
    */
   checkHeroAboveEnemy() {
     this.level.enemies.forEach((enemy, index) => {
-      if (this.character.isAboveChicken(enemy)) {
+      if (this.character.isAboveChicken(enemy) && this.character.speedY < 20) {
         clearInterval(enemy.intervalNrWalk);
         clearInterval(enemy.intervalNrMove);
         this.character.jumpFromChicken();
