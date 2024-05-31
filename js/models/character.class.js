@@ -216,7 +216,7 @@ class Character extends MovableObject {
     if (!this.isAboveGround() && this.world.keyboard.up) {
       this.jumpingSound.play();
       this.jump();
-  }console.log(this.speedY);
+  }
 }
 
 
