@@ -126,7 +126,7 @@ class Endboss extends MovableObject {
         this.playAnimation(images);
         this.hurtAnimationIndex++;
       }
-    }, 250);
+    }, 200);
     this.bossResumesWalking()
   }
 
@@ -140,7 +140,7 @@ class Endboss extends MovableObject {
       clearInterval(this.hurtInterval);
       this.walkInterval = setInterval(() => {
         this.playAnimation(this.IMAGES_WALKING);
-      }, 500);
+      }, 250);
     }, 1000);
   }
 
