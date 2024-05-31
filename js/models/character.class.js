@@ -13,7 +13,8 @@ class Character extends MovableObject {
     this.backgroundMusic = new Audio("./audio/latin_guitar.mp3");
     this.loadImage("./img/2_character_pepe/2_walk/W-21.png");
     this.fillImgCache(this.IMAGES_WALKING);
-    this.fillImgCache(this.IMAGES_JUMPING);
+    this.fillImgCache(this.IMAGES_JUMPING_UP);
+    this.fillImgCache(this.IMAGES_JUMPING_DOWN);
     this.fillImgCache(this.IMAGES_DEAD);
     this.fillImgCache(this.IMAGES_HURT);
     this.fillImgCache(this.IMAGES_IDLE);
@@ -39,6 +40,8 @@ class Character extends MovableObject {
   throwingSound = new Audio("./audio/throwing.mp3");
   pepeWalkIndex = 0;
   dyingIndex = 0;
+  jumpUpIndex = 0; 
+  jumpDownIndex = 0;
 
   beginIdle = 0;
   idle = false;
@@ -59,17 +62,20 @@ class Character extends MovableObject {
     "./img/2_character_pepe/2_walk/W-26.png",
   ];
 
-  IMAGES_JUMPING = [
+  IMAGES_JUMPING_UP = [
     "./img/2_character_pepe/3_jump/J-31.png",
     "./img/2_character_pepe/3_jump/J-32.png",
     "./img/2_character_pepe/3_jump/J-33.png",
     "./img/2_character_pepe/3_jump/J-34.png",
+  ];
+
+  IMAGES_JUMPING_DOWN = [
     "./img/2_character_pepe/3_jump/J-35.png",
     "./img/2_character_pepe/3_jump/J-36.png",
     "./img/2_character_pepe/3_jump/J-37.png",
     "./img/2_character_pepe/3_jump/J-38.png",
     "./img/2_character_pepe/3_jump/J-39.png",
-  ];
+  ]
 
   IMAGES_DEAD = [
     "./img/2_character_pepe/5_dead/D-51.png",
@@ -142,7 +148,7 @@ class Character extends MovableObject {
     } else if (this.isHurt()) {
       this.playAnimation(this.IMAGES_HURT);
     } else if (this.isAboveGround()) {
-      this.playAnimation(this.IMAGES_JUMPING);
+      this.playAnimation(this.IMAGES_JUMPING_UP);
     } else {
       if (this.world.keyboard.right || this.world.keyboard.left) {
         this.idle = false;
@@ -224,7 +230,7 @@ class Character extends MovableObject {
     if (!this.isAboveGround() && this.world.keyboard.up) {
       this.jumpingSound.play();
       this.jump();
-  }
+  }console.log(this.speedY);
 }
 
 

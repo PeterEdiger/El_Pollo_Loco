@@ -108,6 +108,24 @@ class MovableObject extends CollidableObject {
   }
 
 
+  jumpUpAnimation(images) {
+    if (this.dyingIndex < images.length) {
+      this.img = this.imgCache[images[this.dyingIndex]];
+      this.dyingIndex += 1;
+    }
+  }
+
+
+  jumpDownAnimation(images) {
+    if (this.dyingIndex < images.length) {
+      this.img = this.imgCache[images[this.dyingIndex]];
+      this.dyingIndex += 1;
+    }
+  }
+
+
+
+
   /**
    * Repeats changing images of an object to simulate animation.
    * @param {Array} images - The images that will animate moves of an object.
