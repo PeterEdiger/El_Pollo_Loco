@@ -109,7 +109,7 @@ class MovableObject extends CollidableObject {
 
 
   jumpUpAnimation(images) {
-    if (this.dyingIndex < images.length) {
+    if (this.jumpUpIndex < images.length) {
       this.img = this.imgCache[images[this.dyingIndex]];
       this.dyingIndex += 1;
     }
@@ -117,7 +117,7 @@ class MovableObject extends CollidableObject {
 
 
   jumpDownAnimation(images) {
-    if (this.dyingIndex < images.length) {
+    if (this.jumpDownIndex < images.length) {
       this.img = this.imgCache[images[this.dyingIndex]];
       this.dyingIndex += 1;
     }
