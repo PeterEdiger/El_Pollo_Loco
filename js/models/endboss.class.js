@@ -120,6 +120,15 @@ class Endboss extends MovableObject {
         this.hurtAnimationIndex++;
       }
     }, 500);
+    this.bossResumesWalking()
+  }
+
+
+  /**
+   * Sets a timout when the boss starts the walking animation again.
+   *
+   */
+  bossResumesWalking(){
     setTimeout(() => {
       clearInterval(this.hurtInterval);
       this.walkInterval = setInterval(() => {
@@ -128,6 +137,7 @@ class Endboss extends MovableObject {
     }, 1000);
   }
 
+  
   /**
    * Resumes the previous animation of the Endboss.
    * Currently resumes the walking animation.
