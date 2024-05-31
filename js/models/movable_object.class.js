@@ -124,8 +124,6 @@ class MovableObject extends CollidableObject {
   }
 
 
-
-
   /**
    * Repeats changing images of an object to simulate animation.
    * @param {Array} images - The images that will animate moves of an object.
