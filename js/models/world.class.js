@@ -62,30 +62,43 @@ class World {
   }
 
 
+/**
+ * Checks if a throwable object is thrown and updates the bottle status bar.
+ * If the 'd' key is pressed, a new throwable object is created and added to the array.
+ */
+checkThrowObjects() {
+  this.updateThrowBottleStampAndCheckKey();
+}
 
-  /**
-   * Checks if a throwable object is thrown and updates the bottle status bar.
-   * If the 'd' key is pressed, a new throwable object is created and added to the array.
-   */
-  checkThrowObjects() {
-    if (!this.gotStamp) {
-      this.throwBottleStamp = new Date().getTime();
-    }
-    if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
-      this.gotStamp = true;
-      if ((new Date().getTime() - this.throwBottleStamp) > 500 || this.firstBottle) {
-        this.firstBottle = false;
-        let bottleBarImages = this.statusBarBottles.IMAGES;
-        let bottle = new ThrowableObject(this.character.x, this.character.y);
-        this.throwableObjects.push(bottle);
-        this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
-        this.bottlesAvailableIndex -= 1;
-        this.gotStamp = false;
-      }
-    }
+
+/**
+ * Updates the throw bottle stamp if not already set and checks if the 'd' key is pressed to create a new throwable object.
+ */
+updateThrowBottleStampAndCheckKey() {
+  if (!this.gotStamp) {
+    this.throwBottleStamp = new Date().getTime();
   }
+  if (this.keyboard.d && this.bottlesAvailableIndex >= 0) {
+    this.gotStamp = true;
+    this.throwBottleIfReady();
+  }
+}
 
 
+/**
+ * Creates and throws a new bottle if the cooldown period has passed or if it's the first bottle.
+ */
+throwBottleIfReady() {
+  if ((new Date().getTime() - this.throwBottleStamp) > 500 || this.firstBottle) {
+    this.firstBottle = false;
+    let bottleBarImages = this.statusBarBottles.IMAGES;
+    let bottle = new ThrowableObject(this.character.x, this.character.y);
+    this.throwableObjects.push(bottle);
+    this.statusBarBottles.loadImage(bottleBarImages[this.bottlesAvailableIndex]);
+    this.bottlesAvailableIndex -= 1;
+    this.gotStamp = false;
+  }
+}
 
 
   /**
@@ -293,13 +306,21 @@ class World {
     try {
       this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     } catch (error) {
-      console.warn("Error loading image", error);
-      console.log("Could not load image", mo.img.src);
+      this.logErrorMessages()
     }
     if (mo.otherDirection) {
       mo.x = mo.x * -1;
       this.ctx.restore();
     }
+  }
+
+
+  /**
+   * Logs Specific error messages
+   */
+  logErrorMessages(){
+    console.warn("Error loading image", error);
+    console.log("Could not load image", mo.img.src);
   }
 
 
