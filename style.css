@@ -138,7 +138,13 @@ canvas {
 }
 
 
+.you-win-container{
+  width: 100%;
+  height: 100%;
+}
+
 .win-screen {
+  background-color: grey;
   position: absolute;
   right: 0;
   top: 0;
@@ -146,16 +152,27 @@ canvas {
   height: 100%;
 }
 
+.win-screen-overlay{
+  background-color: black;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.37;
+  z-index: 1;
+}
 
 .you-win-letters {
   position: absolute;
   right: 50%;
   bottom: 50%;
   color: #FFA400 !important;
-  transform: translateX(50%);
-  font-size: 50px;
+  margin: 0 auto;
+  transform: translate(70%, 50%);
+  font-size: 80px;
   color: black;
-  -webkit-text-stroke: 1px #843516;
+  -webkit-text-stroke: 2px #843516;
   padding: 2px 10px;
   font-family: "salsa";
 }
@@ -163,6 +180,7 @@ canvas {
 
 /************************* GAME-CONTROLS *************************/
 .game-controls {
+  z-index: 2;
   position: absolute;
   right: 50%;
   bottom: 5%;
