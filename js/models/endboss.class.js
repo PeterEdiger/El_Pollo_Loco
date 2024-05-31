@@ -116,13 +116,17 @@ class Endboss extends MovableObject {
    * @param {string[]} images - Array of image paths to be used in the hurt animation.
    */
   hurtAnimation(images) {
+    this.speed = 0
+    setTimeout(() => {
+      this.speed = 3
+    }, 2000);
     this.hurtInterval = setInterval(() => {
       if (this.hurtAnimationIndex < images.length) {
         clearInterval(this.walkingInterval);
         this.playAnimation(images);
         this.hurtAnimationIndex++;
       }
-    }, 500);
+    }, 250);
     this.bossResumesWalking()
   }
 
