@@ -89,7 +89,7 @@ updateThrowBottleStampAndCheckKey() {
  * Creates and throws a new bottle if the cooldown period has passed or if it's the first bottle.
  */
 throwBottleIfReady() {
-  if ((new Date().getTime() - this.throwBottleStamp) > 500 || this.firstBottle) {
+  if ((new Date().getTime() - this.throwBottleStamp) > 2000 || this.firstBottle) {
     this.firstBottle = false;
     let bottleBarImages = this.statusBarBottles.IMAGES;
     let bottle = new ThrowableObject(this.character.x, this.character.y);
@@ -215,7 +215,6 @@ throwBottleIfReady() {
    */
   handleEndbossHit(bottleIndex) {
     this.endboss.hurtAnimationIndex = 0;
-    // this.endboss.speed += 1;
     let statusBarImgs = this.statusBarEndboss.IMAGES;
     this.statusBarEndboss.loadImage(statusBarImgs[this.endBossDyeIndex]);
     this.endBossDyeIndex++;

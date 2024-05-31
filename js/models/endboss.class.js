@@ -31,6 +31,7 @@ class Endboss extends MovableObject {
   currentAnimation = null;
   endbossWalking = false;
   hurtAnimationIndex = 0;
+  hitCounter = 0;
 
   offset = {
     left: 30,
@@ -110,16 +111,17 @@ class Endboss extends MovableObject {
     }, 400);
   }
 
-  
+
   /**
    * Plays the hurt animation for the Endboss using the provided images.
    * @param {string[]} images - Array of image paths to be used in the hurt animation.
    */
   hurtAnimation(images) {
-    this.speed = 0
+    this.speed = 0;
     setTimeout(() => {
-      this.speed = 3
-    }, 2000);
+      this.speed = 4;
+    }, 1000);
+    this.bossResumesWalking();
     this.hurtInterval = setInterval(() => {
       if (this.hurtAnimationIndex < images.length) {
         clearInterval(this.walkingInterval);
@@ -127,15 +129,16 @@ class Endboss extends MovableObject {
         this.hurtAnimationIndex++;
       }
     }, 200);
-    this.bossResumesWalking()
   }
 
+
+  
 
   /**
    * Sets a timout when the boss starts the walking animation again.
    *
    */
-  bossResumesWalking(){
+  bossResumesWalking() {
     setTimeout(() => {
       clearInterval(this.hurtInterval);
       this.walkInterval = setInterval(() => {
