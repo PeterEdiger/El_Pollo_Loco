@@ -148,15 +148,7 @@ class Character extends MovableObject {
     } else if (this.isHurt()) {
       this.playAnimation(this.IMAGES_HURT);
     } else if (this.isAboveGround()) {
-      if (this.speedY < 30 && this.speedY > 2) {
-        this.jumpUpAnimation(this.IMAGES_JUMPING_UP);
-        console.log(this.jumpUpIndex);
-        this.jumpDownIndex = 0;
-      }else if(this.speedY > -15 && this.speedY < -5){
-        this.jumpDownAnimation(this.IMAGES_JUMPING_DOWN);
-        console.log(this.jumpDownIndex);
-        this.jumpUpIndex = 0;
-      }
+      this.handleJumpAnimation()
     } else {
       if (this.world.keyboard.right || this.world.keyboard.left) {
         this.idle = false;
@@ -165,6 +157,22 @@ class Character extends MovableObject {
     }
   }
 
+
+  /**
+   * Handles the jump animation by checking if character is on up or down move. 
+   *
+   */
+  handleJumpAnimation(){
+    if (this.speedY < 30 && this.speedY > 2) {
+      this.jumpUpAnimation(this.IMAGES_JUMPING_UP);
+      console.log(this.jumpUpIndex);
+      this.jumpDownIndex = 0;
+    }else if(this.speedY > -15 && this.speedY < -5){
+      this.jumpDownAnimation(this.IMAGES_JUMPING_DOWN);
+      console.log(this.jumpDownIndex);
+      this.jumpUpIndex = 0;
+    }
+  }
 
   /**
    * Stops Intervals and shows the endscreen after character is dead.
